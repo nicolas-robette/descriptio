@@ -1,0 +1,15 @@
+import(nleqslv,ggplot2,RColorBrewer)
+
+  importFrom("stats", "aggregate", "as.formula", "cor", "glm", "lm",
+             "quantile", "residuals", "weighted.mean", "aov", "chisq.test",
+             "cor.test", "median", "sd", "summary.lm",
+             "addmargins",
+             "pnorm",
+             "density")
+  importFrom("utils", "installed.packages", "combn")
+  importFrom("rlang", ".data", "as_name", "eval_tidy")
+  importFrom("nnet", "multinom")
+  importFrom("wdm", "wdm")
+  importFrom("MASS", "corresp", "fitdistr")
+
+export(assoc.twocat,assoc.catcont,assoc.twocont,assoc.yx,catdesc,condesc,darma,oddsratio.table,pem,phi.table,translate.logit,wtable)

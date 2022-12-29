@@ -1,4 +1,4 @@
-# **descriptio**
+# **descriptio** <img src="man/figures/descriptio.png" height=140px width=120px alt="" align="right" />
 
 ## Descriptive Statistical Analysis
 
@@ -32,6 +32,8 @@ install_github("nicolas-robette/descriptio")
 ```
 
 ## References
+
+Agresti, A. (2007). *An Introduction to Categorical Data Analysis*, 2nd ed. New York: John Wiley & Sons.
 
 Deauvieau J., 2019, « Comparer les resultats d'un modele logit dichotomique ou polytomique entre plusieurs groupes a partir des probabilites estimees »,  *Bulletin de Methodologie Sociologique*, 142(1), 7-31.
 
