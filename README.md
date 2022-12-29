@@ -3,7 +3,7 @@
 ## Descriptive Statistical Analysis
 
 <!-- badges: start -->
-  [![R build status](https://github.com/nicolas-robette/descriptio/workflows/R-CMD-check/badge.svg)](https://github.com/nicolas-robette/descriptio/actions)
+[![R-CMD-check](https://github.com/nicolas-robette/descriptio/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nicolas-robette/descriptio/actions/workflows/R-CMD-check.yaml)
   [![](https://www.r-pkg.org/badges/version/descriptio?color=blue)](https://cran.r-project.org/package=descriptio)
   [![](http://cranlogs.r-pkg.org/badges/last-month/descriptio?color=orange)](https://cran.r-project.org/package=descriptio)
 <!-- badges: end -->
