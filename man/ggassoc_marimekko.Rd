@@ -56,12 +56,10 @@ Friendly, M. (1994), "Mosaic displays for multi-way contingency tables". \emph{J
 }
 
 \examples{
-\dontrun{
-data(Taste)
+data(Movies)
 ggassoc_marimekko(data=Movies, mapping=ggplot2::aes(Genre, Country))
 ggassoc_marimekko(data=Movies, mapping=ggplot2::aes(Genre, Country), type = "patterns")
 ggassoc_marimekko(data=Movies, mapping=ggplot2::aes(Genre, Country), type = "shades")
-}
 }
 
 \keyword{ multivariate }

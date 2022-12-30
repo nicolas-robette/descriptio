@@ -47,8 +47,8 @@ Cibois Philippe, 2004, \emph{Les écarts à l'indépendance. Techniques simples 
 
 \examples{
 \dontrun{
-data(Taste)
-ggassoc_phiplot(data=Taste, mapping=ggplot2::aes(x=Age, y=Classical))
+data(Movies)
+ggassoc_phiplot(data=Movies, mapping=ggplot2::aes(Country, Genre))
 }
 }
 

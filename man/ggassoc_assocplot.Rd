@@ -51,8 +51,8 @@ Friendly, M. (1992), Graphical methods for categorical data. \emph{SAS User Grou
 
 \examples{
 \dontrun{
-data(Taste)
-ggassoc_assocplot(data=Taste, mapping=ggplot2::aes(x=Age, y=Classical))
+data(Movies)
+ggassoc_assocplot(data=Movies, mapping=ggplot2::aes(Country, Genre))
 }
 }
 

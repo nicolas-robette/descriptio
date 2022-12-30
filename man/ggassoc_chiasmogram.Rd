@@ -49,7 +49,7 @@ Bozon Michel, Héran François. La découverte du conjoint. II. Les scènes de r
 }
 
 \examples{
-data(Taste)
+data(Movies)
 ggassoc_chiasmogram(data=Movies, mapping=ggplot2::aes(Genre, Country))
 }
 
