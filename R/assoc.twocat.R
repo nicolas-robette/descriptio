@@ -30,7 +30,7 @@ assoc.twocat <- function(x, y, weights=rep.int(1,length(x)), na_value=NULL, nper
   rprop <- 100*apply(freq, 2, function(x) 2*x/rowSums(freq))
   cprop <- t(100*apply(freq, 1, function(x) 2*x/colSums(freq)))
 
-  or <- oddsratio.table(X,Y,weights=W,digits=NULL)
+  or <- or.table(X,Y,weights=W,digits=NULL)
   phi <- phi.table(X,Y,weights=W,digits=NULL)
   pem <- pem(X,Y,weights=W,digits=NULL)
   peml <- pem$peml

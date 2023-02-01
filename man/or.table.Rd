@@ -1,12 +1,12 @@
-\name{oddsratio.table}
-\alias{oddsratio.table}
+\name{or.table}
+\alias{or.table}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Computes the odds ratios for every cells of a contingency table}
 \description{
 Computes the odds ratio for every cells of the cross-tabulation between two categorical variables
 }
 \usage{
-oddsratio.table(x,y,weights=rep(1,length(x)),digits=3)
+or.table(x,y,weights=rep(1,length(x)),digits=3)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -27,7 +27,7 @@ A table with the odds ratios
 }
 \examples{
 data(Movies)
-oddsratio.table(Movies$Country, Movies$ArtHouse)
+or.table(Movies$Country, Movies$ArtHouse)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
