@@ -15,7 +15,6 @@ assoc.catcont <- function(x,y,weights=rep(1,length(x)),nperm=NULL,distrib="asymp
   if(is.null(nperm)) permutation.pvalue <- NULL
   
   cor.coeff <- numeric(length=nlevels(x))
-  # for(i in 1:nlevels(x)) cor.coeff[i] <- cor.test(as.numeric(x==levels(x)[i]), y, method='pearson')$estimate
   for(i in 1:nlevels(x)) cor.coeff[i] <- weighted.cor(as.numeric(x==levels(x)[i]), y, 
                                                       method="pearson", weights=weights, remove_missing=TRUE)
   names(cor.coeff) <- levels(x)
