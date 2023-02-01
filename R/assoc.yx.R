@@ -29,7 +29,7 @@ assoc.yx <- function(y,x,weights=rep(1,length(y)),xx=TRUE,twocont="kendall",nper
     }
     if(yformat=='factor' & xformats[i]=='factor') {
       z <- assoc.twocat(x[,i], y, weights=weights, nperm=nperm, distrib=distrib)
-      measure="Cramer's V"
+      measure="Cramer V"
       association = z$global$cramer.v
       permutation.pvalue = z$global$permutation.pvalue
     }
@@ -39,13 +39,17 @@ assoc.yx <- function(y,x,weights=rep(1,length(y)),xx=TRUE,twocont="kendall",nper
   res <- do.call('rbind.data.frame',res)
   restot <- data.frame(variable=xnames,measure=res$measure,association=res$association,permutation.pvalue=res$permutation.pvalue)
   restot <- restot[order(restot$permutation.pvalue,restot$measure,-restot$association),]
-  restot$measure <- gsub("kendall","Kendall's tau",restot$measure)
-  restot$measure <- gsub("spearman","Spearman's rho",restot$measure)
-  restot$measure <- gsub("pearson","Pearson's r",restot$measure)
+  restot$measure <- gsub("kendall","Kendall tau",restot$measure)
+  restot$measure <- gsub("spearman","Spearman rho",restot$measure)
+  restot$measure <- gsub("pearson","Pearson rho",restot$measure)
   rownames(restot) <- NULL
   restot$association <- round(restot$association,dec[1])
-  restot$permutation.pvalue <- round(restot$permutation.pvalue,dec[2])
-  
+  if(is.null(nperm)) {
+    restot$permutation.pvalue <- NULL
+  } else {
+    restot$permutation.pvalue <- round(restot$permutation.pvalue,dec[2])
+  }
+
   if(xx==TRUE) {
     combi <- utils::combn(xnames,2,simplify=F)
     res <- list()
@@ -73,7 +77,7 @@ assoc.yx <- function(y,x,weights=rep(1,length(y)),xx=TRUE,twocont="kendall",nper
       }
       if(inherits(x1,'factor') & inherits(x2,'factor')) {
         z <- assoc.twocat(x1, x2, weights=weights, nperm=nperm, distrib=distrib)
-        measure="Cramer's V"
+        measure="Cramer V"
         association = z$global$cramer.v
         permutation.pvalue = z$global$permutation.pvalue
       }
@@ -84,15 +88,20 @@ assoc.yx <- function(y,x,weights=rep(1,length(y)),xx=TRUE,twocont="kendall",nper
     noms <- do.call('rbind.data.frame',combi)
     restot2 <- data.frame(variable1=noms[,1],variable2=noms[,2],measure=res$measure,association=res$association,permutation.pvalue=res$permutation.pvalue,row.names=NULL)
     restot2 <- restot2[order(restot2$permutation.pvalue,restot2$measure,-restot2$association),]
-    restot2$measure <- gsub("kendall","Kendall's tau",restot2$measure)
-    restot2$measure <- gsub("spearman","Spearman's rho",restot2$measure)
-    restot2$measure <- gsub("pearson","Pearson's r",restot2$measure)
+    restot2$measure <- gsub("kendall","Kendall tau",restot2$measure)
+    restot2$measure <- gsub("spearman","Spearman rho",restot2$measure)
+    restot2$measure <- gsub("pearson","Pearson rho",restot2$measure)
     rownames(restot2) <- NULL
     restot2$association <- round(restot2$association,dec[1])
-    restot2$permutation.pvalue <- round(restot2$permutation.pvalue,dec[2])
+    if(is.null(nperm)) { 
+      restot2$permutation.pvalue <- NULL
+    } else {
+      restot2$permutation.pvalue <- round(restot2$permutation.pvalue,dec[2])  
+    }
   } else {
     restot2 <- NULL
   }
 
   return(list(YX=restot, XX=restot2))
 }
+
