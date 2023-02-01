@@ -1,4 +1,4 @@
-import(nleqslv,ggplot2,RColorBrewer)
+import(nleqslv,ggplot2)
 
   importFrom("stats", "aggregate", 
              "as.formula", 
@@ -10,7 +10,6 @@ import(nleqslv,ggplot2,RColorBrewer)
              "weighted.mean",
              "aov", 
              "chisq.test",
-             "cor.test",
              "median",
              "sd",
              "summary.lm",
