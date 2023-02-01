@@ -1,16 +1,16 @@
 assoc.twocont <- function(x,y,weights=rep(1,length(x)),nperm=NULL,distrib="asympt") {
-  pearson <- wdm::wdm(x,y,method="pearson",weights=weights,remove_missing=TRUE)
-  spearman <- wdm::wdm(x,y,method="spearman",weights=weights,remove_missing=TRUE)
-  kendall <- wdm::wdm(x,y,method="kendall",weights=weights,remove_missing=TRUE)
+  pearson <- weighted.cor(x,y,method="pearson",weights=weights,remove_missing=TRUE)
+  spearman <- weighted.cor(x,y,method="spearman",weights=weights,remove_missing=TRUE)
+  kendall <- weighted.cor(x,y,method="kendall",weights=weights,remove_missing=TRUE)
   if(!is.null(nperm)) {
     h0P <- numeric()
     h0S <- numeric()
     h0K <- numeric()
     for(i in 1:nperm) {
       permy <- sample(y)
-      h0P[i] <- wdm::wdm(x,permy,method="pearson",weights=weights,remove_missing=TRUE)
-      h0S[i] <- wdm::wdm(x,permy,method="spearman",weights=weights,remove_missing=TRUE)
-      h0K[i] <- wdm::wdm(x,permy,method="kendall",weights=weights,remove_missing=TRUE)
+      h0P[i] <- weighted.cor(x,permy,method="pearson",weights=weights,remove_missing=TRUE)
+      h0S[i] <- weighted.cor(x,permy,method="spearman",weights=weights,remove_missing=TRUE)
+      h0K[i] <- weighted.cor(x,permy,method="kendall",weights=weights,remove_missing=TRUE)
     }
     if(distrib=='approx') {
       pearson <- c(pearson, sum(pearson<=h0P)/nperm)

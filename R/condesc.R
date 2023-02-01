@@ -11,18 +11,18 @@ condesc <- function(y,x,weights=rep(1,length(y)),min.cor=NULL,robust=TRUE,nperm=
   mad.y.in.xcat <- numeric()
   mad.y.global <- numeric()
   for(i in 1:ncol(xcat.dic)) {
-    cor[i] <- wdm::wdm(y, xcat.dic[,i], weights=weights)
+    cor[i] <- weighted.cor(y, xcat.dic[,i], weights=weights, method="pearson")
     if(robust==TRUE) {
-      median.y.in.xcat[i] <- weighted.quantile(rep(y[xcat.dic[,i]==1],2), w=rep(weights[xcat.dic[,i]==1],2), method="density")
-      median.y.global[i] <- weighted.quantile(y, w=weights, method="density")
-      mad.y.in.xcat[i] <- weighted.mad(rep(y[xcat.dic[,i]==1],2), w=rep(weights[xcat.dic[,i]==1],2), method="density")
-      mad.y.global[i] <- weighted.mad(y, w=weights, method="density")
+      median.y.in.xcat[i] <- weighted.quantile(rep(y[xcat.dic[,i]==1],2), weights=rep(weights[xcat.dic[,i]==1],2), method="density")
+      median.y.global[i] <- weighted.quantile(y, weights=weights, method="density")
+      mad.y.in.xcat[i] <- weighted.mad(rep(y[xcat.dic[,i]==1],2), weights=rep(weights[xcat.dic[,i]==1],2), method="density")
+      mad.y.global[i] <- weighted.mad(y, weights=weights, method="density")
     }
     if(robust==FALSE) {
-      median.y.in.xcat[i] <- weighted.mean(rep(y[xcat.dic[,i]==1],2), w=rep(weights[xcat.dic[,i]==1],2))
-      median.y.global[i] <- weighted.mean(y, w=weights)
-      mad.y.in.xcat[i] <- weighted.sd(rep(y[xcat.dic[,i]==1],2), w=rep(weights[xcat.dic[,i]==1],2))
-      mad.y.global[i] <- weighted.sd(y, w=weights)      
+      median.y.in.xcat[i] <- weighted.mean(rep(y[xcat.dic[,i]==1],2), weights=rep(weights[xcat.dic[,i]==1],2))
+      median.y.global[i] <- weighted.mean(y, weights=weights)
+      mad.y.in.xcat[i] <- weighted.sd(rep(y[xcat.dic[,i]==1],2), weights=rep(weights[xcat.dic[,i]==1],2))
+      mad.y.global[i] <- weighted.sd(y, weights=weights)      
     }
   }
   

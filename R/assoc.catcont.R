@@ -16,8 +16,8 @@ assoc.catcont <- function(x,y,weights=rep(1,length(x)),nperm=NULL,distrib="asymp
   
   cor.coeff <- numeric(length=nlevels(x))
   # for(i in 1:nlevels(x)) cor.coeff[i] <- cor.test(as.numeric(x==levels(x)[i]), y, method='pearson')$estimate
-  for(i in 1:nlevels(x)) cor.coeff[i] <- wdm::wdm(as.numeric(x==levels(x)[i]), y, 
-                                                  method="pearson", weights=weights, remove_missing=TRUE)
+  for(i in 1:nlevels(x)) cor.coeff[i] <- weighted.cor(as.numeric(x==levels(x)[i]), y, 
+                                                      method="pearson", weights=weights, remove_missing=TRUE)
   names(cor.coeff) <- levels(x)
   
   if(!is.null(nperm)) {
@@ -25,8 +25,8 @@ assoc.catcont <- function(x,y,weights=rep(1,length(x)),nperm=NULL,distrib="asymp
     for(i in 1:nlevels(x)) {
       obs <- cor.coeff[i]
       h0d <- numeric()
-      for(j in 1:nperm) h0d[j] <- wdm::wdm(as.numeric(x==levels(x)[i]), sample(y), 
-                                           method="pearson", weights=weights, remove_missing=TRUE)
+      for(j in 1:nperm) h0d[j] <- weighted.cor(as.numeric(x==levels(x)[i]), sample(y), 
+                                               method="pearson", weights=weights, remove_missing=TRUE)
       if(distrib=='approx') {
         if(obs>=0) ppval[i] <- sum(obs<=h0d)/nperm
         if(obs<0) ppval[i] <- sum(obs>h0d)/nperm
