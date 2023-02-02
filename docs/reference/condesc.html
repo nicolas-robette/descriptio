@@ -127,40 +127,40 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">condesc</span><span class="op">(</span><span class="va">Movies</span><span class="op">$</span><span class="va">BoxOffice</span>, <span class="va">Movies</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Budget"</span>,<span class="st">"Genre"</span>,<span class="st">"Country"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $variables</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   variable       measure association permutation.pvalue</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Genre          Eta2       0.173                 NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Country          Eta2       0.048                 NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   Budget Kendall's tau       0.518                 NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   variable     measure association</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Genre        Eta2       0.173</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Country        Eta2       0.048</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   Budget Kendall tau       0.518</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $categories</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           categories median.y.in.xcat median.y.global mad.y.in.xcat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        Genre.SciFi           944784          138609        853626</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Genre.Animation           954956          138609        853018</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13       Country.USA           356692          138609        286508</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       Genre.Action           291945          138609        247538</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    Country.Europe           153755          138609        150015</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       Genre.Comedy           230615          138609        210550</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Genre.Other           249037          138609        231954</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12     Country.Other            64893          138609         46042</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8       Genre.Horror           293118          138609        176131</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  Genre.Documentary            13470          138609         12078</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Genre.ComDram            91380          138609         88602</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        Genre.Drama            49219          138609         44946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11    Country.France            77352          138609         78519</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9        Genre.SciFi           680900          107326        607448</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Genre.Animation           668896          107326        633265</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13       Country.USA           328559          107326        274892</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       Genre.Action           240080          107326        202793</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    Country.Europe           108122          107326        104607</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       Genre.Comedy           202090          107326        191819</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Genre.Other           186084          107326        171739</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12     Country.Other            55643          107326         37068</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8       Genre.Horror           302635          107326        171803</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  Genre.Documentary             9303          107326          7890</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Genre.ComDram            67341          107326         64317</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7        Genre.Drama            37160          107326         34368</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11    Country.France            57140          107326         54425</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    mad.y.global    cor</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        137253  0.294</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        137253  0.211</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13       137253  0.192</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        137253  0.087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10       137253  0.068</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        137253  0.004</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        137253 -0.005</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12       137253 -0.013</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8        137253 -0.015</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        137253 -0.108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        137253 -0.114</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        137253 -0.162</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11       137253 -0.211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9        104060  0.294</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        104060  0.211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13       104060  0.192</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        104060  0.087</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10       104060  0.068</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        104060  0.004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        104060 -0.005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12       104060 -0.013</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8        104060 -0.015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        104060 -0.108</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4        104060 -0.114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7        104060 -0.162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11       104060 -0.211</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

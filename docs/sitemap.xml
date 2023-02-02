@@ -76,6 +76,9 @@
     <loc>https://nicolas-robette.github.io/descriptio/reference/oddsratio.table.html</loc>
   </url>
   <url>
+    <loc>https://nicolas-robette.github.io/descriptio/reference/or.table.html</loc>
+  </url>
+  <url>
     <loc>https://nicolas-robette.github.io/descriptio/reference/pem.html</loc>
   </url>
   <url>
@@ -83,6 +86,18 @@
   </url>
   <url>
     <loc>https://nicolas-robette.github.io/descriptio/reference/translate.logit.html</loc>
+  </url>
+  <url>
+    <loc>https://nicolas-robette.github.io/descriptio/reference/weighted.cor.html</loc>
+  </url>
+  <url>
+    <loc>https://nicolas-robette.github.io/descriptio/reference/weighted.mad.html</loc>
+  </url>
+  <url>
+    <loc>https://nicolas-robette.github.io/descriptio/reference/weighted.quantile.html</loc>
+  </url>
+  <url>
+    <loc>https://nicolas-robette.github.io/descriptio/reference/weighted.sd.html</loc>
   </url>
   <url>
     <loc>https://nicolas-robette.github.io/descriptio/reference/wtable.html</loc>
