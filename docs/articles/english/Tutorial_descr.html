@@ -86,7 +86,7 @@ with descriptio</h1>
                         <h4 data-toc-skip class="author">Nicolas
 Robette</h4>
             
-            <h4 data-toc-skip class="date">2022-12-30</h4>
+            <h4 data-toc-skip class="date">2023-02-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nicolas-robette/descriptio/blob/HEAD/vignettes/english/Tutorial_descr.Rmd" class="external-link"><code>vignettes/english/Tutorial_descr.Rmd</code></a></small>
       <div class="hidden name"><code>Tutorial_descr.Rmd</code></div>
@@ -334,17 +334,17 @@ USA     0.45688150 -0.45688150
 
 $local$phi.perm.pval
                  No          Yes
-Europe 2.708839e-01 2.708839e-01
-France 1.323724e-40 0.000000e+00
-Other  2.769198e-03 2.769198e-03
-USA    0.000000e+00 1.085986e-46
+Europe 3.404483e-01 3.404483e-01
+France 4.232854e-39 0.000000e+00
+Other  4.112856e-03 4.112856e-03
+USA    0.000000e+00 6.210696e-45
 
 
 $gather
   var.y  var.x freq  prop     rprop      cprop expected std.residuals adj.residuals         or       pem         phi    perm.pval freq.x freq.y prop.x prop.y
-1    No Europe   39 0.039 0.5416667 0.07587549   37.008     0.3274474      0.487584  1.1270813   5.69273  0.01541876 2.708839e-01     72    514  0.072  0.514
-2    No France  212 0.212 0.3504132 0.41245136  310.970    -5.6123445    -12.809366  0.1661190 -51.55493 -0.40506773 1.323724e-40    605    514  0.605  0.514
-3    No  Other    6 0.006 0.2307692 0.01167315   13.364    -2.0143992     -2.927844  0.2751969 -55.10326 -0.09258656 2.769198e-03     26    514  0.026  0.514
+1    No Europe   39 0.039 0.5416667 0.07587549   37.008     0.3274474      0.487584  1.1270813   5.69273  0.01541876 3.404483e-01     72    514  0.072  0.514
+2    No France  212 0.212 0.3504132 0.41245136  310.970    -5.6123445    -12.809366  0.1661190 -51.55493 -0.40506773 4.232854e-39    605    514  0.605  0.514
+3    No  Other    6 0.006 0.2307692 0.01167315   13.364    -2.0143992     -2.927844  0.2751969 -55.10326 -0.09258656 4.112856e-03     26    514  0.026  0.514
 4    No    USA  257 0.257 0.8653199 0.50000000  152.658     8.4449945     14.447862 11.1500000  72.28804  0.45688150 0.000000e+00    297    514  0.297  0.514
  [ reached 'max' / getOption("max.print") -- omitted 4 rows ]</code></pre>
 <p><br>
@@ -381,7 +381,7 @@ corresponding permutation tests</li>
 [1] 0.0169216
 
 $permutation.pvalue
-[1] 1.110223e-16
+[1] 3.623029e-10
 
 $cor
 Europe France  Other    USA 
@@ -389,7 +389,7 @@ Europe France  Other    USA
 
 $cor.perm.pval
       Europe       France        Other          USA 
-3.534500e-01 2.130398e-04 1.015768e-01 9.578442e-05 </code></pre>
+3.830391e-01 6.102325e-04 1.420503e-01 4.060879e-06 </code></pre>
 <p><br>
 The function <code>ggassoc_boxplot</code> represents the relationship
 between the variables in the form of box-plots and/or “violin”
@@ -437,31 +437,31 @@ of X.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/assoc.yx.html">assoc.yx</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">$</span><span class="va">BoxOffice</span>, <span class="va">Movies</span><span class="op">[</span>,<span class="op">-</span><span class="fl">7</span><span class="op">]</span>, nperm<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <pre><code>$YX
-  variable       measure association permutation.pvalue
-1    Genre          Eta2       0.173              0.000
-2 ArtHouse          Eta2       0.075              0.000
-3  Country          Eta2       0.048              0.000
-4   Budget Kendall's tau       0.518              0.000
-5  Critics Kendall's tau       0.006              0.475
-6 Festival          Eta2       0.000              0.717
+  variable     measure association permutation.pvalue
+1    Genre        Eta2       0.173              0.000
+2 ArtHouse        Eta2       0.075              0.000
+3  Country        Eta2       0.048              0.000
+4   Budget Kendall tau       0.518              0.000
+5  Critics Kendall tau       0.006              0.408
+6 Festival        Eta2       0.000              0.757
 
 $XX
-   variable1 variable2       measure association permutation.pvalue
-1      Genre  ArtHouse    Cramer's V       0.554              0.000
-2    Country  ArtHouse    Cramer's V       0.469              0.000
-3      Genre   Country    Cramer's V       0.275              0.000
-4   ArtHouse  Festival    Cramer's V       0.229              0.000
-5     Budget   Country          Eta2       0.287              0.000
-6     Budget     Genre          Eta2       0.281              0.000
-7   ArtHouse   Critics          Eta2       0.236              0.000
-8     Budget  ArtHouse          Eta2       0.181              0.000
-9      Genre   Critics          Eta2       0.090              0.000
-10  Festival   Critics          Eta2       0.041              0.000
-11    Budget   Critics Kendall's tau      -0.178              0.000
-12   Country   Critics          Eta2       0.017              0.000
-13     Genre  Festival    Cramer's V       0.183              0.000
-14    Budget  Festival          Eta2       0.003              0.119
-15   Country  Festival    Cramer's V       0.035              0.742</code></pre>
+   variable1 variable2     measure association permutation.pvalue
+1      Genre  ArtHouse    Cramer V       0.554              0.000
+2    Country  ArtHouse    Cramer V       0.469              0.000
+3      Genre   Country    Cramer V       0.275              0.000
+4   ArtHouse  Festival    Cramer V       0.229              0.000
+5     Budget   Country        Eta2       0.287              0.000
+6     Budget     Genre        Eta2       0.281              0.000
+7   ArtHouse   Critics        Eta2       0.236              0.000
+8     Budget  ArtHouse        Eta2       0.181              0.000
+9      Genre   Critics        Eta2       0.090              0.000
+10  Festival   Critics        Eta2       0.041              0.000
+11    Budget   Critics Kendall tau      -0.178              0.000
+12   Country   Critics        Eta2       0.017              0.000
+13     Genre  Festival    Cramer V       0.183              0.000
+14    Budget  Festival        Eta2       0.003              0.099
+15   Country  Festival    Cramer V       0.035              0.754</code></pre>
 <p><br>
 The functions <code>catdesc</code> and <code>condesc</code> allow to go
 into more detail about the relationships, by going to the category
@@ -513,9 +513,9 @@ outliers.</p>
 
 $continuous.var
   variables median.x.in.ycat median.x.global mad.x.in.ycat mad.x.global    cor
-1   Critics              3.5             2.9           0.6          0.6  0.204
-3 BoxOffice         236910.7        138608.8      212598.2     137253.1  0.008
-5    Budget        7689956.0       7040470.9     4865250.9    5920656.2 -0.057</code></pre>
+1   Critics              3.5             3.0           0.7          0.6  0.204
+3 BoxOffice         198796.0        107326.5      181590.0     104060.0  0.008
+5    Budget        7000000.0       6127500.0     4438000.0    5156921.0 -0.057</code></pre>
 <p><br><code>condesc</code> deals with the cases where Y is a numerical
 variable. For a categorical variable X1, it computes :</p>
 <ul>
@@ -533,28 +533,28 @@ tau.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/condesc.html">condesc</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">$</span><span class="va">BoxOffice</span>, <span class="va">Movies</span><span class="op">[</span>,<span class="op">-</span><span class="fl">7</span><span class="op">]</span>, nperm<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <pre><code>$variables
-  variable       measure association permutation.pvalue
-1    Genre          Eta2       0.173              0.000
-2 ArtHouse          Eta2       0.075              0.000
-3  Country          Eta2       0.048              0.000
-4   Budget Kendall's tau       0.518              0.000
-5  Critics Kendall's tau       0.006              0.349
-6 Festival          Eta2       0.000              0.753
+  variable     measure association permutation.pvalue
+1    Genre        Eta2       0.173              0.000
+2 ArtHouse        Eta2       0.075              0.000
+3  Country        Eta2       0.048              0.000
+4   Budget Kendall tau       0.518              0.000
+5  Critics Kendall tau       0.006              0.358
+6 Festival        Eta2       0.000              0.718
 
 $categories
         categories median.y.in.xcat median.y.global mad.y.in.xcat mad.y.global    cor
-9      Genre.SciFi           944784          138609        853626       137253  0.294
-14     ArtHouse.No           298718          138609        257715       137253  0.274
-2  Genre.Animation           954956          138609        853018       137253  0.211
-13     Country.USA           356692          138609        286508       137253  0.192
-1     Genre.Action           291945          138609        247538       137253  0.087
-10  Country.Europe           153755          138609        150015       137253  0.068
-17    Festival.Yes           228749          138609        207635       137253  0.008
-5     Genre.Comedy           230615          138609        210550       137253  0.004
-3      Genre.Other           249037          138609        231954       137253 -0.005
-16     Festival.No           129629          138609        127957       137253 -0.008
-12   Country.Other            64893          138609         46042       137253 -0.013
-8     Genre.Horror           293118          138609        176131       137253 -0.015
+9      Genre.SciFi           680900          107326        607448       104060  0.294
+14     ArtHouse.No           264200          107326        232183       104060  0.274
+2  Genre.Animation           668896          107326        633265       104060  0.211
+13     Country.USA           328559          107326        274892       104060  0.192
+1     Genre.Action           240080          107326        202793       104060  0.087
+10  Country.Europe           108122          107326        104607       104060  0.068
+17    Festival.Yes           198796          107326        181590       104060  0.008
+5     Genre.Comedy           202090          107326        191819       104060  0.004
+3      Genre.Other           186084          107326        171739       104060 -0.005
+16     Festival.No           102726          107326         99642       104060 -0.008
+12   Country.Other            55643          107326         37068       104060 -0.013
+8     Genre.Horror           302635          107326        171803       104060 -0.015
  [ reached 'max' / getOption("max.print") -- omitted 5 rows ]</code></pre>
 <p><br>
 The <code>darma</code> function presents the results in a form close to
@@ -588,128 +588,128 @@ corresponding permutation test</li>
 <tr class="even">
 <td align="left">Genre</td>
 <td align="left">Action</td>
-<td align="right">301483.7</td>
+<td align="right">240080.0</td>
 <td align="right">0.087</td>
-<td align="right">0.004</td>
+<td align="right">0.009</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Animation</td>
-<td align="right">990790.2</td>
+<td align="right">668896.0</td>
 <td align="right">0.211</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Other</td>
-<td align="right">254002.8</td>
+<td align="right">186084.5</td>
 <td align="right">-0.005</td>
-<td align="right">0.417</td>
+<td align="right">0.499</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">ComDram</td>
-<td align="right">96221.7</td>
+<td align="right">67341.0</td>
 <td align="right">-0.114</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Comedy</td>
-<td align="right">236703.8</td>
+<td align="right">202090.0</td>
 <td align="right">0.004</td>
-<td align="right">0.476</td>
+<td align="right">0.414</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Documentary</td>
-<td align="right">13823.2</td>
+<td align="right">9303.0</td>
 <td align="right">-0.108</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Drama</td>
-<td align="right">51111.1</td>
+<td align="right">37160.0</td>
 <td align="right">-0.162</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Horror</td>
-<td align="right">296015.2</td>
+<td align="right">302635.0</td>
 <td align="right">-0.015</td>
-<td align="right">0.311</td>
+<td align="right">0.304</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">SciFi</td>
-<td align="right">989158.5</td>
+<td align="right">680900.0</td>
 <td align="right">0.294</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">Country</td>
 <td align="left">Europe</td>
-<td align="right">161441.5</td>
+<td align="right">108121.5</td>
 <td align="right">0.068</td>
-<td align="right">0.027</td>
+<td align="right">0.017</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">France</td>
-<td align="right">82312.8</td>
+<td align="right">57140.0</td>
 <td align="right">-0.211</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Other</td>
-<td align="right">64304.0</td>
+<td align="right">55643.0</td>
 <td align="right">-0.013</td>
-<td align="right">0.420</td>
+<td align="right">0.332</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">USA</td>
-<td align="right">366233.7</td>
+<td align="right">328559.0</td>
 <td align="right">0.192</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">ArtHouse</td>
 <td align="left">No</td>
-<td align="right">307344.0</td>
+<td align="right">264200.0</td>
 <td align="right">0.274</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Yes</td>
-<td align="right">47084.8</td>
+<td align="right">35837.5</td>
 <td align="right">-0.274</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">Festival</td>
 <td align="left">No</td>
-<td align="right">134006.6</td>
+<td align="right">102726.0</td>
 <td align="right">-0.008</td>
-<td align="right">0.465</td>
+<td align="right">0.415</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Yes</td>
-<td align="right">236910.7</td>
+<td align="right">198796.0</td>
 <td align="right">0.008</td>
-<td align="right">0.423</td>
+<td align="right">0.356</td>
 </tr>
 <tr class="odd">
 <td align="left">Critics</td>
 <td align="left"></td>
 <td align="right">NA</td>
 <td align="right">0.006</td>
-<td align="right">0.336</td>
+<td align="right">0.421</td>
 </tr>
 </tbody>
 </table>
@@ -738,28 +738,28 @@ corresponding permutation test.</li>
 <td align="left"></td>
 <td align="right">NA</td>
 <td align="right">-0.057</td>
-<td align="right">0.046</td>
+<td align="right">0.040</td>
 </tr>
 <tr class="even">
 <td align="left">Genre</td>
 <td align="left">Action</td>
 <td align="right">7.9</td>
 <td align="right">0.003</td>
-<td align="right">0.466</td>
+<td align="right">0.450</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Animation</td>
 <td align="right">2.2</td>
 <td align="right">-0.046</td>
-<td align="right">0.098</td>
+<td align="right">0.067</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Other</td>
 <td align="right">11.5</td>
 <td align="right">0.024</td>
-<td align="right">0.291</td>
+<td align="right">0.268</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -773,14 +773,14 @@ corresponding permutation test.</li>
 <td align="left">Comedy</td>
 <td align="right">2.7</td>
 <td align="right">-0.100</td>
-<td align="right">0.001</td>
+<td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Documentary</td>
 <td align="right">2.6</td>
 <td align="right">-0.055</td>
-<td align="right">0.036</td>
+<td align="right">0.049</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -794,42 +794,42 @@ corresponding permutation test.</li>
 <td align="left">Horror</td>
 <td align="right">0.0</td>
 <td align="right">-0.046</td>
-<td align="right">0.082</td>
+<td align="right">0.059</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">SciFi</td>
 <td align="right">6.1</td>
 <td align="right">-0.013</td>
-<td align="right">0.412</td>
+<td align="right">0.338</td>
 </tr>
 <tr class="odd">
 <td align="left">Country</td>
 <td align="left">Europe</td>
 <td align="right">9.7</td>
 <td align="right">0.021</td>
-<td align="right">0.250</td>
+<td align="right">0.256</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">France</td>
 <td align="right">8.1</td>
 <td align="right">0.019</td>
-<td align="right">0.314</td>
+<td align="right">0.242</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Other</td>
 <td align="right">7.7</td>
 <td align="right">0.000</td>
-<td align="right">0.519</td>
+<td align="right">0.476</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">USA</td>
 <td align="right">6.4</td>
 <td align="right">-0.032</td>
-<td align="right">0.189</td>
+<td align="right">0.124</td>
 </tr>
 <tr class="odd">
 <td align="left">ArtHouse</td>
@@ -857,7 +857,7 @@ corresponding permutation test.</li>
 <td align="left"></td>
 <td align="right">NA</td>
 <td align="right">0.008</td>
-<td align="right">0.747</td>
+<td align="right">0.709</td>
 </tr>
 </tbody>
 </table>
