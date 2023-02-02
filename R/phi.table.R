@@ -8,7 +8,7 @@ phi.table <- function(x,y,weights=rep(1,length(x)),digits=3) {
   tab <- matrix(nrow = ncol(xdic), ncol = ncol(ydic))
   for(i in 1:nrow(tab)) {
     for(j in 1:ncol(tab)) {
-      tab[i,j] <- weighted.cor(xdic[,i], ydic[,j], weights = weights, method = "pearson", remove_missing = TRUE)      
+      tab[i,j] <- weighted.cor(xdic[,i], ydic[,j], weights = weights, method = "pearson")      
     }
   }
   tab <- as.table(tab)

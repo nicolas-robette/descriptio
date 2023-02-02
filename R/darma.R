@@ -25,7 +25,7 @@ darma <- function(y,x,weights=rep(1,length(y)),target=1,twocont="kendall",nperm=
     if(is.numeric(y) & is.factor(x[,i])) {
       biv <- assoc.catcont(x[,i],y,weights=weights,nperm=nperm,distrib=distrib)
       # med <- sapply(split(data.frame(y,weights),x[,i]), function(X) weighted.mean(X[,1],X[,2]))
-      med <- round(sapply(split(data.frame(y,weights),x[,i]), function(X) weighted.quantile(X[,1],X[,2],probs=.5,method="density")),2)
+      med <- round(sapply(split(data.frame(y,weights),x[,i]), function(X) weighted.quantile(X[,1],X[,2],probs=.5)),2)
       assoc <- biv$cor
       pval <- biv$cor.perm.pval
       if(is.null(nperm)) pval <- rep(NA,length(assoc))

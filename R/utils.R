@@ -1,24 +1,44 @@
 
-weighted.quantile <- function(x, weights, probs = .5, method = "raw") {
-  if(method=="raw") {
-    weights <- weights[order(x)]
-    x <- x[order(x)]
-    Fx = cumsum(weights)/sum(weights)
-    rang <- max(which(Fx<probs))
-    res <- x[rang] + (0.5 - Fx[rang])/(Fx[rang+1] - Fx[rang]) * (x[rang+1] - x[rang])
+# weighted.quantile <- function(x, weights, probs = .5, method = "raw") {
+#   if(method=="raw") {
+#     weights <- weights[order(x)]
+#     x <- x[order(x)]
+#     Fx = cumsum(weights)/sum(weights)
+#     rang <- max(which(Fx<probs))
+#     res <- x[rang] + (0.5 - Fx[rang])/(Fx[rang+1] - Fx[rang]) * (x[rang+1] - x[rang])
+#   }
+#   if(method=="density") {
+#     res <- with(stats::density(x, weights = weights/sum(weights), n = 4096), 
+#                 x[which.max(cumsum(y*(x[2L] - x[1L])) >= probs)])
+#   }
+#   return(res)
+# }
+
+# https://stackoverflow.com/questions/2748725/is-there-a-weighted-median-function
+
+
+weighted.quantile <- function(x, weights, probs = seq(0, 1, 0.25),
+                              na.rm = TRUE, names = FALSE) {
+  if (any(probs > 1) | any(probs < 0)) stop("probs are outside [0,1]")
+  if (length(weights) == 1) weights <- rep(weights, length(x))
+  if (length(weights) != length(x)) stop("weights must have length 1 or be as long as x")
+  if (isTRUE(na.rm)) {
+    weights <- weights[!is.na(x)]
+    x <- x[!is.na(x)]
   }
-  if(method=="density") {
-    res <- with(stats::density(x, weights = weights/sum(weights), n = 4096), 
-                x[which.max(cumsum(y*(x[2L] - x[1L])) >= probs)])
-  }
+  weights <- weights[order(x)] / sum(weights)
+  x <- x[order(x)]
+  cum_w <- cumsum(weights) - weights * (1 - (seq_along(weights) - 1) / (length(weights) - 1))
+  res <- stats::approx(x = cum_w, y = x, xout = probs)$y
+  if (isTRUE(names)) res <- setNames(res, paste0(format(100 * probs, digits = 7), "%"))
   return(res)
 }
 
 
-weighted.mad <- function(x, weights, method = "raw") {
-  med <- weighted.quantile(x=x, weights=weights, method=method)
+weighted.mad <- function(x, weights) {
+  med <- weighted.quantile(x=x, weights=weights, probs = .5)
   ad <- abs(x-med)
-  mad <- weighted.quantile(x=ad, weights=weights, method=method)
+  mad <- weighted.quantile(x=ad, weights=weights, probs = .5)
   return(mad)
 }
 
@@ -111,8 +131,9 @@ weighted.ktau <- function(x, y, weights) {
 # y <- c(34,87,35,12,23,98,NA)
 # weights <- c(NA,1.5,2,1.5,1,1.5,2)
 
-weighted.cor <- function(x, y, weights, method = "pearson", remove_missing = TRUE) {
-  if(remove_missing) {
+
+weighted.cor <- function(x, y, weights, method = "pearson", na.rm = TRUE) {
+  if(na.rm) {
     complete <- !(is.na(x) | is.na(y) | is.na(weights))
     x <- x[complete]
     y <- y[complete]

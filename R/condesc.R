@@ -13,10 +13,10 @@ condesc <- function(y,x,weights=rep(1,length(y)),min.cor=NULL,robust=TRUE,nperm=
   for(i in 1:ncol(xcat.dic)) {
     cor[i] <- weighted.cor(y, xcat.dic[,i], weights=weights, method="pearson")
     if(robust==TRUE) {
-      median.y.in.xcat[i] <- weighted.quantile(rep(y[xcat.dic[,i]==1],2), weights=rep(weights[xcat.dic[,i]==1],2), method="density")
-      median.y.global[i] <- weighted.quantile(y, weights=weights, method="density")
-      mad.y.in.xcat[i] <- weighted.mad(rep(y[xcat.dic[,i]==1],2), weights=rep(weights[xcat.dic[,i]==1],2), method="density")
-      mad.y.global[i] <- weighted.mad(y, weights=weights, method="density")
+      median.y.in.xcat[i] <- weighted.quantile(rep(y[xcat.dic[,i]==1],2), weights=rep(weights[xcat.dic[,i]==1],2), probs = .5)
+      median.y.global[i] <- weighted.quantile(y, weights=weights, probs = .5)
+      mad.y.in.xcat[i] <- weighted.mad(rep(y[xcat.dic[,i]==1],2), weights=rep(weights[xcat.dic[,i]==1],2))
+      mad.y.global[i] <- weighted.mad(y, weights=weights)
     }
     if(robust==FALSE) {
       median.y.in.xcat[i] <- weighted.mean(rep(y[xcat.dic[,i]==1],2), weights=rep(weights[xcat.dic[,i]==1],2))

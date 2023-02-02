@@ -1,16 +1,16 @@
 assoc.twocont <- function(x,y,weights=rep(1,length(x)),nperm=NULL,distrib="asympt") {
-  pearson <- weighted.cor(x,y,method="pearson",weights=weights,remove_missing=TRUE)
-  spearman <- weighted.cor(x,y,method="spearman",weights=weights,remove_missing=TRUE)
-  kendall <- weighted.cor(x,y,method="kendall",weights=weights,remove_missing=TRUE)
+  pearson <- weighted.cor(x,y,method="pearson",weights=weights)
+  spearman <- weighted.cor(x,y,method="spearman",weights=weights)
+  kendall <- weighted.cor(x,y,method="kendall",weights=weights)
   if(!is.null(nperm)) {
     h0P <- numeric()
     h0S <- numeric()
     h0K <- numeric()
     for(i in 1:nperm) {
       permy <- sample(y)
-      h0P[i] <- weighted.cor(x,permy,method="pearson",weights=weights,remove_missing=TRUE)
-      h0S[i] <- weighted.cor(x,permy,method="spearman",weights=weights,remove_missing=TRUE)
-      h0K[i] <- weighted.cor(x,permy,method="kendall",weights=weights,remove_missing=TRUE)
+      h0P[i] <- weighted.cor(x,permy,method="pearson",weights=weights)
+      h0S[i] <- weighted.cor(x,permy,method="spearman",weights=weights)
+      h0K[i] <- weighted.cor(x,permy,method="kendall",weights=weights)
     }
     if(distrib=='approx') {
       pearson <- c(pearson, sum(pearson<=h0P)/nperm)

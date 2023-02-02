@@ -47,10 +47,10 @@ catdesc <- function(y,x,weights=rep(1,length(y)),min.phi=NULL,robust=TRUE,nperm=
       temp$variables <- rep(names(xcon)[i],nrow(temp))
       temp$categories <- rownames(temp)
       if(robust==TRUE) {
-        temp$median.x.in.ycat <- sapply(levels(y), function(x) weighted.quantile(xcon[y==x,i], weights[y==x], method="density"))
-        temp$median.x.global <- rep(weighted.quantile(xcon[,i], weights, method="density"),nrow(temp))
-        temp$mad.x.in.ycat <- sapply(levels(y), function(x) weighted.mad(xcon[y==x,i], weights[y==x], method="density"))
-        temp$mad.x.global <- rep(weighted.mad(xcon[,i], weights, method="density"),nrow(temp))
+        temp$median.x.in.ycat <- sapply(levels(y), function(x) weighted.quantile(xcon[y==x,i], weights[y==x], probs = .5))
+        temp$median.x.global <- rep(weighted.quantile(xcon[,i], weights, probs = .5),nrow(temp))
+        temp$mad.x.in.ycat <- sapply(levels(y), function(x) weighted.mad(xcon[y==x,i], weights[y==x]))
+        temp$mad.x.global <- rep(weighted.mad(xcon[,i], weights),nrow(temp))
       }
       if(robust==FALSE) {
         temp$median.x.in.ycat <- sapply(levels(y), function(x) weighted.mean(xcon[y==x,i], weights[y==x]))
