@@ -86,7 +86,7 @@ statistiques avec descriptio</h1>
                         <h4 data-toc-skip class="author">Nicolas
 Robette</h4>
             
-            <h4 data-toc-skip class="date">2022-12-30</h4>
+            <h4 data-toc-skip class="date">2023-02-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nicolas-robette/descriptio/blob/HEAD/vignettes/french/Tutoriel_descr.Rmd" class="external-link"><code>vignettes/french/Tutoriel_descr.Rmd</code></a></small>
       <div class="hidden name"><code>Tutoriel_descr.Rmd</code></div>
@@ -104,7 +104,8 @@ d’association).</p>
 (corrélations, proportion de variance expliquée), elles sont bornées
 (entre -1 et 1 ou entre 0 et 1) et ne sont pas sensibles aux
 effectifs.</p>
-<p>Les mesures d’associations <em>globales</em> sont les suivantes.</p>
+<p>Les principales mesures d’associations <em>globales</em> du package
+sont les suivantes.</p>
 <ul>
 <li><p>Pour la relation entre deux variables catégorielles : le
 <strong>V de Cramér</strong> qui, contrairement au khi-deux par exemple,
@@ -192,13 +193,13 @@ pour obtenir des résultats plus précis et fiables (par exemple
 <code>nperm</code>=1000).<br>
  </p>
 <p>Pour illustrer les fonctions d’analyse des associations statistiques
-de <code>descriptio</code>, nous utiliserons des données sur le cinéma.
-Il s’agit d’un échantillon de 1000 films sortis en France dans les
-années 2000, pour lesquels on connaît le budget, le genre, le pays
-d’origine, la labellisation “art et essai”, la sélection en festival
-(Cannes, Berlin ou Venise), la note moyenne des critiques intellectuels
-(d’après Allociné) et le nombre d’entrées en salles. Certaines de ces
-variables sont continues, d’autres catégorielles.</p>
+de <code>descriptio</code>, nous utilisons des données sur le cinéma. Il
+s’agit d’un échantillon de 1000 films sortis en France dans les années
+2000, pour lesquels on connaît le budget, le genre, le pays d’origine,
+la labellisation “art et essai”, la sélection en festival (Cannes,
+Berlin ou Venise), la note moyenne des critiques intellectuels (d’après
+Allociné) et le nombre d’entrées en salles. Certaines de ces variables
+sont continues, d’autres catégorielles.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nicolas-robette/descriptio" class="external-link">descriptio</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">)</span></span>
@@ -339,17 +340,17 @@ USA     0.45688150 -0.45688150
 
 $local$phi.perm.pval
                  No          Yes
-Europe 3.296131e-01 3.296131e-01
-France 3.381344e-39 0.000000e+00
-Other  4.701698e-03 4.701698e-03
-USA    0.000000e+00 5.282648e-45
+Europe 3.187859e-01 3.187859e-01
+France 4.357037e-41 0.000000e+00
+Other  3.900539e-04 3.900539e-04
+USA    0.000000e+00 1.964674e-47
 
 
 $gather
   var.y  var.x freq  prop     rprop      cprop expected std.residuals adj.residuals         or       pem         phi    perm.pval freq.x freq.y prop.x prop.y
-1    No Europe   39 0.039 0.5416667 0.07587549   37.008     0.3274474      0.487584  1.1270813   5.69273  0.01541876 3.296131e-01     72    514  0.072  0.514
-2    No France  212 0.212 0.3504132 0.41245136  310.970    -5.6123445    -12.809366  0.1661190 -51.55493 -0.40506773 3.381344e-39    605    514  0.605  0.514
-3    No  Other    6 0.006 0.2307692 0.01167315   13.364    -2.0143992     -2.927844  0.2751969 -55.10326 -0.09258656 4.701698e-03     26    514  0.026  0.514
+1    No Europe   39 0.039 0.5416667 0.07587549   37.008     0.3274474      0.487584  1.1270813   5.69273  0.01541876 3.187859e-01     72    514  0.072  0.514
+2    No France  212 0.212 0.3504132 0.41245136  310.970    -5.6123445    -12.809366  0.1661190 -51.55493 -0.40506773 4.357037e-41    605    514  0.605  0.514
+3    No  Other    6 0.006 0.2307692 0.01167315   13.364    -2.0143992     -2.927844  0.2751969 -55.10326 -0.09258656 3.900539e-04     26    514  0.026  0.514
 4    No    USA  257 0.257 0.8653199 0.50000000  152.658     8.4449945     14.447862 11.1500000  72.28804  0.45688150 0.000000e+00    297    514  0.297  0.514
  [ reached 'max' / getOption("max.print") -- omitted 4 rows ]</code></pre>
 <p><br>
@@ -361,14 +362,14 @@ affiché dans un angle du graphique. Ici, le label “art et essai” est
 nettement sur-représenté parmi les films français et sous-représenté
 parmi les films étatsuniens.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_crosstab.html">ggassoc_crosstab</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">ArtHouse</span><span class="op">)</span>, max.asso<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_crosstab.html">ggassoc_crosstab</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">ArtHouse</span><span class="op">)</span>, max.asso<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span></span></code></pre></div>
 <p>La fonction <code>ggassoc_phiplot</code> propose une autre manière de
 représenter les attractions/répulsions. La largeur des rectangles
 correspond aux effectifs de la variable x, leur hauteur aux coefficients
 phi. Les rectangles sont colorés en noir lorsqu’il y a attraction, en
 blanc lorsqu’il y a répulsion.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_phiplot.html">ggassoc_phiplot</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">ArtHouse</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_phiplot.html">ggassoc_phiplot</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">ArtHouse</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="une-variable-catégorielle-et-une-variable-continue">Une variable catégorielle et une variable continue<a class="anchor" aria-label="anchor" href="#une-variable-cat%C3%A9gorielle-et-une-variable-continue"></a>
@@ -386,7 +387,7 @@ permutation correspondants</li>
 [1] 0.0169216
 
 $permutation.pvalue
-[1] 4.895703e-10
+[1] 1.588063e-12
 
 $cor
 Europe France  Other    USA 
@@ -394,14 +395,14 @@ Europe France  Other    USA
 
 $cor.perm.pval
       Europe       France        Other          USA 
-0.3416480407 0.0012732656 0.1179885223 0.0000012904 </code></pre>
+3.810395e-01 7.026206e-04 1.053126e-01 1.721396e-05 </code></pre>
 <p><br>
 La fonction <code>ggassoc_boxplot</code> représente la relation entre
 les variables sous forme de boîtes à moustaches (<em>box-plots</em>)
 et/ou de distributions “en violons”. La valeur de l’eta² est affichée
 dans un angle du graphique.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_boxplot.html">ggassoc_boxplot</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">Critics</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_boxplot.html">ggassoc_boxplot</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">Critics</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="deux-variables-continues">Deux variables continues<a class="anchor" aria-label="anchor" href="#deux-variables-continues"></a>
@@ -420,7 +421,7 @@ les deux variables sous forme d’un nuage de points, avec une
 approximation par lissage (avec la méthode de “Generalized Additive
 Model”). Le tau de Kendall est affiché dans un angle du graphique.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_scatter.html">ggassoc_scatter</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Budget</span>, y<span class="op">=</span><span class="va">BoxOffice</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_scatter.html">ggassoc_scatter</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Budget</span>, y<span class="op">=</span><span class="va">BoxOffice</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -445,31 +446,31 @@ variables de X.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/assoc.yx.html">assoc.yx</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">$</span><span class="va">BoxOffice</span>, <span class="va">Movies</span><span class="op">[</span>,<span class="op">-</span><span class="fl">7</span><span class="op">]</span>, nperm<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <pre><code>$YX
-  variable       measure association permutation.pvalue
-1    Genre          Eta2       0.173              0.000
-2 ArtHouse          Eta2       0.075              0.000
-3  Country          Eta2       0.048              0.000
-4   Budget Kendall's tau       0.518              0.000
-5  Critics Kendall's tau       0.006              0.413
-6 Festival          Eta2       0.000              0.764
+  variable     measure association permutation.pvalue
+1    Genre        Eta2       0.173              0.000
+2 ArtHouse        Eta2       0.075              0.000
+3  Country        Eta2       0.048              0.000
+4   Budget Kendall tau       0.518              0.000
+5  Critics Kendall tau       0.006              0.464
+6 Festival        Eta2       0.000              0.735
 
 $XX
-   variable1 variable2       measure association permutation.pvalue
-1      Genre  ArtHouse    Cramer's V       0.554              0.000
-2    Country  ArtHouse    Cramer's V       0.469              0.000
-3      Genre   Country    Cramer's V       0.275              0.000
-4   ArtHouse  Festival    Cramer's V       0.229              0.000
-5     Budget   Country          Eta2       0.287              0.000
-6     Budget     Genre          Eta2       0.281              0.000
-7   ArtHouse   Critics          Eta2       0.236              0.000
-8     Budget  ArtHouse          Eta2       0.181              0.000
-9      Genre   Critics          Eta2       0.090              0.000
-10  Festival   Critics          Eta2       0.041              0.000
-11    Budget   Critics Kendall's tau      -0.178              0.000
-12     Genre  Festival    Cramer's V       0.183              0.000
-13   Country   Critics          Eta2       0.017              0.000
-14    Budget  Festival          Eta2       0.003              0.075
-15   Country  Festival    Cramer's V       0.035              0.752</code></pre>
+   variable1 variable2     measure association permutation.pvalue
+1      Genre  ArtHouse    Cramer V       0.554              0.000
+2    Country  ArtHouse    Cramer V       0.469              0.000
+3      Genre   Country    Cramer V       0.275              0.000
+4   ArtHouse  Festival    Cramer V       0.229              0.000
+5     Budget   Country        Eta2       0.287              0.000
+6     Budget     Genre        Eta2       0.281              0.000
+7   ArtHouse   Critics        Eta2       0.236              0.000
+8     Budget  ArtHouse        Eta2       0.181              0.000
+9      Genre   Critics        Eta2       0.090              0.000
+10  Festival   Critics        Eta2       0.041              0.000
+11    Budget   Critics Kendall tau      -0.178              0.000
+12   Country   Critics        Eta2       0.017              0.000
+13     Genre  Festival    Cramer V       0.183              0.000
+14    Budget  Festival        Eta2       0.003              0.053
+15   Country  Festival    Cramer V       0.035              0.760</code></pre>
 <p><br>
 Les fonctions <code>catdesc</code> et <code>condesc</code> permettent de
 rentrer plus dans le détail des relations, en passant au niveau des
@@ -522,9 +523,9 @@ aux valeurs aberrantes.</p>
 
 $continuous.var
   variables median.x.in.ycat median.x.global mad.x.in.ycat mad.x.global    cor
-1   Critics              3.5             2.9           0.6          0.6  0.204
-3 BoxOffice         236910.7        138608.8      212598.2     137253.1  0.008
-5    Budget        7689956.0       7040470.9     4865250.9    5920656.2 -0.057</code></pre>
+1   Critics              3.5             3.0           0.7          0.6  0.204
+3 BoxOffice         198796.0        107326.5      181590.0     104060.0  0.008
+5    Budget        7000000.0       6127500.0     4438000.0    5156921.0 -0.057</code></pre>
 <p><br><code>condesc</code> traite les cas où Y est une variable continue. Pour
 une variable catégorielle X1, elle calcule :</p>
 <ul>
@@ -542,28 +543,28 @@ Kendall.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/condesc.html">condesc</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">$</span><span class="va">BoxOffice</span>, <span class="va">Movies</span><span class="op">[</span>,<span class="op">-</span><span class="fl">7</span><span class="op">]</span>, nperm<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <pre><code>$variables
-  variable       measure association permutation.pvalue
-1    Genre          Eta2       0.173              0.000
-2 ArtHouse          Eta2       0.075              0.000
-3  Country          Eta2       0.048              0.000
-4   Budget Kendall's tau       0.518              0.000
-5  Critics Kendall's tau       0.006              0.362
-6 Festival          Eta2       0.000              0.756
+  variable     measure association permutation.pvalue
+1    Genre        Eta2       0.173              0.000
+2 ArtHouse        Eta2       0.075              0.000
+3  Country        Eta2       0.048              0.000
+4   Budget Kendall tau       0.518              0.000
+5  Critics Kendall tau       0.006              0.351
+6 Festival        Eta2       0.000              0.740
 
 $categories
         categories median.y.in.xcat median.y.global mad.y.in.xcat mad.y.global    cor
-9      Genre.SciFi           944784          138609        853626       137253  0.294
-14     ArtHouse.No           298718          138609        257715       137253  0.274
-2  Genre.Animation           954956          138609        853018       137253  0.211
-13     Country.USA           356692          138609        286508       137253  0.192
-1     Genre.Action           291945          138609        247538       137253  0.087
-10  Country.Europe           153755          138609        150015       137253  0.068
-17    Festival.Yes           228749          138609        207635       137253  0.008
-5     Genre.Comedy           230615          138609        210550       137253  0.004
-3      Genre.Other           249037          138609        231954       137253 -0.005
-16     Festival.No           129629          138609        127957       137253 -0.008
-12   Country.Other            64893          138609         46042       137253 -0.013
-8     Genre.Horror           293118          138609        176131       137253 -0.015
+9      Genre.SciFi           680900          107326        607448       104060  0.294
+14     ArtHouse.No           264200          107326        232183       104060  0.274
+2  Genre.Animation           668896          107326        633265       104060  0.211
+13     Country.USA           328559          107326        274892       104060  0.192
+1     Genre.Action           240080          107326        202793       104060  0.087
+10  Country.Europe           108122          107326        104607       104060  0.068
+17    Festival.Yes           198796          107326        181590       104060  0.008
+5     Genre.Comedy           202090          107326        191819       104060  0.004
+3      Genre.Other           186084          107326        171739       104060 -0.005
+16     Festival.No           102726          107326         99642       104060 -0.008
+12   Country.Other            55643          107326         37068       104060 -0.013
+8     Genre.Horror           302635          107326        171803       104060 -0.015
  [ reached 'max' / getOption("max.print") -- omitted 5 rows ]</code></pre>
 <p><br>
 La fonction <code>darma</code> présente les résultats sous une forme
@@ -597,128 +598,128 @@ test de permutation correspondant</li>
 <tr class="even">
 <td align="left">Genre</td>
 <td align="left">Action</td>
-<td align="right">301483.7</td>
+<td align="right">240080.0</td>
 <td align="right">0.087</td>
-<td align="right">0.001</td>
+<td align="right">0.010</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Animation</td>
-<td align="right">990790.2</td>
+<td align="right">668896.0</td>
 <td align="right">0.211</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Other</td>
-<td align="right">254002.8</td>
+<td align="right">186084.5</td>
 <td align="right">-0.005</td>
-<td align="right">0.442</td>
+<td align="right">0.446</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">ComDram</td>
-<td align="right">96221.7</td>
+<td align="right">67341.0</td>
 <td align="right">-0.114</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Comedy</td>
-<td align="right">236703.8</td>
+<td align="right">202090.0</td>
 <td align="right">0.004</td>
-<td align="right">0.453</td>
+<td align="right">0.456</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Documentary</td>
-<td align="right">13823.2</td>
+<td align="right">9303.0</td>
 <td align="right">-0.108</td>
-<td align="right">0.000</td>
+<td align="right">0.001</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Drama</td>
-<td align="right">51111.1</td>
+<td align="right">37160.0</td>
 <td align="right">-0.162</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Horror</td>
-<td align="right">296015.2</td>
+<td align="right">302635.0</td>
 <td align="right">-0.015</td>
-<td align="right">0.303</td>
+<td align="right">0.370</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">SciFi</td>
-<td align="right">989158.5</td>
+<td align="right">680900.0</td>
 <td align="right">0.294</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">Country</td>
 <td align="left">Europe</td>
-<td align="right">161441.5</td>
+<td align="right">108121.5</td>
 <td align="right">0.068</td>
-<td align="right">0.016</td>
+<td align="right">0.029</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">France</td>
-<td align="right">82312.8</td>
+<td align="right">57140.0</td>
 <td align="right">-0.211</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Other</td>
-<td align="right">64304.0</td>
+<td align="right">55643.0</td>
 <td align="right">-0.013</td>
-<td align="right">0.377</td>
+<td align="right">0.298</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">USA</td>
-<td align="right">366233.7</td>
+<td align="right">328559.0</td>
 <td align="right">0.192</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">ArtHouse</td>
 <td align="left">No</td>
-<td align="right">307344.0</td>
+<td align="right">264200.0</td>
 <td align="right">0.274</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Yes</td>
-<td align="right">47084.8</td>
+<td align="right">35837.5</td>
 <td align="right">-0.274</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">Festival</td>
 <td align="left">No</td>
-<td align="right">134006.6</td>
+<td align="right">102726.0</td>
 <td align="right">-0.008</td>
-<td align="right">0.353</td>
+<td align="right">0.361</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Yes</td>
-<td align="right">236910.7</td>
+<td align="right">198796.0</td>
 <td align="right">0.008</td>
-<td align="right">0.381</td>
+<td align="right">0.383</td>
 </tr>
 <tr class="odd">
 <td align="left">Critics</td>
 <td align="left"></td>
 <td align="right">NA</td>
 <td align="right">0.006</td>
-<td align="right">0.405</td>
+<td align="right">0.304</td>
 </tr>
 </tbody>
 </table>
@@ -747,49 +748,49 @@ permutation correspondant.</li>
 <td align="left"></td>
 <td align="right">NA</td>
 <td align="right">-0.057</td>
-<td align="right">0.015</td>
+<td align="right">0.040</td>
 </tr>
 <tr class="even">
 <td align="left">Genre</td>
 <td align="left">Action</td>
 <td align="right">7.9</td>
 <td align="right">0.003</td>
-<td align="right">0.457</td>
+<td align="right">0.507</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Animation</td>
 <td align="right">2.2</td>
 <td align="right">-0.046</td>
-<td align="right">0.080</td>
+<td align="right">0.079</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Other</td>
 <td align="right">11.5</td>
 <td align="right">0.024</td>
-<td align="right">0.239</td>
+<td align="right">0.211</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">ComDram</td>
 <td align="right">8.7</td>
 <td align="right">0.016</td>
-<td align="right">0.356</td>
+<td align="right">0.242</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Comedy</td>
 <td align="right">2.7</td>
 <td align="right">-0.100</td>
-<td align="right">0.000</td>
+<td align="right">0.002</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Documentary</td>
 <td align="right">2.6</td>
 <td align="right">-0.055</td>
-<td align="right">0.030</td>
+<td align="right">0.058</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -803,42 +804,42 @@ permutation correspondant.</li>
 <td align="left">Horror</td>
 <td align="right">0.0</td>
 <td align="right">-0.046</td>
-<td align="right">0.093</td>
+<td align="right">0.086</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">SciFi</td>
 <td align="right">6.1</td>
 <td align="right">-0.013</td>
-<td align="right">0.351</td>
+<td align="right">0.358</td>
 </tr>
 <tr class="odd">
 <td align="left">Country</td>
 <td align="left">Europe</td>
 <td align="right">9.7</td>
 <td align="right">0.021</td>
-<td align="right">0.277</td>
+<td align="right">0.260</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">France</td>
 <td align="right">8.1</td>
 <td align="right">0.019</td>
-<td align="right">0.215</td>
+<td align="right">0.313</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Other</td>
 <td align="right">7.7</td>
 <td align="right">0.000</td>
-<td align="right">0.449</td>
+<td align="right">0.495</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">USA</td>
 <td align="right">6.4</td>
 <td align="right">-0.032</td>
-<td align="right">0.115</td>
+<td align="right">0.177</td>
 </tr>
 <tr class="odd">
 <td align="left">ArtHouse</td>
@@ -866,7 +867,7 @@ permutation correspondant.</li>
 <td align="left"></td>
 <td align="right">NA</td>
 <td align="right">0.008</td>
-<td align="right">0.729</td>
+<td align="right">0.757</td>
 </tr>
 </tbody>
 </table>
@@ -880,15 +881,15 @@ donc possible de les utiliser pour représenter dans un seul graphique
 l’ensemble des relations bivariées d’un groupe de variables.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/" class="external-link">GGally</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html" class="external-link">ggpairs</a></span><span class="op">(</span><span class="va">Movies</span>,</span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/GGally/man/ggpairs.html" class="external-link">ggpairs</a></span><span class="op">(</span><span class="va">Movies</span>,</span>
 <span>        lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="va">ggassoc_scatter</span>,</span>
 <span>                     combo <span class="op">=</span> <span class="va">ggassoc_boxplot</span>,</span>
 <span>                     discrete <span class="op">=</span> <span class="va">ggassoc_crosstab</span><span class="op">)</span>,</span>
 <span>        upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="va">ggassoc_scatter</span>,</span>
 <span>                     combo <span class="op">=</span> <span class="va">ggassoc_boxplot</span>,</span>
 <span>                     discrete <span class="op">=</span> <span class="va">ggassoc_crosstab</span><span class="op">)</span>,</span>
-<span>        diag <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="fu"><a href="https://ggobi.github.io/ggally/reference/wrap.html" class="external-link">wrap</a></span><span class="op">(</span><span class="st">"diagAxis"</span>, gridLabelSize <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
-<span>                           discrete <span class="op">=</span> <span class="fu"><a href="https://ggobi.github.io/ggally/reference/wrap.html" class="external-link">wrap</a></span><span class="op">(</span><span class="st">"diagAxis"</span>, gridLabelSize <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>        diag <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/GGally/man/wrap.html" class="external-link">wrap</a></span><span class="op">(</span><span class="st">"diagAxis"</span>, gridLabelSize <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>                           discrete <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/GGally/man/wrap.html" class="external-link">wrap</a></span><span class="op">(</span><span class="st">"diagAxis"</span>, gridLabelSize <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 

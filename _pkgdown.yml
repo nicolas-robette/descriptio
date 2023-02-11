@@ -1,0 +1,50 @@
+url: https://nicolas-robette.github.io/descriptio/
+
+development:
+  mode: auto
+
+authors:
+  Nicolas Robette:
+    href: https://github.com/nicolas-robette
+
+reference:
+  
+- title: Descriptive analysis
+- desc: Tools to describe statistical associations between two variables
+- contents:
+  - weighted.cor
+  - weighted.table
+  - phi.table
+  - or.table
+  - pem
+  - assoc.twocat
+  - assoc.catcont
+  - assoc.twocont
+  - catdesc
+  - condesc
+  - assoc.yx
+  - darma
+  
+- title: Plots
+- desc: Plots to describe statistical associations between two variables
+- contents:
+  - ggassoc_crosstab
+  - ggassoc_phiplot
+  - ggassoc_assocplot
+  - ggassoc_chiasmogram
+  - ggassoc_bertin
+  - ggassoc_marimekko
+  - ggassoc_boxplot
+  - ggassoc_scatter
+
+- title: Miscellaneous
+- desc: Additional tools
+- contents:
+  - weighted.quantile
+  - weighted.mad
+  - weighted.sd
+  
+- title: Datasets
+- desc: Datasets used in the examples
+- contents:
+  - Movies

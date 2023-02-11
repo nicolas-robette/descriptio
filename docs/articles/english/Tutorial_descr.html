@@ -86,7 +86,7 @@ with descriptio</h1>
                         <h4 data-toc-skip class="author">Nicolas
 Robette</h4>
             
-            <h4 data-toc-skip class="date">2023-02-02</h4>
+            <h4 data-toc-skip class="date">2023-02-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nicolas-robette/descriptio/blob/HEAD/vignettes/english/Tutorial_descr.Rmd" class="external-link"><code>vignettes/english/Tutorial_descr.Rmd</code></a></small>
       <div class="hidden name"><code>Tutorial_descr.Rmd</code></div>
@@ -334,17 +334,17 @@ USA     0.45688150 -0.45688150
 
 $local$phi.perm.pval
                  No          Yes
-Europe 3.404483e-01 3.404483e-01
-France 4.232854e-39 0.000000e+00
-Other  4.112856e-03 4.112856e-03
-USA    0.000000e+00 6.210696e-45
+Europe 2.710105e-01 2.710105e-01
+France 9.505507e-40 0.000000e+00
+Other  1.830522e-04 1.830522e-04
+USA    0.000000e+00 6.112575e-45
 
 
 $gather
   var.y  var.x freq  prop     rprop      cprop expected std.residuals adj.residuals         or       pem         phi    perm.pval freq.x freq.y prop.x prop.y
-1    No Europe   39 0.039 0.5416667 0.07587549   37.008     0.3274474      0.487584  1.1270813   5.69273  0.01541876 3.404483e-01     72    514  0.072  0.514
-2    No France  212 0.212 0.3504132 0.41245136  310.970    -5.6123445    -12.809366  0.1661190 -51.55493 -0.40506773 4.232854e-39    605    514  0.605  0.514
-3    No  Other    6 0.006 0.2307692 0.01167315   13.364    -2.0143992     -2.927844  0.2751969 -55.10326 -0.09258656 4.112856e-03     26    514  0.026  0.514
+1    No Europe   39 0.039 0.5416667 0.07587549   37.008     0.3274474      0.487584  1.1270813   5.69273  0.01541876 2.710105e-01     72    514  0.072  0.514
+2    No France  212 0.212 0.3504132 0.41245136  310.970    -5.6123445    -12.809366  0.1661190 -51.55493 -0.40506773 9.505507e-40    605    514  0.605  0.514
+3    No  Other    6 0.006 0.2307692 0.01167315   13.364    -2.0143992     -2.927844  0.2751969 -55.10326 -0.09258656 1.830522e-04     26    514  0.026  0.514
 4    No    USA  257 0.257 0.8653199 0.50000000  152.658     8.4449945     14.447862 11.1500000  72.28804  0.45688150 0.000000e+00    297    514  0.297  0.514
  [ reached 'max' / getOption("max.print") -- omitted 4 rows ]</code></pre>
 <p><br>
@@ -356,14 +356,14 @@ displayed in a corner of the graph. Here, the “art et essai” label is
 clearly over-represented among French films and under-represented among
 American films.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_crosstab.html">ggassoc_crosstab</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">ArtHouse</span><span class="op">)</span>, max.asso<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_crosstab.html">ggassoc_crosstab</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">ArtHouse</span><span class="op">)</span>, max.asso<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span></span></code></pre></div>
 <p>The function <code>ggassoc_phiplot</code> proposes another way to
 represent the attractions/repulsions. The width of the rectangles
 corresponds to the numbers of the variable x, their height to the phi
 coefficients. The rectangles are colored in black when there is
 attraction, in white when there is repulsion.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_phiplot.html">ggassoc_phiplot</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">ArtHouse</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_phiplot.html">ggassoc_phiplot</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">ArtHouse</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="one-categorical-variable-and-one-numerical-variable">One categorical variable and one numerical variable<a class="anchor" aria-label="anchor" href="#one-categorical-variable-and-one-numerical-variable"></a>
@@ -381,7 +381,7 @@ corresponding permutation tests</li>
 [1] 0.0169216
 
 $permutation.pvalue
-[1] 3.623029e-10
+[1] 1.072798e-05
 
 $cor
 Europe France  Other    USA 
@@ -389,13 +389,13 @@ Europe France  Other    USA
 
 $cor.perm.pval
       Europe       France        Other          USA 
-3.830391e-01 6.102325e-04 1.420503e-01 4.060879e-06 </code></pre>
+3.544244e-01 7.106043e-04 1.474759e-01 8.942624e-07 </code></pre>
 <p><br>
 The function <code>ggassoc_boxplot</code> represents the relationship
 between the variables in the form of box-plots and/or “violin”
 distributions. The eta² value is displayed in a corner of the graph.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_boxplot.html">ggassoc_boxplot</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">Critics</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_boxplot.html">ggassoc_boxplot</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Country</span>, y<span class="op">=</span><span class="va">Critics</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="two-numerical-variables">Two numerical variables<a class="anchor" aria-label="anchor" href="#two-numerical-variables"></a>
@@ -414,7 +414,7 @@ between the two variables in the form of a scatterplot, with an
 approximation by smoothing (with the “Generalized Additive Model”
 method). Kendall’s tau is displayed in a corner of the graph.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_scatter.html">ggassoc_scatter</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Budget</span>, y<span class="op">=</span><span class="va">BoxOffice</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggassoc_scatter.html">ggassoc_scatter</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Budget</span>, y<span class="op">=</span><span class="va">BoxOffice</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -442,8 +442,8 @@ of X.</p>
 2 ArtHouse        Eta2       0.075              0.000
 3  Country        Eta2       0.048              0.000
 4   Budget Kendall tau       0.518              0.000
-5  Critics Kendall tau       0.006              0.408
-6 Festival        Eta2       0.000              0.757
+5  Critics Kendall tau       0.006              0.404
+6 Festival        Eta2       0.000              0.722
 
 $XX
    variable1 variable2     measure association permutation.pvalue
@@ -460,8 +460,8 @@ $XX
 11    Budget   Critics Kendall tau      -0.178              0.000
 12   Country   Critics        Eta2       0.017              0.000
 13     Genre  Festival    Cramer V       0.183              0.000
-14    Budget  Festival        Eta2       0.003              0.099
-15   Country  Festival    Cramer V       0.035              0.754</code></pre>
+14    Budget  Festival        Eta2       0.003              0.006
+15   Country  Festival    Cramer V       0.035              0.778</code></pre>
 <p><br>
 The functions <code>catdesc</code> and <code>condesc</code> allow to go
 into more detail about the relationships, by going to the category
@@ -538,8 +538,8 @@ tau.</p>
 2 ArtHouse        Eta2       0.075              0.000
 3  Country        Eta2       0.048              0.000
 4   Budget Kendall tau       0.518              0.000
-5  Critics Kendall tau       0.006              0.358
-6 Festival        Eta2       0.000              0.718
+5  Critics Kendall tau       0.006              0.368
+6 Festival        Eta2       0.000              0.761
 
 $categories
         categories median.y.in.xcat median.y.global mad.y.in.xcat mad.y.global    cor
@@ -590,7 +590,7 @@ corresponding permutation test</li>
 <td align="left">Action</td>
 <td align="right">240080.0</td>
 <td align="right">0.087</td>
-<td align="right">0.009</td>
+<td align="right">0.007</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -604,7 +604,7 @@ corresponding permutation test</li>
 <td align="left">Other</td>
 <td align="right">186084.5</td>
 <td align="right">-0.005</td>
-<td align="right">0.499</td>
+<td align="right">0.406</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -618,7 +618,7 @@ corresponding permutation test</li>
 <td align="left">Comedy</td>
 <td align="right">202090.0</td>
 <td align="right">0.004</td>
-<td align="right">0.414</td>
+<td align="right">0.472</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -639,7 +639,7 @@ corresponding permutation test</li>
 <td align="left">Horror</td>
 <td align="right">302635.0</td>
 <td align="right">-0.015</td>
-<td align="right">0.304</td>
+<td align="right">0.292</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -653,7 +653,7 @@ corresponding permutation test</li>
 <td align="left">Europe</td>
 <td align="right">108121.5</td>
 <td align="right">0.068</td>
-<td align="right">0.017</td>
+<td align="right">0.012</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -667,7 +667,7 @@ corresponding permutation test</li>
 <td align="left">Other</td>
 <td align="right">55643.0</td>
 <td align="right">-0.013</td>
-<td align="right">0.332</td>
+<td align="right">0.347</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -695,21 +695,21 @@ corresponding permutation test</li>
 <td align="left">No</td>
 <td align="right">102726.0</td>
 <td align="right">-0.008</td>
-<td align="right">0.415</td>
+<td align="right">0.436</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Yes</td>
 <td align="right">198796.0</td>
 <td align="right">0.008</td>
-<td align="right">0.356</td>
+<td align="right">0.383</td>
 </tr>
 <tr class="odd">
 <td align="left">Critics</td>
 <td align="left"></td>
 <td align="right">NA</td>
 <td align="right">0.006</td>
-<td align="right">0.421</td>
+<td align="right">0.380</td>
 </tr>
 </tbody>
 </table>
@@ -738,49 +738,49 @@ corresponding permutation test.</li>
 <td align="left"></td>
 <td align="right">NA</td>
 <td align="right">-0.057</td>
-<td align="right">0.040</td>
+<td align="right">0.023</td>
 </tr>
 <tr class="even">
 <td align="left">Genre</td>
 <td align="left">Action</td>
 <td align="right">7.9</td>
 <td align="right">0.003</td>
-<td align="right">0.450</td>
+<td align="right">0.476</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Animation</td>
 <td align="right">2.2</td>
 <td align="right">-0.046</td>
-<td align="right">0.067</td>
+<td align="right">0.096</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Other</td>
 <td align="right">11.5</td>
 <td align="right">0.024</td>
-<td align="right">0.268</td>
+<td align="right">0.223</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">ComDram</td>
 <td align="right">8.7</td>
 <td align="right">0.016</td>
-<td align="right">0.265</td>
+<td align="right">0.251</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Comedy</td>
 <td align="right">2.7</td>
 <td align="right">-0.100</td>
-<td align="right">0.000</td>
+<td align="right">0.001</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Documentary</td>
 <td align="right">2.6</td>
 <td align="right">-0.055</td>
-<td align="right">0.049</td>
+<td align="right">0.038</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -794,42 +794,42 @@ corresponding permutation test.</li>
 <td align="left">Horror</td>
 <td align="right">0.0</td>
 <td align="right">-0.046</td>
-<td align="right">0.059</td>
+<td align="right">0.075</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">SciFi</td>
 <td align="right">6.1</td>
 <td align="right">-0.013</td>
-<td align="right">0.338</td>
+<td align="right">0.370</td>
 </tr>
 <tr class="odd">
 <td align="left">Country</td>
 <td align="left">Europe</td>
 <td align="right">9.7</td>
 <td align="right">0.021</td>
-<td align="right">0.256</td>
+<td align="right">0.240</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">France</td>
 <td align="right">8.1</td>
 <td align="right">0.019</td>
-<td align="right">0.242</td>
+<td align="right">0.284</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Other</td>
 <td align="right">7.7</td>
 <td align="right">0.000</td>
-<td align="right">0.476</td>
+<td align="right">0.516</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">USA</td>
 <td align="right">6.4</td>
 <td align="right">-0.032</td>
-<td align="right">0.124</td>
+<td align="right">0.128</td>
 </tr>
 <tr class="odd">
 <td align="left">ArtHouse</td>
@@ -857,7 +857,7 @@ corresponding permutation test.</li>
 <td align="left"></td>
 <td align="right">NA</td>
 <td align="right">0.008</td>
-<td align="right">0.709</td>
+<td align="right">0.760</td>
 </tr>
 </tbody>
 </table>
@@ -871,15 +871,15 @@ It is thus possible to use them to represent in a single plot all the
 bivariate relations of a group of variables.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/" class="external-link">GGally</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html" class="external-link">ggpairs</a></span><span class="op">(</span><span class="va">Movies</span>,</span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/GGally/man/ggpairs.html" class="external-link">ggpairs</a></span><span class="op">(</span><span class="va">Movies</span>,</span>
 <span>        lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="va">ggassoc_scatter</span>,</span>
 <span>                     combo <span class="op">=</span> <span class="va">ggassoc_boxplot</span>,</span>
 <span>                     discrete <span class="op">=</span> <span class="va">ggassoc_crosstab</span><span class="op">)</span>,</span>
 <span>        upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="va">ggassoc_scatter</span>,</span>
 <span>                     combo <span class="op">=</span> <span class="va">ggassoc_boxplot</span>,</span>
 <span>                     discrete <span class="op">=</span> <span class="va">ggassoc_crosstab</span><span class="op">)</span>,</span>
-<span>        diag <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="fu"><a href="https://ggobi.github.io/ggally/reference/wrap.html" class="external-link">wrap</a></span><span class="op">(</span><span class="st">"diagAxis"</span>, gridLabelSize <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
-<span>                           discrete <span class="op">=</span> <span class="fu"><a href="https://ggobi.github.io/ggally/reference/wrap.html" class="external-link">wrap</a></span><span class="op">(</span><span class="st">"diagAxis"</span>, gridLabelSize <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>        diag <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/GGally/man/wrap.html" class="external-link">wrap</a></span><span class="op">(</span><span class="st">"diagAxis"</span>, gridLabelSize <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>                           discrete <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/GGally/man/wrap.html" class="external-link">wrap</a></span><span class="op">(</span><span class="st">"diagAxis"</span>, gridLabelSize <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 

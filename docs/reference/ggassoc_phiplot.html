@@ -76,7 +76,7 @@
 <dd><p>dataset to use for plot</p></dd>
 
   <dt>mapping</dt>
-<dd><p>aesthetic being used. It must specify x and y.</p></dd>
+<dd><p>aesthetics being used. x and y are required, weight can also be specified.</p></dd>
 
   <dt>measure</dt>
 <dd><p>character. The measure of association used for filling the rectangles. Can be "phi" for phi coefficient (default), "or" for odds ratios, "std.residuals" for standardized residuals, "adj.residuals" for adjusted standardized residuals or "pem" for local percentages of maximum deviation from independence.</p></dd>
@@ -112,14 +112,14 @@ The bars vary in width according to the number of observations in the categories
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p><code><a href="assoc.twocat.html">assoc.twocat</a></code>, <code><a href="phi.table.html">phi.table</a></code>, <code><a href="catdesc.html">catdesc</a></code>,
- <code><a href="assoc.yx.html">assoc.yx</a></code>, <code><a href="darma.html">darma</a></code>, <code><a href="ggassoc_crosstab.html">ggassoc_crosstab</a></code>, <code><a href="https://ggobi.github.io/ggally/reference/ggpairs.html" class="external-link">ggpairs</a></code></p></div>
+ <code><a href="assoc.yx.html">assoc.yx</a></code>, <code><a href="darma.html">darma</a></code>, <code><a href="ggassoc_crosstab.html">ggassoc_crosstab</a></code>, <code><a href="https://rdrr.io/pkg/GGally/man/ggpairs.html" class="external-link">ggpairs</a></code></p></div>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">ggassoc_phiplot</span><span class="op">(</span>data<span class="op">=</span><span class="va">Movies</span>, mapping<span class="op">=</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Country</span>, <span class="va">Genre</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ggassoc_phiplot</span><span class="op">(</span>data<span class="op">=</span><span class="va">Movies</span>, mapping<span class="op">=</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Country</span>, <span class="va">Genre</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>

@@ -37,7 +37,7 @@ Le package `descriptio` fournit des fonctions dédiées à la description des as
 
 Toutes ces mesures sont construites à partir de concepts simples (corrélations, proportion de variance expliquée), elles sont bornées (entre -1 et 1 ou entre 0 et 1) et ne sont pas sensibles aux effectifs.
 
-Les mesures d'associations *globales* sont les suivantes.
+Les principales mesures d'associations *globales* du package sont les suivantes.
 
 - Pour la relation entre deux variables catégorielles : le **V de Cramér** qui, contrairement au khi-deux par exemple, n'est pas sensible aux effectifs ou au nombre de modalités des variables. Il varie entre 0 (absence d'association) et 1 (association parfaite). Mis au carré, il peut être interprété comme la part de variation partagée entre deux variables.
 
@@ -71,7 +71,7 @@ Dans certaines fonctions de `descriptio`, les mesures d'association peuvent êtr
 Si on réalise l'ensemble des permutations possibles, le test de permutation est dit "exact". Dans la pratique, le temps de calcul nécessaire est souvent trop important et on ne réalise qu'une partie des permutations possibles, aboutissant à un test dit "approximatif". Dans les exemples qui suivent, le nombre de permutations est fixé à 100 pour réduire le temps de calcul, mais il est conseillé d'augmenter ce nombre pour obtenir des résultats plus précis et fiables (par exemple `nperm`=1000).  
 \ 
 
-Pour illustrer les fonctions d'analyse des associations statistiques de `descriptio`, nous utiliserons des données sur le cinéma. Il s'agit d'un échantillon de 1000 films sortis en France dans les années 2000, pour lesquels on connaît le budget, le genre, le pays d'origine, la labellisation "art et essai", la sélection en festival (Cannes, Berlin ou Venise), la note moyenne des critiques intellectuels (d'après Allociné) et le nombre d'entrées en salles. Certaines de ces variables sont continues, d'autres catégorielles.
+Pour illustrer les fonctions d'analyse des associations statistiques de `descriptio`, nous utilisons des données sur le cinéma. Il s'agit d'un échantillon de 1000 films sortis en France dans les années 2000, pour lesquels on connaît le budget, le genre, le pays d'origine, la labellisation "art et essai", la sélection en festival (Cannes, Berlin ou Venise), la note moyenne des critiques intellectuels (d'après Allociné) et le nombre d'entrées en salles. Certaines de ces variables sont continues, d'autres catégorielles.
 
 ```{r load}
 library(descriptio)
