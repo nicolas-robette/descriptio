@@ -15,7 +15,7 @@ sort="none")
 
 \arguments{
   \item{data}{dataset to use for plot}
-  \item{mapping}{aesthetic being used. It must specify x and y.}
+  \item{mapping}{aesthetics being used. x and y are required, weight can also be specified.}
   \item{measure}{character. The measure of association used for filling the rectangles. Can be "phi" for phi coefficient (default), "or" for odds ratios, "std.residuals" for standardized residuals, "adj.residuals" for adjusted standardized residuals or "pem" for local percentages of maximum deviation from independence.}
   \item{limit}{numeric value, specifying the upper limit of the scale for the height of the bars, i.e. for the measures of association (the lower limit is set to 0-limit). It corresponds to the maximum absolute value of association one wants to represent in the plot. If NULL (default), the limit is automatically adjusted to the data.}
   \item{sort}{character. If "both", rows and columns are sorted according to the first factor of a correspondence analysis of the contingency table. If "x", only rows are sorted. If "y", only columns are sorted. If "none" (default), no sorting is done.}
