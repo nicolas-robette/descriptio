@@ -1,4 +1,4 @@
-ggassoc_bertin <- function(data, mapping, prop.width = FALSE, sort = "none", ncol = 2, add.rprop = FALSE) {
+ggassoc_bertin <- function(data, mapping, prop.width = FALSE, sort = "none", add.gray = FALSE, add.rprop = FALSE) {
   
   xVal <- rlang::eval_tidy(mapping$x, data)
   yVal <- rlang::eval_tidy(mapping$y, data)
@@ -35,7 +35,7 @@ ggassoc_bertin <- function(data, mapping, prop.width = FALSE, sort = "none", nco
     restot$wi <- rep(1,nrow(restot))
   }
   
-  if(ncol==3) {
+  if(add.gray) {
     cols <- c("black","gray","white")
   } else {
     cols <- c("black","black","white")

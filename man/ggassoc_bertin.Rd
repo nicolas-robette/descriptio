@@ -10,7 +10,7 @@ For a cross-tabulation, plots bars for the conditional percentages of variable y
 
 \usage{
 ggassoc_bertin(data, mapping, prop.width = FALSE, 
-sort = "none", ncol = 2, add.rprop = FALSE)
+sort = "none", add.gray = FALSE, add.rprop = FALSE)
 }
 
 \arguments{
@@ -18,7 +18,7 @@ sort = "none", ncol = 2, add.rprop = FALSE)
   \item{mapping}{aesthetic being used. It must specify x and y.}
   \item{prop.width}{logical. If TRUE, the width of the bars is proportional to the margin percentages of variable x.}
   \item{sort}{character. If "both", rows and columns are sorted according to the first factor of a correspondence analysis of the contingency table. If "x", only variable x is sorted. If "y", only variable y is sorted. If "none" (default), no sorting is done.}
-  \item{ncol}{Integer. If 2 (default), only white and black are used to fill the bars. If 3, gray is used additionally to fill the part of the bars corresponding to margin percentages of variable y.}
+  \item{add.gray}{logical. If FALSE (default), only white and black are used to fill the bars. If TRUE, gray is used additionally to fill the part of the bars corresponding to margin percentages of variable y.}
   \item{add.rprop}{logical. If TRUE, row percentages are displayed on top of the bars. Default is FALSE.}
 }
 
