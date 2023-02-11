@@ -48,7 +48,7 @@ J. Bertin: La graphique et le traitement graphique de l'information. Flammarion:
 data(Movies)
 ggassoc_bertin(Movies, ggplot2::aes(x = Country, y = Genre))
 ggassoc_bertin(Movies, ggplot2::aes(x = Country, y = Genre),
- sort = "both", prop.width = TRUE, ncol = 3, add.rprop = TRUE)
+ sort = "both", prop.width = TRUE, add.gray = 3, add.rprop = TRUE)
 }
 
 \keyword{ multivariate }
