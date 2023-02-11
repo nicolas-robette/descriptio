@@ -11,9 +11,10 @@
 [`descriptio`](https://nicolas-robette.github.io/descriptio/) provides functions for the description of statistical associations between two variables :
 
 * measures of local and global association between variables (phi, Cramer's V, point-biserial correlation, eta-squared, Goodman & Kruskal tau, PEM, etc.),
-* graphical representations of the associations between two variables (using ggplot2).
+* graphical representations of the associations between two variables (using ggplot2),
+* weighted statistics.
 
-It also allows the translation of logit models coefficients into percentages.
+It also provides a function to translate logit models coefficients into percentages.
 
 ## Documentation
 
