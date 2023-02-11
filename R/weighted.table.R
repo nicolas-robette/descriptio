@@ -1,4 +1,4 @@
-wtable <- function(x, y=NULL, weights=rep.int(1,length(x)), stat="freq", digits=1, mar=TRUE, na_value=NULL) {
+weighted.table <- function(x, y=NULL, weights=rep.int(1,length(x)), stat="freq", digits=1, mar=TRUE, na_value=NULL) {
   
   # add na level
   if(!is.null(na_value)) {

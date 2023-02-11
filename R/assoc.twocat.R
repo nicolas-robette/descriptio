@@ -118,13 +118,13 @@ assoc.twocat <- function(x, y, weights=rep.int(1,length(x)), na_value=NULL, nper
   
   names(gather)[1:3] <- c("var.x","var.y","freq")
   
-  t1 <- data.frame(wtable(X, weights = W, mar= FALSE))
+  t1 <- data.frame(weighted.table(X, weights = W, mar= FALSE))
   names(t1) <- c("var.x","freq.x")
-  t2 <- data.frame(wtable(Y, weights = W, mar= FALSE))
+  t2 <- data.frame(weighted.table(Y, weights = W, mar= FALSE))
   names(t2) <- c("var.y","freq.y")
-  t3 <- data.frame(prop.table(wtable(X, weights = W, mar= FALSE)))
+  t3 <- data.frame(prop.table(weighted.table(X, weights = W, mar= FALSE)))
   names(t3) <- c("var.x","prop.x")
-  t4 <- data.frame(prop.table(wtable(Y, weights = W, mar= FALSE)))
+  t4 <- data.frame(prop.table(weighted.table(Y, weights = W, mar= FALSE)))
   names(t4) <- c("var.y","prop.y")
   
   gather <- merge(gather, t1, by = "var.x")

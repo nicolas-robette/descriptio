@@ -1,10 +1,10 @@
-\name{wtable}
-\alias{wtable}
+\name{weighted.table}
+\alias{weighted.table}
 
 \title{Computes a (possibly weighted) contingency table}
 \description{Computes a contingency table from one or two vectors, with the possibility of specifying weights.}
 
-\usage{wtable(x,y=NULL,weights=rep.int(1,length(x)),stat="freq",
+\usage{weighted.table(x,y=NULL,weights=rep.int(1,length(x)),stat="freq",
               digits=1,mar=TRUE,na_value=NULL)}
 \arguments{
   \item{x}{an object which can be interpreted as factor}
@@ -25,7 +25,7 @@
 
 \examples{
 data(Movies)
-wtable(Movies$Country, Movies$ArtHouse)
+weighted.table(Movies$Country, Movies$ArtHouse)
 }
 
 \keyword{ multivariate }

@@ -1,5 +1,5 @@
 or.table <- function(x,y,weights=rep(1,length(x)),digits=3) {
-  t0 <- wtable(x, y, weights, mar = FALSE)
+  t0 <- weighted.table(x, y, weights, mar = FALSE)
   OR <- t0
   for(i in 1:nrow(t0)) {
     for(j in 1:ncol(t0)) {
