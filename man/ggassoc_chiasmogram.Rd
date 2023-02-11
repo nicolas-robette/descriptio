@@ -10,16 +10,16 @@ For a cross-tabulation, plots the number of observations by using rectangles wit
 
 \usage{
 ggassoc_chiasmogram(data, mapping, measure = "phi",
-max.asso = NULL, sort = "none", palette = "PRGn", direction = 1)
+limits = NULL, sort = "none", colors = NULL, direction = 1)
 }
 
 \arguments{
   \item{data}{dataset to use for plot}
   \item{mapping}{aesthetic being used. It must specify x and y.}
   \item{measure}{character. The measure of association used for filling the rectangles. Can be "phi" for phi coefficient (default), "or" for odds ratios, "residuals" for Pearson residuals, "std.residuals" for standardized Pearson residuals or "pem" for local percentages of maximum deviation from independence.}
-  \item{max.asso}{numeric value, specifying the lower and upper limit of the scale for the color gradient filling the rectangles, i.e. for the measures of association. It corresponds to the maximum absolute value of the measure one wants to represent in the plot. If NULL (default), the range is adjusted to the data.}
+  \item{limits}{a numeric vector of length two providing limits of the scale. If NULL (default), the limits are automatically adjusted to the data.}
   \item{sort}{character. If "both", rows and columns are sorted according to the first factor of a correspondence analysis of the contingency table. If "x", only rows are sorted. If "y", only columns are sorted. If "none" (default), no sorting is done.}
-  \item{palette}{character. Name of a ColorBrewer diverging palette. Default is PRGn.}
+  \item{colors}{vector of colors that will be interpolated to produce a color gradient. If NULL (default), the "Temps" palette from \code{rcartocolors} package is used.}
   \item{direction}{Sets the order of colours in the scale. If 1, the default, colours are as output by RColorBrewer::brewer.pal(). If -1, the order of colours is reversed.}
 }
 

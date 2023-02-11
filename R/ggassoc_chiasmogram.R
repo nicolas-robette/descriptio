@@ -1,5 +1,5 @@
-ggassoc_chiasmogram <- function(data, mapping, measure = "phi", max.asso = NULL,
-                                 sort = "none", palette = "PRGn", direction = 1) {
+ggassoc_chiasmogram <- function(data, mapping, measure = "phi", limits = NULL,
+                                 sort = "none", colors = NULL, direction = 1) {
 
   xVal <- rlang::eval_tidy(mapping$x, data)
   yVal <- rlang::eval_tidy(mapping$y, data)
@@ -39,7 +39,11 @@ ggassoc_chiasmogram <- function(data, mapping, measure = "phi", max.asso = NULL,
 
   df$asso <- df[,measure]
   
-  if(is.null(max.asso)) max.asso <- max(abs(df$asso))*1.1
+  # if(is.null(limit)) limit <- max(abs(df$asso))*1.1
+  # if(!is.null(limit)) limit <- c(-limit, limit)
+  
+  if(is.null(colors)) colors <- c("#009392FF","#39B185FF","#9CCB86FF","#E9E29CFF","#EEB479FF","#E88471FF","#CF597EFF")  # rcartocolor::Temps
+  if(direction==-1) colors <- rev(colors)
   
   ggplot2::ggplot(df, ggplot2::aes(x = .data$pos1, y = .data$pos2)) +
     ggplot2::geom_tile(aes(width = .data$freq1,
@@ -48,11 +52,16 @@ ggassoc_chiasmogram <- function(data, mapping, measure = "phi", max.asso = NULL,
                        color = 'black') +
     ggplot2::scale_x_continuous(breaks = breaks1$pos1, labels = breaks1$var.xb, expand = c(0, 0.1), position = "top") +
     ggplot2::scale_y_continuous(breaks = breaks2$pos2, labels = breaks2$var.yb, expand = c(0, 0.1), position = "right") +
-    ggplot2::scale_fill_distiller(palette = palette, direction = direction, limits=c(-max.asso, max.asso),
-                                  name = measure) +
+    # ggplot2::scale_fill_distiller(palette = palette, direction = direction, limits=c(-max.asso, max.asso),
+    #                               name = measure) +
+    ggplot2::scale_fill_gradientn(colours = colors, limits = limits, name = measure) +
     ggplot2::xlab(xName) +
     ggplot2::ylab(yName) +
     ggplot2::theme(axis.text.x = element_text(angle = 45, vjust = 0, hjust = 0),
                    legend.position = "bottom",
                    legend.key.size = unit(1, 'cm'))
 }
+
+
+# data(Movies)
+# ggassoc_chiasmogram(Movies, aes(Country,Genre), sort = "both", measure = "phi")
