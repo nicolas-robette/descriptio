@@ -1,5 +1,5 @@
-ggassoc_assocplot <- function(data, mapping, measure = "std.residuals", limit = NULL,
-                              sort="none", palette = "PRGn", direction = 1, legend = "right") {
+ggassoc_assocplot <- function(data, mapping, measure = "std.residuals", limits = NULL,
+                              sort = "none", colors = NULL, direction = 1, legend = "right") {
   
   xVal <- rlang::eval_tidy(mapping$x, data)
   yVal <- rlang::eval_tidy(mapping$y, data)
@@ -8,11 +8,14 @@ ggassoc_assocplot <- function(data, mapping, measure = "std.residuals", limit = 
   
   if(sort!="none") {
     temp <- MASS::corresp(~xVal+yVal,nf=1)
-    if(sort %in% c("x","both")) xVal <- factor(xVal, levels=names(sort(temp$rscore)))
-    if(sort %in% c("y","both")) yVal <- factor(yVal, levels=names(sort(temp$cscore)))
+    if(sort %in% c("x","both")) data[,xName] <- factor(xVal, levels=names(sort(temp$rscore)))
+    if(sort %in% c("y","both")) data[,yName] <- factor(yVal, levels=names(sort(temp$cscore)))
   }
   
-  if(!is.null(limit)) limit <- c(-limit, limit)
+  # if(!is.null(limit)) limit <- c(-limit, limit)
+  
+  if(is.null(colors)) colors <- c("#009392FF","#39B185FF","#9CCB86FF","#E9E29CFF","#EEB479FF","#E88471FF","#CF597EFF")  # rcartocolor::Temps
+  if(direction==-1) colors <- rev(colors)
   
   mapping$xmin <- ggplot2::aes_string(xmin = "as.numeric(after_stat(x)) - sqrt(after_stat(expected))*0.45/sqrt(max(abs(after_stat(expected))))")$xmin
   mapping$xmax <- ggplot2::aes_string(xmax = "as.numeric(after_stat(x)) + sqrt(after_stat(expected))*0.45/sqrt(max(abs(after_stat(expected))))")$xmax
@@ -22,7 +25,7 @@ ggassoc_assocplot <- function(data, mapping, measure = "std.residuals", limit = 
   
   ggplot2::ggplot(data, mapping) +
     geom_rect(stat = "twocat") +
-    ggplot2::scale_fill_distiller(palette = palette, direction = direction, limits = limit) +
+    ggplot2::scale_fill_gradientn(colours = colors, limits = limits, name = measure) +
     ggplot2::xlab(xName) +
     ggplot2::ylab(yName) +
     ggplot2::theme_minimal() +
@@ -31,5 +34,14 @@ ggassoc_assocplot <- function(data, mapping, measure = "std.residuals", limit = 
                    axis.text.x = ggplot2::element_text(vjust = 5))
 }
 
-# ggassoc_assocplot(Taste, aes(Age, Educ))
-# ggassoc_assocplot(Taste, aes(Age, Educ)) + facet_wrap(~ Gender)
+# data(Movies)
+# ggassoc_assocplot(Movies, aes(Country,Genre), sort = "x", measure = "phi")
+
+# paletteer_d("rcartocolor::Temps")
+# paletteer_d("rcartocolor::Temps") %>% str()
+# paletteer::paletteer_c("viridis::plasma", 200)
+# paletteer::paletteer_dynamic("cartography::blue.pal", 20)
+# 
+# palettes_dynamic_names
+# palettes_c_names
+# palettes_d_names
