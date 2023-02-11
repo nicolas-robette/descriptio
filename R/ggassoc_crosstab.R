@@ -1,12 +1,15 @@
 ggassoc_crosstab <- function(data, mapping,
                              size = "freq", max.size = 20, 
-                             measure = "phi", limit = NULL, sort = "none",
-                             palette = "PRGn", direction = 1, legend = "right") {
+                             measure = "phi", limits = NULL, sort = "none",
+                             colors = NULL, direction = 1, legend = "right") {
   
   mapping$colour <- ggplot2::aes_string(colour = sprintf("ggplot2::after_stat(%s)", measure))$colour
   mapping$size <- ggplot2::aes_string(size = sprintf("sqrt(ggplot2::after_stat(%s))", size))$size
   
-  if(!is.null(limit)) limit <- c(-limit, limit)
+  # if(!is.null(limit)) limit <- c(-limit, limit)
+  
+  if(is.null(colors)) colors <- c("#009392FF","#39B185FF","#9CCB86FF","#E9E29CFF","#EEB479FF","#E88471FF","#CF597EFF")  # rcartocolor::Temps
+  if(direction==-1) colors <- rev(colors)
   
   xVal <- rlang::eval_tidy(mapping$x, data)
   yVal <- rlang::eval_tidy(mapping$y, data)
@@ -35,7 +38,8 @@ ggassoc_crosstab <- function(data, mapping,
     #                    shape = "square",
     #                    keep.zero.cells = TRUE) +
     ggplot2::scale_size(guide = "none", range = c(0, max.size)) +
-    ggplot2::scale_color_distiller(palette = palette, direction = direction, limit = limit) +
+    ggplot2::scale_fill_gradientn(colours = colors, limits = limits, name = measure) +
+    # ggplot2::scale_color_distiller(palette = palette, direction = direction, limit = limit) +
     ggplot2::theme_minimal() +
     ggplot2::theme(
       legend.position = legend,
