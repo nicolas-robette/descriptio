@@ -22,7 +22,7 @@ ggassoc_phiplot <- function(data, mapping, measure = "phi", limit = NULL, sort =
   }
   
   ggplot(data, mapping) +
-    geom_rect(stat = "twocat", col = "black", linewidth = 0.2) +
+    ggplot2::geom_rect(stat = "twocat", col = "black", linewidth = 0.2) +
     ggplot2::scale_fill_manual(values = c("white","black"), guide = "none") +
     ggplot2::xlab(xName) +
     ggplot2::ylab(yName) +
