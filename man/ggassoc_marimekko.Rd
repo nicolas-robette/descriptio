@@ -10,8 +10,8 @@ For a cross-tabulation, plots a marimekko chart (also called mosaic plot), using
 
 \usage{
 ggassoc_marimekko(data, mapping, type = "classic", 
-measure = "phi", limit = NULL, 
-palette = NULL, direction = 1, 
+measure = "phi", limits = NULL, 
+palette = NULL, colors = NULL, direction = 1, 
 linecolor = "gray60", linewidth = 0.1, 
 sort = "none", legend = "right")
 }
@@ -21,8 +21,9 @@ sort = "none", legend = "right")
   \item{mapping}{aesthetic being used. It must specify x and y.}
   \item{type}{character. If "classic" (default), a simple marimekko chart is plotted, with no use of local associations. If type is "shades", tiles are shaded according to the local associations between categories. If type is "patterns", tiles are filled with patterns, and the density of patterns is proportional to the absolute level of local association between categories.}
   \item{measure}{character. The measure of association used for filling (if type is "shades) or patterning (if type is "patterns") the tiles. Can be "phi" for phi coefficient, "or" for odds ratios, "std.residuals" (default) for standardized (i.e. Pearson) residuals, "adj.residuals" for adjusted standardized residuals or "pem" for local percentages of maximum deviation from independence.}
-  \item{limit}{numeric value, ony used if type is "shades". It specifies the upper limit of the scale for the color gradient filling the bars, i.e. for the measures of association (the lower limit is set to 0-limit). It corresponds to the maximum absolute value of association one wants to represent in the plot. If NULL (default), the limit is automatically adjusted to the data.}
-  \item{palette}{character. If type is "shades", name of a ColorBrewer diverging palette (default is PRGn). If type is "classic" or "patterns", palette name in the form packagename::palettename (cf \code{paletteer} package), and default is "khroma::bright", a colorblind friendly palette.}
+  \item{limits}{a numeric vector of length two providing limits of the scale. If NULL (default), the limits are automatically adjusted to the data. Only used for type "shades".}
+  \item{palette}{A character vector of color codes. The number of colors should be equal or higher than the number of categories in y. If NULL (default), the "Tableau" palette from \code{ggthemes} package is used. Only used for types "classic" and "patterns".}
+  \item{colors}{vector of colors that will be interpolated to produce a color gradient. If NULL (default), the "Temps" palette from \code{rcartocolors} package is used. Only used for type "shades".}
   \item{direction}{Sets the order of colours in the scale. If 1, the default, colours are as output by RColorBrewer::brewer.pal(). If -1, the order of colours is reversed.}
   \item{linecolor}{character. Color of the contour lines of the tiles. Default is gray60.}
   \item{linewidth}{numeric. Width of the contour lines of the tiles. Default is 0.1.}
@@ -58,7 +59,7 @@ Friendly, M. (1994), "Mosaic displays for multi-way contingency tables". \emph{J
 \examples{
 data(Movies)
 ggassoc_marimekko(data=Movies, mapping=ggplot2::aes(Genre, Country))
-# ggassoc_marimekko(data=Movies, mapping=ggplot2::aes(Genre, Country), type = "patterns")
+ggassoc_marimekko(data=Movies, mapping=ggplot2::aes(Genre, Country), type = "patterns")
 ggassoc_marimekko(data=Movies, mapping=ggplot2::aes(Genre, Country), type = "shades")
 }
 

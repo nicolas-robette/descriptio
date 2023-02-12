@@ -2,18 +2,10 @@
 # mapping = aes(Genre, Country)
 
 ggassoc_marimekko <- function(data, mapping, type = "classic",
-                              measure = "phi", limit = NULL, 
-                              palette = NULL, direction = 1,
+                              measure = "phi", limits = NULL, 
+                              palette = NULL, colors = NULL, direction = 1,
                               linecolor = "gray60", linewidth = 0.1,
                               sort = "none", legend = "right") {
-  
-  if(is.null(palette)) {
-    if(type %in% c("classic", "patterns")) {
-      palette <- "khroma::bright"
-    } else if(type=="shades") {
-      palette <- "PRGn"
-    }
-  }
   
   xVal <- rlang::eval_tidy(mapping$x, data)
   yVal <- rlang::eval_tidy(mapping$y, data)
@@ -29,7 +21,22 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
   levels(xVal) <- paste0(1:nlevels(xVal), levels(xVal))
   levels(yVal) <- paste0(1:nlevels(yVal), levels(yVal))
   
-  if(!is.null(limit)) limit <- c(-limit, limit)
+  if(is.null(colors)) colors <- c("#009392FF","#39B185FF","#9CCB86FF","#E9E29CFF","#EEB479FF","#E88471FF","#CF597EFF")  # rcartocolor::Temps
+  if(direction==-1) colors <- rev(colors)
+  
+  if(is.null(palette)) 
+    if(nlevels(yVal)<=10) {
+      palette <- c("#4E79A7FF","#F28E2BFF","#E15759FF","#59A14FFF","#EDC948FF",
+                   "#B07AA1FF","#FF9DA7FF","#9C755FFF","#BAB0ACFF","#76B7B2FF")  # ggthemes::Tableau_10
+    } else {
+      palette <- c("#4E79A7FF","#A0CBE8FF","#F28E2BFF","#FFBE7DFF","#59A14FFF",
+                   "#8CD17DFF","#B6992DFF","#F1CE63FF","#499894FF","#86BCB6FF",
+                   "#E15759FF","#FF9D9AFF","#79706EFF","#BAB0ACFF","#D37295FF",
+                   "#FABFD2FF","#B07AA1FF","#D4A6C8FF","#9D7660FF","#D7B5A6FF")  # ggthemes::Tableau_20
+    }
+  if(length(palette) < nlevels(yVal)) stop("The number of colors in palette should be equal or higher to the number of levels in y")
+  palette <- palette[1:nlevels(yVal)]
+  if(direction==-1) palette <- rev(palette)
   
   res <- assoc.twocat(xVal, yVal)$gather
   res <- res[order(rev(res$var.y), res$var.x),]
@@ -48,16 +55,18 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
     p <- 
       ggplot2::ggplot(res, ggplot2::aes(x = .data$x.center, y = .data$rprop, width = .data$prop.x, fill = .data$var.y)) +
         ggplot2::geom_bar(stat = "identity", col = linecolor, linewidth = linewidth) +
-        paletteer::scale_fill_paletteer_d(palette = palette, labels = sub(".","",levels(yVal))) +
+        ggplot2::scale_fill_discrete(type = palette, labels = sub(".","",levels(yVal))) +
         ggplot2::labs(x = xName, y = yName, fill = yName)
   } else if (type=="shades") {
     p <- 
       ggplot2::ggplot(res, ggplot2::aes(x = .data$x.center, y = .data$rprop, width = .data$prop.x, fill = .data$measure)) +
         ggplot2::geom_bar(stat = "identity", col = linecolor, linewidth = linewidth) +
-        ggplot2::scale_fill_distiller(palette = palette, direction = direction, limits = limit) +
+        ggplot2::scale_fill_gradientn(colours = colors, limits = limits) +
         ggplot2::geom_text(data = labs.y2, ggplot2::aes(label = sub(".","",as.character(.data$var.y)), y = .data$y.center, x = 1.05), size = ggplot2::rel(3), vjust = "top", angle = -90) +
         ggplot2::labs(x = xName, y = yName, fill = measure)
   } else if (type=="patterns") {
+    # if (!requireNamespace("ggpattern", quietly = TRUE))
+    #   install.packages("ggpattern")
     p <- 
       ggplot2::ggplot(res, ggplot2::aes(x = .data$x.center, y = .data$rprop, width = .data$prop.x)) +
         ggpattern::geom_bar_pattern(stat = "identity", 
@@ -66,8 +75,8 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
                                                  pattern_spacing = -abs(.data$measure)),
                                     pattern_colour = "black", pattern_fill = "black", pattern_alpha = 0.2,
                                     col = linecolor, linewidth = linewidth) +
-        ggpattern::scale_pattern_spacing_continuous(limits = limit) +
-        paletteer::scale_fill_paletteer_d(palette = palette, labels = sub(".","",levels(yVal))) +
+        ggpattern::scale_pattern_spacing_continuous() +
+        ggplot2::scale_fill_discrete(type = palette, labels = sub(".","",levels(yVal))) +
         ggplot2::labs(x = xName, y = yName) +
         ggplot2::guides(fill = "none", pattern_spacing = "none")
   } 
@@ -83,58 +92,9 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
                    panel.grid.minor = ggplot2::element_blank())
     
   return(p)
-
-  # ggplot2::ggplot(res, ggplot2::aes(x = x.center, y = rprop, width = prop.x, fill = var.y)) +
-  #   ggplot2::geom_bar(stat = "identity", col = linecolor, linewidth = linewidth) +
-  #   paletteer::scale_fill_paletteer_d(palette = palette, labels = sub(".","",levels(yVal))) +
-  #   # ggplot2::scale_x_continuous(labels = NULL) +
-  #   # ggplot2::scale_y_continuous(labels = NULL) +
-  #   # geom_text(data = labs.x, aes(label = sub(".","",as.character(var.x)), x = x.center, y = -0.05), size = ggplot2::rel(3), vjust = "inward") +
-  #   # geom_text(data = labs.y, aes(label = sub(".","",as.character(var.y)), y = y.center, x = -0.05), size = ggplot2::rel(3), vjust = "top", angle = 90) +
-  #   # geom_text(data = labs.y2, aes(label = sub(".","",as.character(var.y)), y = y.center, x = 1.05), size = ggplot2::rel(3), vjust = "top", angle = -90) +
-  #   ggplot2::labs(x = xName, y = yName, fill = yName) +
-  #   # ggplot2::theme_minimal() +
-  #   # ggplot2::theme(legend.position = legend,
-  #   #                panel.grid.major = ggplot2::element_blank(),
-  #   #                panel.grid.minor = ggplot2::element_blank())
-  #   
-  # ggplot2::ggplot(res, ggplot2::aes(x = x.center, y = rprop, width = prop.x, fill = measure)) +
-  #   ggplot2::geom_bar(stat = "identity", col = linecolor, linewidth = linewidth) +
-  #   ggplot2::scale_fill_distiller(palette = palette, direction = direction, limits = limit) +
-  #   # ggplot2::scale_x_continuous(labels = NULL) +
-  #   # ggplot2::scale_y_continuous(labels = NULL) +
-  #   # ggplot2::geom_text(data = labs.x, ggplot2::aes(label = sub(".","",as.character(var.x)), x = x.center, y = -0.05), size = ggplot2::rel(3), vjust = "inward") +
-  #   # ggplot2::geom_text(data = labs.y, ggplot2::aes(label = sub(".","",as.character(var.y)), y = y.center, x = -0.05), size = ggplot2::rel(3), vjust = "top", angle = 90) +
-  #   ggplot2::geom_text(data = labs.y2, ggplot2::aes(label = sub(".","",as.character(var.y)), y = y.center, x = 1.05), size = ggplot2::rel(3), vjust = "top", angle = -90) +
-  #   ggplot2::labs(x = xName, y = yName, fill = measure) +
-  #   # ggplot2::theme_minimal() +
-  #   # ggplot2::theme(legend.position = legend,
-  #   #                panel.grid.major = ggplot2::element_blank(),
-  #   #                panel.grid.minor = ggplot2::element_blank())
-  #   
-  # ggplot2::ggplot(res, ggplot2::aes(x = x.center, y = rprop, width = prop.x)) +
-  #   ggpattern::geom_bar_pattern(stat = "identity", 
-  #                               ggplot2::aes(fill = var.y, 
-  #                                            pattern = association,
-  #                                            pattern_spacing = -abs(measure)),
-  #                               pattern_colour = "black", pattern_fill = "black", pattern_alpha = 0.2,
-  #                               col = linecolor, linewidth = linewidth) +
-  #   paletteer::scale_fill_paletteer_d(palette = palette, labels = sub(".","",levels(yVal))) +
-  #   # ggplot2::scale_x_continuous(labels = NULL) +
-  #   # ggplot2::scale_y_continuous(labels = NULL) +
-  #   # ggplot2::geom_text(data = labs.x, ggplot2::aes(label = sub(".","",as.character(var.x)), x = x.center, y = -0.05), size = ggplot2::rel(3), vjust = "inward") +
-  #   ggplot2::geom_text(data = labs.y, ggplot2::aes(label = sub(".","",as.character(var.y)), y = y.center, x = -0.05), size = ggplot2::rel(3), vjust = "top", angle = 90) +
-  #   ggplot2::geom_text(data = labs.y2, ggplot2::aes(label = sub(".","",as.character(var.y)), y = y.center, x = 1.05), size = ggplot2::rel(3), vjust = "top", angle = -90) +
-  #   ggplot2::labs(x = xName, y = yName) +
-  #   # ggplot2::theme_minimal() +
-  #   # ggplot2::theme(legend.position = legend,
-  #   #                panel.grid.major = ggplot2::element_blank(),
-  #   #                panel.grid.minor = ggplot2::element_blank()) +
-  #   ggplot2::guides(fill = "none", pattern_spacing = "none")
-  
 }
 
-# ggassoc_marimekko(Movies, aes(Genre, Country), type = "classic")
-# ggassoc_marimekko(Movies, aes(Genre, Country), type = "shades")
-# ggassoc_marimekko(Movies, aes(Genre, Country), type = "patterns")
-# ggassoc_marimekko(Movies, aes(Genre, Country), type = "patterns", limit = 0.9)
+# ggassoc_marimekko(Movies, aes(Genre, Country), type = "classic", direction = -1)
+# ggassoc_marimekko(Movies, aes(Genre, Country), type = "shades", sort = "both", colors = c("pink","white","purple"), limits = c(-0.5,0.5))
+# ggassoc_marimekko(Movies, aes(Genre, Country), type = "patterns", sort = "both")
+# ggassoc_marimekko(Movies, aes(Genre, Country), type = "patterns", limits = c(-0.9,0.9), sort = "both")
