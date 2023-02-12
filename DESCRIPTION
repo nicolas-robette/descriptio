@@ -4,8 +4,8 @@ Title: A Toolbox for Descriptive Statistical Analysis
 Version: 1.0
 Author: Nicolas Robette
 Maintainer: Nicolas Robette <nicolas.robette@uvsq.fr>
-Imports: MASS, ggplot2, paletteer, ggpattern, rlang
-Suggests: rmarkdown, knitr, rmdformats, GGally, vcd, R.rsp
+Imports: MASS, ggplot2, ggpattern, rlang
+Suggests: rmarkdown, knitr, rmdformats, paletteer, GGally, vcd, R.rsp
 Description: Provides functions for the description of statistical associations between two variables : measures of local and global association between variables (phi, Cramer's V, point-biserial correlation, eta-squared, Goodman & Krukal tau, PEM, etc.) and multiple graphical representations of the associations between two variables (using ggplot2).
 VignetteBuilder: R.rsp
 License: GPL (>= 2)
