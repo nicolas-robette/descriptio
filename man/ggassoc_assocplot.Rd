@@ -50,10 +50,8 @@ Friendly, M. (1992), Graphical methods for categorical data. \emph{SAS User Grou
 }
 
 \examples{
-\dontrun{
 data(Movies)
 ggassoc_assocplot(data=Movies, mapping=ggplot2::aes(Country, Genre))
-}
 }
 
 \keyword{ multivariate }

@@ -47,10 +47,8 @@ a ggplot object
 }
 
 \examples{
-\dontrun{
 data(Movies)
 ggassoc_crosstab(data=Movies, mapping=ggplot2::aes(Genre, Country))
-}
 }
 
 \keyword{ multivariate }
