@@ -24,7 +24,7 @@ ggassoc_assocplot <- function(data, mapping, measure = "std.residuals", limits =
   mapping$fill <- ggplot2::aes_string(fill = sprintf("after_stat(%s)", measure))$fill
   
   ggplot2::ggplot(data, mapping) +
-    geom_rect(stat = "twocat") +
+    ggplot2::geom_rect(stat = "twocat") +
     ggplot2::scale_fill_gradientn(colours = colors, limits = limits, name = measure) +
     ggplot2::xlab(xName) +
     ggplot2::ylab(yName) +
@@ -38,6 +38,10 @@ ggassoc_assocplot <- function(data, mapping, measure = "std.residuals", limits =
 # ggassoc_assocplot(Movies, aes(Country,Genre), sort = "x", measure = "phi")
 
 # paletteer_d("rcartocolor::Temps")
+# paletteer_d("rcartocolor::Bold")
+# paletteer_d("ggthemes::Tableau_10")
+# paletteer_d("ggthemes::Tableau_20")
+# paletteer_d("khroma::bright")
 # paletteer_d("rcartocolor::Temps") %>% str()
 # paletteer::paletteer_c("viridis::plasma", 200)
 # paletteer::paletteer_dynamic("cartography::blue.pal", 20)
@@ -45,3 +49,4 @@ ggassoc_assocplot <- function(data, mapping, measure = "std.residuals", limits =
 # palettes_dynamic_names
 # palettes_c_names
 # palettes_d_names
+# palettes_d_names %>% filter(package == "ggthemes")
