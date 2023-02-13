@@ -24,7 +24,10 @@ pem <- function(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE) {
     }}
   dimnames(pem) <- dimnames(cont)
   if(sort) {
+    old.warn <- options()$warn
+    options(warn = -1)
     cor <- MASS::corresp(cont,nf=1)
+    options(warn = old.warn)
     z <- cont[order(cor$rscore),order(cor$cscore)]
   } else {
     z <- cont
@@ -38,7 +41,7 @@ pem <- function(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE) {
     maxc[i,j] <- m
     tota[j] <- tota[j] - m
     totb[i] <- totb[i] - m
-    if(sum(tota)+sum(totb)==0) break
+    if(sum(tota)+sum(totb)<0.000001) break
     if(tota[j]==0) j <- j+1
     if(totb[i]==0) i <- i+1
   }
