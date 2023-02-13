@@ -32,7 +32,7 @@ assoc.twocat <- function(x, y, weights=rep.int(1,length(x)), na_value=NULL, nper
 
   or <- or.table(X,Y,weights=W,digits=NULL)
   phi <- phi.table(X,Y,weights=W,digits=NULL)
-  pem <- pem(X,Y,weights=W,digits=NULL)
+  pem <- pem(X,Y,weights=W,digits=NULL,sort = FALSE)
   peml <- pem$peml
   pemg <- pem$pemg
   
@@ -151,12 +151,3 @@ assoc.twocat <- function(x, y, weights=rep.int(1,length(x)), na_value=NULL, nper
                              'phi.perm.pval'=ppval),
               'gather'=gather))
 }
-
-# data(Music)
-# assoc.twocat(Music$Jazz,Music$Age,nperm=100)
-# x = Music$Jazz
-# y = Music$Age
-# weights=rep.int(1,length(x))
-# 
-# library(GoodmanKruskal)
-# GKtau(x, y, dgts = 5)
