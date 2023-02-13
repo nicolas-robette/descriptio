@@ -1,10 +1,11 @@
-pem <- function(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE) {
+pem.table <- function(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE) {
 
   idnona <- !is.na(x) & !is.na(y)
   X <- x[idnona]
   Y <- y[idnona]
   W <- weights[idnona]
   
+  # cont <- stats::xtabs(data = data.frame(X, Y, W), W~X+Y)
   cont <- t(as.matrix(dichot(X,out='numeric')))%*%diag(W)%*%as.matrix(dichot(Y,out='numeric'))
   tota <- colSums(cont)
   totb <- rowSums(cont)
@@ -23,14 +24,14 @@ pem <- function(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE) {
     pem[i,j] <- ifelse(ecart[i,j]>=0,ecart[i,j]/emax[i,j]*100,0-ecart[i,j]/emax[i,j]*100)
     }}
   dimnames(pem) <- dimnames(cont)
-  if(sort) {
+  if(isFALSE(sort)) {
+    z <- cont
+  } else {
     old.warn <- options()$warn
     options(warn = -1)
-    cor <- MASS::corresp(cont,nf=1)
+    temp <- MASS::corresp(cont,nf=1)
+    z <- cont[order(temp$rscore),order(temp$cscore)]
     options(warn = old.warn)
-    z <- cont[order(cor$rscore),order(cor$cscore)]
-  } else {
-    z <- cont
   }
   tota <- colSums(z)
   totb <- rowSums(z)
@@ -45,7 +46,12 @@ pem <- function(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE) {
     if(tota[j]==0) j <- j+1
     if(totb[i]==0) i <- i+1
   }
-  pemg <- (sum(ecart)+sum(abs(ecart)))/(sum(maxc-theo[order(cor$rscore),order(cor$cscore)])+sum(abs(maxc-theo[order(cor$rscore),order(cor$cscore)])))
+  
+  if(isTRUE(sort)) {
+    pemg <- (sum(ecart)+sum(abs(ecart)))/(sum(maxc-theo[order(temp$rscore),order(temp$cscore)])+sum(abs(maxc-theo[order(temp$rscore),order(temp$cscore)])))
+  } else {
+    pemg <- (sum(ecart)+sum(abs(ecart)))/(sum(maxc-theo)+sum(abs(maxc-theo)))
+  }
   pemg <- 100*pemg
   
   pem <- as.table(pem)
