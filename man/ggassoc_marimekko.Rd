@@ -18,7 +18,7 @@ sort = "none", legend = "right")
 
 \arguments{
   \item{data}{dataset to use for plot}
-  \item{mapping}{aesthetic being used. It must specify x and y.}
+  \item{mapping}{aesthetics being used. x and y are required, weight can also be specified.}
   \item{type}{character. If "classic" (default), a simple marimekko chart is plotted, with no use of local associations. If type is "shades", tiles are shaded according to the local associations between categories. If type is "patterns", tiles are filled with patterns, and the density of patterns is proportional to the absolute level of local association between categories.}
   \item{measure}{character. The measure of association used for filling (if type is "shades) or patterning (if type is "patterns") the tiles. Can be "phi" for phi coefficient, "or" for odds ratios, "std.residuals" (default) for standardized (i.e. Pearson) residuals, "adj.residuals" for adjusted standardized residuals or "pem" for local percentages of maximum deviation from independence.}
   \item{limits}{a numeric vector of length two providing limits of the scale. If NULL (default), the limits are automatically adjusted to the data. Only used for type "shades".}

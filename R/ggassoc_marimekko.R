@@ -1,6 +1,3 @@
-# data = Movies
-# mapping = aes(Genre, Country)
-
 ggassoc_marimekko <- function(data, mapping, type = "classic",
                               measure = "phi", limits = NULL, 
                               palette = NULL, colors = NULL, direction = 1,
@@ -11,6 +8,13 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
   yVal <- rlang::eval_tidy(mapping$y, data)
   xName <- rlang::as_name(mapping$x)
   yName <- rlang::as_name(mapping$y)
+  
+  if(is.null(mapping$weight)) {
+    w <- rep(1, nrow(data))
+  } else {
+    w <- rlang::eval_tidy(mapping$weight, data)
+  }
+  w <- w*nrow(data)/sum(w)
 
   if(sort!="none") {
     temp <- MASS::corresp(~xVal+yVal,nf=1)
@@ -38,7 +42,7 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
   palette <- palette[1:nlevels(yVal)]
   if(direction==-1) palette <- rev(palette)
   
-  res <- assoc.twocat(xVal, yVal)$gather
+  res <- assoc.twocat(x = xVal, y = yVal, weights = w)$gather
   res <- res[order(rev(res$var.y), res$var.x),]
   res$x.center <- c(0, cumsum(res$prop.x)[1:nlevels(xVal) -1]) + res$prop.x / 2
   
@@ -65,8 +69,6 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
         ggplot2::geom_text(data = labs.y2, ggplot2::aes(label = sub(".","",as.character(.data$var.y)), y = .data$y.center, x = 1.05), size = ggplot2::rel(3), vjust = "top", angle = -90) +
         ggplot2::labs(x = xName, y = yName, fill = measure)
   } else if (type=="patterns") {
-    # if (!requireNamespace("ggpattern", quietly = TRUE))
-    #   install.packages("ggpattern")
     p <- 
       ggplot2::ggplot(res, ggplot2::aes(x = .data$x.center, y = .data$rprop, width = .data$prop.x)) +
         ggpattern::geom_bar_pattern(stat = "identity", 
@@ -98,3 +100,4 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
 # ggassoc_marimekko(Movies, aes(Genre, Country), type = "shades", sort = "both", colors = c("pink","white","purple"), limits = c(-0.5,0.5))
 # ggassoc_marimekko(Movies, aes(Genre, Country), type = "patterns", sort = "both")
 # ggassoc_marimekko(Movies, aes(Genre, Country), type = "patterns", limits = c(-0.9,0.9), sort = "both")
+# ggassoc_marimekko(Movies, aes(x = Genre, y = Country, weight = Critics), type = "classic", direction = -1)
