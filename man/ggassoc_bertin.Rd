@@ -15,7 +15,7 @@ sort = "none", add.gray = FALSE, add.rprop = FALSE)
 
 \arguments{
   \item{data}{dataset to use for plot}
-  \item{mapping}{aesthetic being used. It must specify x and y.}
+  \item{mapping}{aesthetics being used. x and y are required, weight can also be specified.}
   \item{prop.width}{logical. If TRUE, the width of the bars is proportional to the margin percentages of variable x.}
   \item{sort}{character. If "both", rows and columns are sorted according to the first factor of a correspondence analysis of the contingency table. If "x", only variable x is sorted. If "y", only variable y is sorted. If "none" (default), no sorting is done.}
   \item{add.gray}{logical. If FALSE (default), only white and black are used to fill the bars. If TRUE, gray is used additionally to fill the part of the bars corresponding to margin percentages of variable y.}

@@ -11,7 +11,14 @@ ggassoc_bertin <- function(data, mapping, prop.width = FALSE, sort = "none", add
     if(sort %in% c("y","both")) yVal <- factor(yVal, levels=names(sort(temp$cscore)))
   }
   
-  res0 <- assoc.twocat(xVal, yVal)
+  if(is.null(mapping$weight)) {
+    w <- rep(1, nrow(data))
+  } else {
+    w <- rlang::eval_tidy(mapping$weight, data)
+  }
+  w <- w*nrow(data)/sum(w)
+  
+  res0 <- assoc.twocat(x = xVal, y = yVal, weights = w)
   res <- res0$gather
   
   res1 <- res
@@ -66,4 +73,5 @@ ggassoc_bertin <- function(data, mapping, prop.width = FALSE, sort = "none", add
 # ggassoc_bertin(Movies, ggplot2::aes(x = Country, y = Genre), sort = "both", prop.width = TRUE, add.rprop = TRUE)
 # ggassoc_bertin(Movies, ggplot2::aes(x = Country, y = Genre), sort = "both", prop.width = TRUE, ncol = 3)
 # ggassoc_bertin(Movies, ggplot2::aes(x = Country, y = Genre), sort = "both", prop.width = TRUE, ncol = 3, add.rprop = TRUE)
+# ggassoc_bertin(Movies, ggplot2::aes(x = Country, y = Genre, weight = Critics), sort = "both", prop.width = TRUE)
 
