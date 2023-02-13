@@ -6,41 +6,46 @@ ggassoc_chiasmogram <- function(data, mapping, measure = "phi", limits = NULL,
   xName <- rlang::as_name(mapping$x)
   yName <- rlang::as_name(mapping$y)
   
-  # if(sort=="none") df$var.y <- factor(df$var.y, levels=rev(levels(df$var.y)))
+  if(is.null(mapping$weight)) {
+    w <- rep(1, nrow(data))
+  } else {
+    w <- rlang::eval_tidy(mapping$weight, data)
+  }
+  w <- w*nrow(data)/sum(w)
+  
   if(sort!="none") {
     temp <- MASS::corresp(~xVal+yVal,nf=1)
     if(sort %in% c("x","both")) xVal <- factor(xVal, levels=names(sort(temp$rscore)))
     if(sort %in% c("y","both")) yVal <- factor(yVal, levels=names(sort(temp$cscore)))
   }
   
-  breaks1 <- as.data.frame(table(xVal))
+  # breaks1 <- as.data.frame(table(xVal))
+  breaks1 <- as.data.frame(weighted.table(xVal, weights = w, mar = FALSE))
+  names(breaks1) <- c("xVal", "Freq")
   breaks1$cumw <- cumsum(breaks1$Freq)
   breaks1$pos1 <- .5 * (breaks1$cumw + lag1(breaks1$cumw, default = 0))
   breaks1$prop1 = round(100*breaks1$Freq/sum(breaks1$Freq),1)
   breaks1$var.xb = paste(breaks1$prop1, breaks1$xVal, sep = " - ")
-  # breaks1 <- breaks1[,c("xVal","pos1","Freq","prop1","var.xb")]
   names(breaks1)[1] <- "var.x"
   names(breaks1)[2] <- "freq1"
   breaks1$cumw <- NULL
   
-  breaks2 <- as.data.frame(table(yVal))
+  # breaks2 <- as.data.frame(table(yVal))
+  breaks2 <- as.data.frame(weighted.table(yVal, weights = w, mar = FALSE))
+  names(breaks2) <- c("yVal", "Freq")
   breaks2$cumw <- cumsum(breaks2$Freq)
   breaks2$pos2 <- .5 * (breaks2$cumw + lag1(breaks2$cumw, default = 0))
   breaks2$prop2 = round(100*breaks2$Freq/sum(breaks2$Freq),1)
   breaks2$var.yb = paste(breaks2$prop2, breaks2$yVal, sep = " - ")
-  # breaks2 <- breaks2[,c("yVal","pos2","Freq","prop2","var.yb")]
   names(breaks2)[1] <- "var.y"
   names(breaks2)[2] <- "freq2"
   breaks2$cumw <- NULL
   
-  df <- assoc.twocat(xVal, yVal)$gather
+  df <- assoc.twocat(x = xVal, y = yVal, weights = w)$gather
   df <- merge(df, breaks1, by = "var.x")
   df <- merge(df, breaks2, by = "var.y")
 
   df$asso <- df[,measure]
-  
-  # if(is.null(limit)) limit <- max(abs(df$asso))*1.1
-  # if(!is.null(limit)) limit <- c(-limit, limit)
   
   if(is.null(colors)) colors <- c("#009392FF","#39B185FF","#9CCB86FF","#E9E29CFF","#EEB479FF","#E88471FF","#CF597EFF")  # rcartocolor::Temps
   if(direction==-1) colors <- rev(colors)
@@ -52,8 +57,6 @@ ggassoc_chiasmogram <- function(data, mapping, measure = "phi", limits = NULL,
                        color = 'black') +
     ggplot2::scale_x_continuous(breaks = breaks1$pos1, labels = breaks1$var.xb, expand = c(0, 0.1), position = "top") +
     ggplot2::scale_y_continuous(breaks = breaks2$pos2, labels = breaks2$var.yb, expand = c(0, 0.1), position = "right") +
-    # ggplot2::scale_fill_distiller(palette = palette, direction = direction, limits=c(-max.asso, max.asso),
-    #                               name = measure) +
     ggplot2::scale_fill_gradientn(colours = colors, limits = limits, name = measure) +
     ggplot2::xlab(xName) +
     ggplot2::ylab(yName) +
@@ -62,6 +65,7 @@ ggassoc_chiasmogram <- function(data, mapping, measure = "phi", limits = NULL,
                    legend.key.size = unit(1, 'cm'))
 }
 
-
 # data(Movies)
 # ggassoc_chiasmogram(Movies, aes(Country,Genre), sort = "both", measure = "phi")
+# ggassoc_chiasmogram(Movies, aes(Country,Genre,weight = Critics), sort = "both", measure = "phi")
+# ggassoc_chiasmogram(Movies, aes(Country,Genre), sort = "both", measure = "phi", limits = c(-0.5, 0.5))
