@@ -16,7 +16,7 @@ reference:
   - weighted.table
   - phi.table
   - or.table
-  - pem
+  - pem.table
   - assoc.twocat
   - assoc.catcont
   - assoc.twocont

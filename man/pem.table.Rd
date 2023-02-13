@@ -1,13 +1,13 @@
-\name{pem}
+\name{pem.table}
 
-\alias{pem}
+\alias{pem.table}
 
-\title{Computes the local and global Percentages of Maximum Deviation from Independence (PEM)}
+\title{Computes the local and global Percentages of Maximum Deviation from Independence (pem)}
 
-\description{Computes the local and global Percentages of Maximum Deviation from Independence (PEM) of a contingency table.}
+\description{Computes the local and global Percentages of Maximum Deviation from Independence (pem) of a contingency table.}
 
 \usage{
-pem(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE)
+pem.table(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE)
 }
 
 \arguments{
@@ -19,7 +19,7 @@ pem(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE)
 }
 
 \details{
-The Percentage of Maximum Deviation from Independence (PEM) is an association measure for contingency tables and also provides attraction (resp. repulsion) measures in each cell of the crosstabulation (see Cibois, 1993). 
+The Percentage of Maximum Deviation from Independence (pem) is an association measure for contingency tables and also provides attraction (resp. repulsion) measures in each cell of the crosstabulation (see Cibois, 1993). 
 It is an alternative to khi2, Cramer's V coefficient, etc.
 }
 
@@ -30,7 +30,7 @@ Returns a list:
 }
 
 \references{
-Cibois P., 1993, Le PEM, pourcentage de l'ecart maximum : un indice de liaison entre modalites d'un tableau de contingence, 
+Cibois P., 1993, Le pem, pourcentage de l'ecart maximum : un indice de liaison entre modalites d'un tableau de contingence, 
 \emph{ Bulletin de methodologie sociologique}, n40, p.43-63. \url{https://cibois.pagesperso-orange.fr/bms93.pdf}
 }
 
@@ -40,7 +40,7 @@ Cibois P., 1993, Le PEM, pourcentage de l'ecart maximum : un indice de liaison e
 
 \examples{
 data(Movies)
-pem(Movies$Country, Movies$ArtHouse)
+pem.table(Movies$Country, Movies$ArtHouse)
 }
 
 \keyword{ multivariate }
