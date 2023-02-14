@@ -6,14 +6,15 @@
 Measures the association between two continuous variables with Pearson, Spearman and Kendall correlations.
 }
 \usage{
-assoc.twocont(x,y,weights=rep(1,length(x)),
-              nperm=NULL,distrib="asympt")
+assoc.twocont(x, y, weights = NULL, na.rm = FALSE,
+              nperm = NULL, distrib = "asympt")
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{a continuous variable (must be a numeric vector)}
   \item{y}{a continuous variable (must be a numeric vector)}
-  \item{weights}{an optional numeric vector of weights (by default, a vector of 1 for uniform weights)}
+  \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
+  \item{na.rm}{logical, indicating whether NA values should be silently removed before the computation proceeds. Default is FALSE.}
   \item{nperm}{numeric. Number of permutations for the permutation test of independence. If NULL (default), no permutation test is performed.}
   \item{distrib}{the null distribution of permutation test of independence can be approximated by its asymptotic distribution (\code{"asympt"}, default) or via Monte Carlo resampling (\code{"approx"}.}
 }

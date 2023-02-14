@@ -1,16 +1,18 @@
-assoc.twocont <- function(x,y,weights=rep(1,length(x)),nperm=NULL,distrib="asympt") {
-  pearson <- weighted.cor(x,y,method="pearson",weights=weights)
-  spearman <- weighted.cor(x,y,method="spearman",weights=weights)
-  kendall <- weighted.cor(x,y,method="kendall",weights=weights)
+assoc.twocont <- function(x, y, weights = NULL, na.rm = FALSE, nperm = NULL, distrib = "asympt") {
+  if(is.null(weights)) weights <- rep(1, length(x))
+  if(any(is.na(weights))) stop("There are empty values in weights.")
+  pearson <- weighted.cor(x,y,method="pearson",weights=weights,na.rm=na.rm)
+  spearman <- weighted.cor(x,y,method="spearman",weights=weights,na.rm=na.rm)
+  kendall <- weighted.cor(x,y,method="kendall",weights=weights,na.rm=na.rm)
   if(!is.null(nperm)) {
     h0P <- numeric()
     h0S <- numeric()
     h0K <- numeric()
     for(i in 1:nperm) {
       permy <- sample(y)
-      h0P[i] <- weighted.cor(x,permy,method="pearson",weights=weights)
-      h0S[i] <- weighted.cor(x,permy,method="spearman",weights=weights)
-      h0K[i] <- weighted.cor(x,permy,method="kendall",weights=weights)
+      h0P[i] <- weighted.cor(x,permy,method="pearson",weights=weights,na.rm=na.rm)
+      h0S[i] <- weighted.cor(x,permy,method="spearman",weights=weights,na.rm=na.rm)
+      h0K[i] <- weighted.cor(x,permy,method="kendall",weights=weights,na.rm=na.rm)
     }
     if(distrib=='approx') {
       pearson <- c(pearson, sum(pearson<=h0P)/nperm)
