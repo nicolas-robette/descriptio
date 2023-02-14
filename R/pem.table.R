@@ -1,12 +1,19 @@
-pem.table <- function(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE) {
+# data(Movies)
+# x = Movies$Country
+# y = Movies$Genre
+# weights = Movies$Critics
+# digits = 1
+# sort = FALSE
+
+pem.table <- function(x, y, weights = rep(1,length(x)), digits = 1, sort = FALSE) {
 
   idnona <- !is.na(x) & !is.na(y)
   X <- x[idnona]
   Y <- y[idnona]
   W <- weights[idnona]
   
-  # cont <- stats::xtabs(data = data.frame(X, Y, W), W~X+Y)
-  cont <- t(as.matrix(dichot(X,out='numeric')))%*%diag(W)%*%as.matrix(dichot(Y,out='numeric'))
+  cont <- stats::xtabs(data = data.frame(X, Y, W), W~X+Y)
+  # cont <- t(as.matrix(dichot(X,out='numeric')))%*%diag(W)%*%as.matrix(dichot(Y,out='numeric'))
   tota <- colSums(cont)
   totb <- rowSums(cont)
   total <- sum(cont)
@@ -55,8 +62,8 @@ pem.table <- function(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE) {
   pemg <- 100*pemg
   
   pem <- as.table(pem)
-  rownames(pem) <- gsub('data.','',rownames(pem))
-  colnames(pem) <- gsub('data.','',colnames(pem))
+  # rownames(pem) <- gsub('data.','',rownames(pem))
+  # colnames(pem) <- gsub('data.','',colnames(pem))
   
   if(!is.null(digits)) pem <- round(pem,digits)
   if(!is.null(digits)) pemg <- round(pemg,digits)
