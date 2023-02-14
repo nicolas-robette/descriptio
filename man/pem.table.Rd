@@ -7,7 +7,7 @@
 \description{Computes the local and global Percentages of Maximum Deviation from Independence (pem) of a contingency table.}
 
 \usage{
-pem.table(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE)
+pem.table(x,y,weights=rep(1,length(x)),digits=1,sort=FALSE)
 }
 
 \arguments{
@@ -15,7 +15,7 @@ pem.table(x,y,weights=rep(1,length(x)),digits=1,sort=TRUE)
   \item{y}{the second categorical variable}
   \item{weights}{an optional numeric vector of weights (by default, a vector of 1 for uniform weights)}
   \item{digits}{integer. The number of digits (default is 1). If NULL, the results are not rounded.}
-  \item{sort}{logical. Whether rows and columns are sorted according to a correspondence analysis or not (default is TRUE).}
+  \item{sort}{logical. Whether rows and columns are sorted according to a correspondence analysis or not (default is FALSE).}
 }
 
 \details{
