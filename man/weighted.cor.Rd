@@ -7,14 +7,14 @@
 Computes the weighted correlation of a distribution. This can be Pearson, Spearman or Kendall correlation.
 }
 \usage{
-weighted.cor(x, y, weights, method = "pearson", na.rm = TRUE)
+weighted.cor(x, y, weights = NULL, method = "pearson", na.rm = FALSE)
 }
 \arguments{
   \item{x}{numeric vector}
   \item{y}{numeric vector}
-  \item{weights}{numeric vector of weights}
+  \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
   \item{method}{a character string indicating which correlation coefficient is to be computed. One of "pearson" (default), "kendall", or "spearman".}
-  \item{na.rm}{logical. If true, any NA are removed from x before the quantiles are computed.}
+  \item{na.rm}{logical, indicating whether NA values should be silently removed before the computation proceeds. Default is FALSE.}
 }
 
 \author{Nicolas Robette}

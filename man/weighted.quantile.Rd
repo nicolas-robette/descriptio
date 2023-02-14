@@ -7,15 +7,15 @@
 Computes the weighted quantiles of a distribution.
 }
 \usage{
-weighted.quantile(x, weights, probs = seq(0, 1, 0.25),
-                  na.rm = TRUE, names = FALSE)
+weighted.quantile(x, weights = NULL, probs = seq(0, 1, 0.25),
+                  na.rm = FALSE, names = FALSE)
 }
 \arguments{
   \item{x}{numeric vector whose sample quantiles are wanted}
-  \item{weights}{Numeric vector of weights}
+  \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
   \item{probs}{numeric vector of probabilities with values in [0,1] }
-  \item{na.rm}{logical. If true, any NA are removed from x before the quantiles are computed.}
-  \item{names}{logical. if true, the result has a names attribute.}
+  \item{na.rm}{logical, indicating whether NA values should be silently removed before the computation proceeds. Default is FALSE.}
+  \item{names}{logical. if TRUE, the result has a names attribute. Default is FALSE.}
 }
 
 \value{
