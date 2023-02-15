@@ -6,13 +6,15 @@
 Computes the odds ratio for every cells of the cross-tabulation between two categorical variables
 }
 \usage{
-or.table(x,y,weights=rep(1,length(x)),digits=3)
+or.table(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", digits = 3)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{the first categorical variable}
   \item{y}{the second categorical variable}
-  \item{weights}{an optional numeric vector of weights (by default, a vector of 1 for uniform weights)}
+  \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
+  \item{na.rm}{logical, indicating whether NA values should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the variables (see na.value argument).}
+  \item{na.value}{character. Name of the level for NA category. Default is "NA". Only used if na.rm = FALSE.}
   \item{digits}{integer. The number of digits (default is 3). If NULL, the results are not rounded.}
 }
 

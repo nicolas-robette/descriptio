@@ -1,24 +1,31 @@
-assoc.twocat <- function(x, y, weights=rep.int(1,length(x)), na_value=NULL, nperm=NULL, distrib="asympt") {
+# assoc.twocat(x0, y0, weights = w0, na.rm = FALSE)
+# assoc.twocat(x0, y0, weights = w0, na.rm = FALSE, nperm = 10)
+# assoc.twocat(x0, y0, weights = w0, na.rm = TRUE)
+# assoc.twocat(x0, y0, weights = w1, na.rm = FALSE)
+# assoc.twocat(x0, y0, weights = w1, na.rm = TRUE)
+# assoc.twocat(x1, y0, weights = w0, na.rm = FALSE)
+# assoc.twocat(x1, y0, weights = w0, na.rm = TRUE)
 
-  # add na level
-  if(!is.null(na_value)) {
-    x <- factor(x, levels=c(levels(x), na_value))
-    x[is.na(x)] <- na_value
-    y <- factor(y, levels=c(levels(y), na_value))
-    y[is.na(y)] <- na_value
+assoc.twocat <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", nperm = NULL, distrib = "asympt") {
+
+  if(is.null(weights)) weights <- rep(1, length(x))
+  if(any(is.na(weights))) stop("There are empty values in weights.")
+  
+  if(na.rm==FALSE) {
+    x <- factor(x, levels=c(levels(x), na.value))
+    x[is.na(x)] <- na.value
+    x <- factor(x)
+    y <- factor(y, levels=c(levels(y), na.value))
+    y[is.na(y)] <- na.value
+    y <- factor(y)
+  } else {
+    complete <- !(is.na(x) | is.na(y))
+    x <- x[complete]
+    y <- y[complete]
+    weights <- weights[complete]
   }
-  
-  # drop empty levels
-  x <- factor(x)
-  y <- factor(y)
-  
-  # remove obs with na
-  idnona <- !is.na(x) & !is.na(y)
-  X <- x[idnona]
-  Y <- y[idnona]
-  W <- weights[idnona]
     
-  t <- tapply(W, list(X,Y), sum)
+  t <- tapply(weights, list(x,y), sum)
   
   # remplace les cases vides par des 0  
   t[is.na(t)] <- 0
@@ -30,9 +37,9 @@ assoc.twocat <- function(x, y, weights=rep.int(1,length(x)), na_value=NULL, nper
   rprop <- 100*apply(freq, 2, function(x) 2*x/rowSums(freq))
   cprop <- t(100*apply(freq, 1, function(x) 2*x/colSums(freq)))
 
-  or <- or.table(X,Y,weights=W,digits=NULL)
-  phi <- phi.table(X,Y,weights=W,digits=NULL)
-  pem <- pem.table(X,Y,weights=W,digits=NULL,sort = FALSE)
+  or <- or.table(x, y, weights=weights, na.rm = TRUE, digits=NULL)
+  phi <- phi.table(x, y, weights=weights, na.rm = TRUE, digits=NULL)
+  pem <- pem.table(x, y, weights=weights, na.rm = TRUE, digits=NULL, sort = FALSE)
   peml <- pem$peml
   pemg <- pem$pemg
   
@@ -68,7 +75,7 @@ assoc.twocat <- function(x, y, weights=rep.int(1,length(x)), na_value=NULL, nper
 
   if(!is.null(nperm)) {  
     ar <- array(NA, dim=c(nperm,nrow(phi),ncol(phi)))
-    for(i in 1:nperm) ar[i,,] <- phi.table(x,sample(y),weights=weights,digits=NULL)
+    for(i in 1:nperm) ar[i,,] <- phi.table(x,sample(y),weights=weights,digits=NULL,na.rm=TRUE)
     ppval <- matrix(nrow=nrow(phi), ncol=ncol(phi))
     for(i in 1:nrow(ppval)) { 
       for(j in 1:ncol(ppval)) {
@@ -118,13 +125,13 @@ assoc.twocat <- function(x, y, weights=rep.int(1,length(x)), na_value=NULL, nper
   
   names(gather)[1:3] <- c("var.x","var.y","freq")
   
-  t1 <- data.frame(weighted.table(X, weights = W, mar= FALSE))
+  t1 <- data.frame(weighted.table(x, weights = weights, mar = FALSE, na.rm = TRUE))
   names(t1) <- c("var.x","freq.x")
-  t2 <- data.frame(weighted.table(Y, weights = W, mar= FALSE))
+  t2 <- data.frame(weighted.table(y, weights = weights, mar = FALSE, na.rm = TRUE))
   names(t2) <- c("var.y","freq.y")
-  t3 <- data.frame(prop.table(weighted.table(X, weights = W, mar= FALSE)))
+  t3 <- data.frame(prop.table(weighted.table(x, weights = weights, mar = FALSE, na.rm = TRUE)))
   names(t3) <- c("var.x","prop.x")
-  t4 <- data.frame(prop.table(weighted.table(Y, weights = W, mar= FALSE)))
+  t4 <- data.frame(prop.table(weighted.table(y, weights = weights, mar = FALSE, na.rm = TRUE)))
   names(t4) <- c("var.y","prop.y")
   
   gather <- merge(gather, t1, by = "var.x")

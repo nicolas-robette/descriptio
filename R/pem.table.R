@@ -5,14 +5,33 @@
 # digits = 1
 # sort = FALSE
 
-pem.table <- function(x, y, weights = rep(1,length(x)), digits = 1, sort = FALSE) {
+# pem.table(x0, y0, weights = w0, na.rm = FALSE)
+# pem.table(x0, y0, weights = w0, na.rm = TRUE)
+# pem.table(x0, y0, weights = w1, na.rm = FALSE)
+# pem.table(x0, y0, weights = w1, na.rm = TRUE)
+# pem.table(x1, y0, weights = w0, na.rm = FALSE)
+# pem.table(x1, y0, weights = w0, na.rm = TRUE)
 
-  idnona <- !is.na(x) & !is.na(y)
-  X <- x[idnona]
-  Y <- y[idnona]
-  W <- weights[idnona]
+pem.table <- function(x, y, weights = NULL, sort = FALSE, na.rm = FALSE, na.value = "NA", digits = 1) {
+
+  if(is.null(weights)) weights <- rep(1, length(x))
+  if(any(is.na(weights))) stop("There are empty values in weights.")
   
-  cont <- stats::xtabs(data = data.frame(X, Y, W), W~X+Y)
+  if(na.rm==FALSE) {
+    x <- factor(x, levels=c(levels(x), na.value))
+    x[is.na(x)] <- na.value
+    x <- factor(x)
+    y <- factor(y, levels=c(levels(y), na.value))
+    y[is.na(y)] <- na.value
+    y <- factor(y)
+  } else {
+    complete <- !(is.na(x) | is.na(y))
+    x <- x[complete]
+    y <- y[complete]
+    weights <- weights[complete]
+  }
+  
+  cont <- stats::xtabs(data = data.frame(x, y, weights), weights~x+y)
   # cont <- t(as.matrix(dichot(X,out='numeric')))%*%diag(W)%*%as.matrix(dichot(Y,out='numeric'))
   tota <- colSums(cont)
   totb <- rowSums(cont)

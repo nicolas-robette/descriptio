@@ -1,8 +1,29 @@
-phi.table <- function(x,y,weights=rep(1,length(x)),digits=3) {
-  # tab <- cor(dichotom(factor(x),out='numeric'),
-  #            dichotom(factor(y),out='numeric'),
-  #            method='pearson',
-  #            use='complete.obs')
+# phi.table(x0, y0, weights = w0, na.rm = FALSE)
+# phi.table(x0, y0, weights = w0, na.rm = TRUE)
+# phi.table(x0, y0, weights = w1, na.rm = FALSE)
+# phi.table(x0, y0, weights = w1, na.rm = TRUE)
+# phi.table(x1, y0, weights = w0, na.rm = FALSE)
+# phi.table(x1, y0, weights = w0, na.rm = TRUE)
+
+phi.table <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", digits = 3) {
+  
+  if(is.null(weights)) weights <- rep(1, length(x))
+  if(any(is.na(weights))) stop("There are empty values in weights.")
+  
+  if(na.rm==FALSE) {
+    x <- factor(x, levels=c(levels(x), na.value))
+    x[is.na(x)] <- na.value
+    x <- factor(x)
+    y <- factor(y, levels=c(levels(y), na.value))
+    y[is.na(y)] <- na.value
+    y <- factor(y)
+  } else {
+    complete <- !(is.na(x) | is.na(y))
+    x <- x[complete]
+    y <- y[complete]
+    weights <- weights[complete]
+  }
+  
   xdic <- dichot(factor(x),out='numeric')
   ydic <- dichot(factor(y),out='numeric')
   tab <- matrix(nrow = ncol(xdic), ncol = ncol(ydic))
