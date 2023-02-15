@@ -10,7 +10,8 @@ For a cross-tabulation, plots bars for the conditional percentages of variable y
 
 \usage{
 ggassoc_bertin(data, mapping, prop.width = FALSE, 
-sort = "none", add.gray = FALSE, add.rprop = FALSE)
+sort = "none", add.gray = FALSE, add.rprop = FALSE,
+na.rm = FALSE, na.value ="NA")
 }
 
 \arguments{
@@ -20,6 +21,9 @@ sort = "none", add.gray = FALSE, add.rprop = FALSE)
   \item{sort}{character. If "both", rows and columns are sorted according to the first factor of a correspondence analysis of the contingency table. If "x", only variable x is sorted. If "y", only variable y is sorted. If "none" (default), no sorting is done.}
   \item{add.gray}{logical. If FALSE (default), only white and black are used to fill the bars. If TRUE, gray is used additionally to fill the part of the bars corresponding to margin percentages of variable y.}
   \item{add.rprop}{logical. If TRUE, row percentages are displayed on top of the bars. Default is FALSE.}
+  \item{na.rm}{logical, indicating whether NA values should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the variables (see na.value argument).}
+  \item{na.value}{character. Name of the level for NA category. Default is "NA". Only used if na.rm = FALSE.} 
+
 }
 
 \details{

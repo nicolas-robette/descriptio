@@ -16,7 +16,7 @@ StatTwocat <- ggplot2::ggproto(
     }
     
     # compute crosstabulation statistics
-    panel <- with(data, assoc.twocat(x, y, weights = weight)$gather)
+    panel <- with(data, assoc.twocat(x, y, weights = weight, na.rm = TRUE)$gather)
     names(panel)[1:2] <- c("y","x")
 
     # to handle the fact that ggplot2 could transform factors into integers

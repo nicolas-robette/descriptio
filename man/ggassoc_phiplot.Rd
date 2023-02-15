@@ -9,8 +9,9 @@ For a cross-tabulation, plots the measures of local association with bars of var
 }
 
 \usage{
-ggassoc_phiplot(data, mapping, measure = "phi", limit = NULL,
-sort="none")
+ggassoc_phiplot(data, mapping, measure = "phi", 
+                limit = NULL, sort = "none",
+                na.rm = FALSE, na.value = "NA")
 }
 
 \arguments{
@@ -19,6 +20,9 @@ sort="none")
   \item{measure}{character. The measure of association used for filling the rectangles. Can be "phi" for phi coefficient (default), "or" for odds ratios, "std.residuals" for standardized residuals, "adj.residuals" for adjusted standardized residuals or "pem" for local percentages of maximum deviation from independence.}
   \item{limit}{numeric value, specifying the upper limit of the scale for the height of the bars, i.e. for the measures of association (the lower limit is set to 0-limit). It corresponds to the maximum absolute value of association one wants to represent in the plot. If NULL (default), the limit is automatically adjusted to the data.}
   \item{sort}{character. If "both", rows and columns are sorted according to the first factor of a correspondence analysis of the contingency table. If "x", only rows are sorted. If "y", only columns are sorted. If "none" (default), no sorting is done.}
+  \item{na.rm}{logical, indicating whether NA values should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the variables (see na.value argument).}
+  \item{na.value}{character. Name of the level for NA category. Default is "NA". Only used if na.rm = FALSE.} 
+
 }
 
 \details{

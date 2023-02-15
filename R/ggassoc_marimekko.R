@@ -1,26 +1,41 @@
 ggassoc_marimekko <- function(data, mapping, type = "classic",
                               measure = "phi", limits = NULL, 
+                              na.rm = FALSE, na.value = "NA",
                               palette = NULL, colors = NULL, direction = 1,
                               linecolor = "gray60", linewidth = 0.1,
                               sort = "none", legend = "right") {
   
   xVal <- rlang::eval_tidy(mapping$x, data)
   yVal <- rlang::eval_tidy(mapping$y, data)
+  wVal <- rlang::eval_tidy(mapping$weight, data)
   xName <- rlang::as_name(mapping$x)
   yName <- rlang::as_name(mapping$y)
+  # wName <- rlang::as_name(mapping$weight)
   
-  if(is.null(mapping$weight)) {
-    w <- rep(1, nrow(data))
+  if(is.null(wVal)) wVal <- rep(1, length(xVal))
+  if(any(is.na(wVal))) stop("There are empty values in weights.")
+  
+  if(na.rm==FALSE) {
+    xVal <- factor(xVal, levels=c(levels(xVal), na.value))
+    xVal[is.na(xVal)] <- na.value
+    xVal <- factor(xVal)
+    yVal <- factor(yVal, levels=c(levels(yVal), na.value))
+    yVal[is.na(yVal)] <- na.value
+    yVal <- factor(yVal)
   } else {
-    w <- rlang::eval_tidy(mapping$weight, data)
+    complete <- !(is.na(xVal) | is.na(yVal))
+    xVal <- xVal[complete]
+    yVal <- yVal[complete]
+    wVal <- wVal[complete]
   }
-  w <- w*nrow(data)/sum(w)
-
+  
   if(sort!="none") {
     temp <- MASS::corresp(~xVal+yVal,nf=1)
     if(sort %in% c("x","both")) xVal <- factor(xVal, levels=names(sort(temp$rscore)))
     if(sort %in% c("y","both")) yVal <- factor(yVal, levels=names(sort(temp$cscore)))
   }
+  
+  wVal <- wVal*length(wVal)/sum(wVal)
   
   levels(xVal) <- paste0(1:nlevels(xVal), levels(xVal))
   levels(yVal) <- paste0(1:nlevels(yVal), levels(yVal))
@@ -42,7 +57,7 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
   palette <- palette[1:nlevels(yVal)]
   if(direction==-1) palette <- rev(palette)
   
-  res <- assoc.twocat(x = xVal, y = yVal, weights = w)$gather
+  res <- assoc.twocat(x = xVal, y = yVal, weights = wVal, na.rm = TRUE)$gather
   res <- res[order(rev(res$var.y), res$var.x),]
   res$x.center <- c(0, cumsum(res$prop.x)[1:nlevels(xVal) -1]) + res$prop.x / 2
   
@@ -95,6 +110,27 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
     
   return(p)
 }
+
+
+# ggassoc_marimekko(Movies, aes(Country, Genre), na.rm= FALSE)
+# ggassoc_marimekko(Movies, aes(Country, Genre), na.rm= TRUE)
+# ggassoc_marimekko(Movies, aes(x = Country, y = Genre, weight = Critics), na.rm= FALSE)
+# ggassoc_marimekko(Movies, aes(x = Country, y = Genre, weight = Critics), na.rm= TRUE)
+# 
+# MoviesNA <- Movies
+# MoviesNA$CountryNA <- MoviesNA$Country
+# MoviesNA$GenreNA <- MoviesNA$Genre
+# MoviesNA$CriticsNA <- MoviesNA$Critics
+# MoviesNA$CountryNA[c(1,3,5)] <- NA
+# MoviesNA$GenreNA[c(2,4,6)] <- NA
+# MoviesNA$CriticsNA[7] <- NA
+# 
+# ggassoc_marimekko(MoviesNA, aes(CountryNA, Genre), na.rm= FALSE)
+# ggassoc_marimekko(MoviesNA, aes(CountryNA, Genre), na.rm= TRUE)
+# ggassoc_marimekko(MoviesNA, aes(x = Country, y = Genre, weight = CriticsNA), na.rm= FALSE)
+# ggassoc_marimekko(MoviesNA, aes(x = Country, y = Genre, weight = CriticsNA), na.rm= TRUE)
+
+
 
 # ggassoc_marimekko(Movies, aes(Genre, Country), type = "classic", direction = -1)
 # ggassoc_marimekko(Movies, aes(Genre, Country), type = "shades", sort = "both", colors = c("pink","white","purple"), limits = c(-0.5,0.5))

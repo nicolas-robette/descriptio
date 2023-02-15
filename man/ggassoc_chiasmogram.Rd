@@ -10,7 +10,9 @@ For a cross-tabulation, plots the number of observations by using rectangles wit
 
 \usage{
 ggassoc_chiasmogram(data, mapping, measure = "phi",
-limits = NULL, sort = "none", colors = NULL, direction = 1)
+limits = NULL, sort = "none",
+na.rm = FALSE, na.value = "NA",
+colors = NULL, direction = 1)
 }
 
 \arguments{
@@ -19,6 +21,8 @@ limits = NULL, sort = "none", colors = NULL, direction = 1)
   \item{measure}{character. The measure of association used for filling the rectangles. Can be "phi" for phi coefficient (default), "or" for odds ratios, "residuals" for Pearson residuals, "std.residuals" for standardized Pearson residuals or "pem" for local percentages of maximum deviation from independence.}
   \item{limits}{a numeric vector of length two providing limits of the scale. If NULL (default), the limits are automatically adjusted to the data.}
   \item{sort}{character. If "both", rows and columns are sorted according to the first factor of a correspondence analysis of the contingency table. If "x", only rows are sorted. If "y", only columns are sorted. If "none" (default), no sorting is done.}
+  \item{na.rm}{logical, indicating whether NA values should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the variables (see na.value argument).}
+  \item{na.value}{character. Name of the level for NA category. Default is "NA". Only used if na.rm = FALSE.} 
   \item{colors}{vector of colors that will be interpolated to produce a color gradient. If NULL (default), the "Temps" palette from \code{rcartocolors} package is used.}
   \item{direction}{Sets the order of colours in the scale. If 1, the default, colours are as output by RColorBrewer::brewer.pal(). If -1, the order of colours is reversed.}
 }
