@@ -1,9 +1,12 @@
 assoc.twocont <- function(x, y, weights = NULL, na.rm = FALSE, nperm = NULL, distrib = "asympt") {
+  
   if(is.null(weights)) weights <- rep(1, length(x))
   if(any(is.na(weights))) stop("There are empty values in weights.")
+  
   pearson <- weighted.cor(x,y,method="pearson",weights=weights,na.rm=na.rm)
   spearman <- weighted.cor(x,y,method="spearman",weights=weights,na.rm=na.rm)
   kendall <- weighted.cor(x,y,method="kendall",weights=weights,na.rm=na.rm)
+  
   if(!is.null(nperm)) {
     h0P <- numeric()
     h0S <- numeric()
@@ -39,6 +42,7 @@ assoc.twocont <- function(x, y, weights = NULL, na.rm = FALSE, nperm = NULL, dis
       }
     }
   }
+  
   res <- data.frame(pearson,spearman,kendall)
   rownames(res)[1] <- "value"
   if(!is.null(nperm)) rownames(res)[2] <- "permutation.pvalue"

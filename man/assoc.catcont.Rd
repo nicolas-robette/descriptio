@@ -6,14 +6,18 @@
 Measures the association between a categorical variable and a continuous variable
 }
 \usage{
-assoc.catcont(x,y,weights=rep(1,length(x)),
-              nperm=NULL,distrib="asympt",digits=3)
+assoc.catcont(x, y, weights = NULL,
+              na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+              nperm = NULL, distrib = "asympt", digits = 3)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{the categorical variable (must be a factor)}
   \item{y}{the continuous variable (must be a numeric vector)}
-  \item{weights}{an optional numeric vector of weights (by default, a vector of 1 for uniform weights)}
+  \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
+  \item{na.rm.cat}{logical, indicating whether NA values in the categorical variable (i.e. x) should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the categorical variable (see na.value.cat argument).}
+  \item{na.value.cat}{character. Name of the level for NA category. Default is "NA". Only used if na.rm = FALSE.}
+  \item{na.rm.cont}{logical, indicating whether NA values in the continuous variable (i.e. y) should be silently removed before the computation proceeds. Default is FALSE.}
   \item{nperm}{numeric. Number of permutations for the permutation test of independence. If NULL (default), no permutation test is performed.}
   \item{distrib}{the null distribution of permutation test of independence can be approximated by its asymptotic distribution (\code{"asympt"}, default) or via Monte Carlo resampling (\code{"approx"}.}
   \item{digits}{integer. The number of digits (default is 3).}

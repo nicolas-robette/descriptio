@@ -1,9 +1,16 @@
-ggassoc_scatter <- function(data, mapping, axes.labs=TRUE, ticks.labs=TRUE, text.size=3) {
+ggassoc_scatter <- function(data, mapping, na.rm = FALSE, axes.labs = TRUE, ticks.labs = TRUE, text.size = 3) {
+
   xVal <- rlang::eval_tidy(mapping$x, data)
   yVal <- rlang::eval_tidy(mapping$y, data)
+  wVal <- rlang::eval_tidy(mapping$weight, data)
   xName <- rlang::as_name(mapping$x)
   yName <- rlang::as_name(mapping$y)
-  assoc <- stats::cor(xVal, yVal, method="kendall", use='complete.obs')
+  
+  if(is.null(wVal)) mapping$weight <- ggplot2::aes_string(weight = sprintf("rep(1, length(%s))",xName))$weight
+  if(any(is.na(wVal))) stop("There are empty values in weights.")
+  
+  assoc <- weighted.cor(xVal, yVal, weights = wVal, method = "kendall", na.rm = na.rm)
+  
   p <- ggplot2::ggplot(data, mapping) +
           ggplot2::geom_point(alpha=.8, size=rel(0.5)) +
           ggplot2::geom_smooth(method="gam", se=FALSE, size=rel(.7)) + 
@@ -27,3 +34,20 @@ ggassoc_scatter <- function(data, mapping, axes.labs=TRUE, ticks.labs=TRUE, text
                                           axis.text.x = ggplot2::element_blank())
   p
 }
+
+# data(Movies)
+# ggassoc_scatter(Movies, aes(x = Budget, y = BoxOffice), na.rm = TRUE)
+# ggassoc_scatter(Movies, aes(x = Budget, y = BoxOffice), na.rm = FALSE)
+# ggassoc_scatter(Movies, aes(x = Budget, y = BoxOffice, weight = Critics), na.rm = TRUE)
+# ggassoc_scatter(Movies, aes(x = Budget, y = BoxOffice, weight = Critics), na.rm = FALSE)
+# 
+# MoviesNA <- Movies
+# MoviesNA$BudgetNA <- MoviesNA$Budget
+# MoviesNA$CriticsNA <- MoviesNA$Critics
+# MoviesNA$BudgetNA[c(1,3,5)] <- NA
+# MoviesNA$CriticsNA[7] <- NA
+# 
+# ggassoc_scatter(MoviesNA, aes(x = Budget, y = BoxOffice, weight = CriticsNA), na.rm = TRUE)
+# ggassoc_scatter(MoviesNA, aes(x = Budget, y = BoxOffice, weight = CriticsNA), na.rm = FALSE)
+# ggassoc_scatter(MoviesNA, aes(x = BudgetNA, y = BoxOffice, weight = Critics), na.rm = TRUE)
+# ggassoc_scatter(MoviesNA, aes(x = BudgetNA, y = BoxOffice, weight = Critics), na.rm = FALSE)

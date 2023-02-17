@@ -13,7 +13,7 @@ assoc.twocat(x, y, weights = NULL, na.rm = FALSE, na.value = "NA",
 \arguments{
   \item{x}{the first categorical variable (must be a factor)}
   \item{y}{the second categorical variable (must be a factor)}
-  \item{weights}{an optional numeric vector of weights (by default, a vector of 1 for uniform weights)}
+  \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
   \item{na.rm}{logical, indicating whether NA values should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the variables (see na.value argument).}
   \item{na.value}{character. Name of the level for NA category. Default is "NA". Only used if na.rm = FALSE.}  \item{nperm}{numeric. Number of permutations for the permutation test of independence. If NULL (default), no permutation test is performed.}
   \item{distrib}{the null distribution of permutation test of independence can be approximated by its asymptotic distribution (\code{asympt}, default) or via Monte Carlo resampling (\code{approx}).}
