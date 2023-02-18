@@ -8,15 +8,20 @@
   Computes bivariate association measures between a response and predictor variables, producing a summary looking like a regression analysis.
 }
 \usage{
-  darma(y, x, weights=rep(1,length(y)), target=1, twocont="kendall",
-          nperm=NULL, distrib="asympt", dec=c(1,3,3))
+darma(y, x, weights = NULL, target = 1,
+      na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+      twocont = "kendall",
+      nperm = NULL, distrib = "asympt", dec = c(1,3,3))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{y}{the response variable}
   \item{x}{the predictor variables}
-  \item{weights}{an optional numeric vector of weights (by default, a vector of 1 for uniform weights)}
+  \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
   \item{target}{rank or name of the category of interest when y is categorical}
+  \item{na.rm.cat}{logical, indicating whether NA values in the categorical variables should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the categorical variables (see na.value.cat argument).}
+  \item{na.value.cat}{character. Name of the level for NA category. Default is "NA". Only used if na.rm.cat = FALSE.}
+  \item{na.rm.cont}{logical, indicating whether NA values in the continuous variables should be silently removed before the computation proceeds. Default is FALSE.}
   \item{twocont}{character. The type of measure of correlation measure to use between two continuous variables : "pearson", "spearman" or "kendall" (default).}
   \item{nperm}{numeric. Number of permutations for the permutation test of independence. If NULL (default), no permutation test is performed.}
   \item{distrib}{the null distribution of permutation test of independence can be approximated by its asymptotic distribution (\code{"asympt"}, default) or via Monte Carlo resampling (\code{"approx"}).}

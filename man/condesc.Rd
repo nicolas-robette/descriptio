@@ -5,14 +5,19 @@
 \description{
 Measures the association between a continuous variable and some continuous and/or categorical variables}
 \usage{
-condesc(y, x, weights=rep(1,length(y)), min.cor=NULL, 
-robust=TRUE, nperm=NULL, distrib="asympt", dec=c(3,3,0,3))
+condesc(y, x, weights = NULL, 
+na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+min.cor = NULL, robust = TRUE, 
+nperm = NULL, distrib = "asympt", dec = c(3,3,0,3))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{y}{the continuous variable to describe}
   \item{x}{a data frame with continuous and/or categorical variables}
-  \item{weights}{an optional numeric vector of weights (by default, a vector of 1 for uniform weights)}
+  \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
+  \item{na.rm.cat}{logical, indicating whether NA values in the categorical variables should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the categorical variables (see na.value.cat argument).}
+  \item{na.value.cat}{character. Name of the level for NA category. Default is "NA". Only used if na.rm.cat = FALSE.}
+  \item{na.rm.cont}{logical, indicating whether NA values in the continuous variables should be silently removed before the computation proceeds. Default is FALSE.}
   \item{min.cor}{for the relationship between y and a categorical variable, only associations higher or equal to min.cor will be displayed. If NULL (default), they are all displayed.}
   \item{robust}{logical. If FALSE, mean and standard deviation are used instead of median and mad. Default is TRUE.}
   \item{nperm}{numeric. Number of permutations for the permutation test of independence. If NULL (default), no permutation test is performed.}
