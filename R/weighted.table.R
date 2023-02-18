@@ -31,13 +31,17 @@ weighted.table <- function(x, y = NULL, weights = NULL, stat = "freq", mar = FAL
   if(any(is.na(weights))) stop("There are empty values in weights.")
   
   if(na.rm==FALSE) {   # add na level
-    x <- factor(x, levels=c(levels(x), na.value))
-    x[is.na(x)] <- na.value
-    x <- factor(x)
+    if(any(is.na(x))) {
+      x <- factor(x, levels=c(levels(x), na.value))
+      x[is.na(x)] <- na.value
+      x <- factor(x)
+    }
     if(!is.null(y)) {
-      y <- factor(y, levels=c(levels(y), na.value))
-      y[is.na(y)] <- na.value
-      y <- factor(y)
+      if(any(is.na(y))) {
+        y <- factor(y, levels=c(levels(y), na.value))
+        y[is.na(y)] <- na.value
+        y <- factor(y)
+      }
     }
     X <- x
     Y <- y

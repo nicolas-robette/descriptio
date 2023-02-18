@@ -12,12 +12,16 @@ assoc.twocat <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", n
   if(any(is.na(weights))) stop("There are empty values in weights.")
   
   if(na.rm==FALSE) {
-    x <- factor(x, levels=c(levels(x), na.value))
-    x[is.na(x)] <- na.value
-    x <- factor(x)
-    y <- factor(y, levels=c(levels(y), na.value))
-    y[is.na(y)] <- na.value
-    y <- factor(y)
+    if(any(is.na(x))) {
+      x <- factor(x, levels=c(levels(x), na.value))
+      x[is.na(x)] <- na.value
+      x <- factor(x)
+    }
+    if(any(is.na(y))) {
+      y <- factor(y, levels=c(levels(y), na.value))
+      y[is.na(y)] <- na.value
+      y <- factor(y)
+    }
   } else {
     complete <- !(is.na(x) | is.na(y))
     x <- x[complete]

@@ -15,9 +15,11 @@ assoc.catcont <- function(x, y, weights = NULL,
   }
   
   if(na.rm.cat==FALSE) {
-    x <- factor(x, levels=c(levels(x), na.value.cat))
-    x[is.na(x)] <- na.value.cat
-    x <- factor(x)
+    if(any(is.na(x))) {
+      x <- factor(x, levels=c(levels(x), na.value.cat))
+      x[is.na(x)] <- na.value.cat
+      x <- factor(x)
+    }
   } else {
     complete <- !is.na(x)
     x <- factor(x[complete])
