@@ -1,4 +1,9 @@
-assoc.yx <- function(y,x,weights=rep(1,length(y)),xx=TRUE,twocont="kendall",nperm=NULL,distrib="asympt",dec=c(3,3)) {
+assoc.yx <- function(y, x, weights = NULL, xx = TRUE, twocont = "kendall",
+                     na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+                     nperm = NULL, distrib = "asympt", dec = c(3,3)) {
+  
+  if(is.null(weights)) weights <- rep(1, length(y))
+  if(any(is.na(weights))) stop("There are empty values in weights.")
   
   x <- as.data.frame(x)
   xnames <- names(x)
@@ -10,25 +15,29 @@ assoc.yx <- function(y,x,weights=rep(1,length(y)),xx=TRUE,twocont="kendall",nper
   res <- list()
   for(i in 1:ncol(x)) {
     if(yformat %in% c('numeric','integer') & xformats[i] %in% c('numeric','integer')) {
-      z <- assoc.twocont(y, x[,i], weights=weights, nperm=nperm, distrib=distrib)
+      z <- assoc.twocont(y, x[,i], weights = weights, na.rm = na.rm.cont, nperm = nperm, distrib = distrib)
       measure = twocont
       association = z[,twocont][1]
       permutation.pvalue = z[,twocont][2]
     }
     if(yformat %in% c('numeric','integer') & xformats[i]=='factor') {
-      z <- assoc.catcont(x[,i], y, weights=weights, nperm=nperm, distrib=distrib)
+      z <- assoc.catcont(x[,i], y, weights = weights,
+                         na.rm.cat = na.rm.cat, na.value.cat = na.value.cat, na.rm.cont = na.rm.cont,
+                         nperm = nperm, distrib = distrib)
       measure='Eta2'
       association = z$eta.squared
       permutation.pvalue = z$permutation.pvalue
     }
     if(yformat=='factor' & xformats[i] %in% c('numeric','integer')) {
-      z <- assoc.catcont(y, x[,i], weights=weights, nperm=nperm, distrib=distrib)
+      z <- assoc.catcont(y, x[,i], weights = weights,
+                         na.rm.cat = na.rm.cat, na.value.cat = na.value.cat, na.rm.cont = na.rm.cont,
+                         nperm = nperm, distrib = distrib)
       measure='Eta2'
       association = z$eta.squared
       permutation.pvalue = z$permutation.pvalue
     }
     if(yformat=='factor' & xformats[i]=='factor') {
-      z <- assoc.twocat(x[,i], y, weights=weights, nperm=nperm, distrib=distrib)
+      z <- assoc.twocat(x[,i], y, weights = weights, na.rm = na.rm.cat, na.value = na.value.cat, nperm = nperm, distrib = distrib)
       measure="Cramer V"
       association = z$global$cramer.v
       permutation.pvalue = z$global$permutation.pvalue
@@ -58,25 +67,31 @@ assoc.yx <- function(y,x,weights=rep(1,length(y)),xx=TRUE,twocont="kendall",nper
       x2 <- x[,combi[[i]][2]]
       
       if(inherits(x1,c('numeric','integer')) & inherits(x2,c('numeric','integer'))) {
-        z <- assoc.twocont(x1, x2, weights=weights, nperm=nperm, distrib=distrib)
+        z <- assoc.twocont(x1, x2, weights = weights, na.rm = na.rm.cont, nperm = nperm, distrib = distrib)
         measure = twocont
         association = z[,twocont][1]
         permutation.pvalue = z[,twocont][2]
       }
       if(inherits(x1,c('numeric','integer')) & inherits(x2,'factor')) {
-        z <- assoc.catcont(x2, x1, weights=weights, nperm=nperm, distrib=distrib)
+        z <- assoc.catcont(x2, x1, weights = weights,
+                           na.rm.cat = na.rm.cat, na.value.cat = na.value.cat, na.rm.cont = na.rm.cont,
+                           nperm = nperm, distrib = distrib)
         measure='Eta2'
         association = z$eta.squared
         permutation.pvalue = z$permutation.pvalue
       }
       if(inherits(x1,'factor') & inherits(x2,c('numeric','integer'))) {
-        z <- assoc.catcont(x1, x2, weights=weights, nperm=nperm, distrib=distrib)
+        z <- assoc.catcont(x1, x2, weights = weights,
+                           na.rm.cat = na.rm.cat, na.value.cat = na.value.cat, na.rm.cont = na.rm.cont,
+                           nperm = nperm, distrib = distrib)
         measure='Eta2'
         association = z$eta.squared
         permutation.pvalue = z$permutation.pvalue
       }
       if(inherits(x1,'factor') & inherits(x2,'factor')) {
-        z <- assoc.twocat(x1, x2, weights=weights, nperm=nperm, distrib=distrib)
+        z <- assoc.twocat(x1, x2, weights = weights,
+                          na.rm = na.rm.cat, na.value = na.value.cat,
+                          nperm = nperm, distrib = distrib)
         measure="Cramer V"
         association = z$global$cramer.v
         permutation.pvalue = z$global$permutation.pvalue
@@ -105,3 +120,23 @@ assoc.yx <- function(y,x,weights=rep(1,length(y)),xx=TRUE,twocont="kendall",nper
   return(list(YX=restot, XX=restot2))
 }
 
+
+# data(Movies)
+# y0 = y1 = Movies$ArtHouse
+# a0 = a1 = Movies$Budget
+# b0 = b1 = Movies$Genre
+# c0 = c1 = Movies$Country
+# w0 = w1 = Movies$Critics
+# w1[1:2] <- NA
+# a1[3:4] <- NA
+# b1[5:6] <- NA
+# c1[7:8] <- NA
+# 
+# assoc.yx(y0, data.frame(a0,b0,c0), weights = w0)
+# assoc.yx(y0, data.frame(a0,b0,c0), weights = w1)
+# assoc.yx(y0, data.frame(a1,b0,c0), na.rm.cont = FALSE)
+# assoc.yx(y0, data.frame(a1,b0,c0), na.rm.cont = TRUE)
+# assoc.yx(y0, data.frame(a0,b1,c0), na.rm.cat = FALSE, na.value.cat = "99")
+# assoc.yx(y0, data.frame(a0,b1,c0), na.rm.cat = TRUE, na.value.cat = "99")
+# assoc.yx(y1, data.frame(a0,b0,c0), na.rm.cat = FALSE, na.value.cat = "99")
+# assoc.yx(y1, data.frame(a0,b0,c0), na.rm.cat = TRUE, na.value.cat = "99")
