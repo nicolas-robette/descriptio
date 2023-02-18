@@ -11,8 +11,8 @@ Displays of boxplot and combines it with a violin plot, using ggplot2.
 \usage{
 ggassoc_boxplot(data, mapping, 
 na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
-axes.labs = TRUE, ticks.labs = TRUE,
-text.size = 3, box = TRUE, notch = FALSE, violin = TRUE)
+axes.labs = TRUE, ticks.labs = TRUE, text.size = 3,
+sort = FALSE, box = TRUE, notch = FALSE, violin = TRUE)
 }
 
 \arguments{
@@ -24,6 +24,7 @@ text.size = 3, box = TRUE, notch = FALSE, violin = TRUE)
   \item{axes.labs}{Whether to display the labels of the axes, i.e. the names of x and y. Default is TRUE.}
   \item{ticks.labs}{Whether to display the labels of the categories of x and y. Default is TRUE.}
   \item{text.size}{Size of the association measure. If NULL, the text is not added to the plot.}
+  \item{sort}{logical. If TRUE, the levels of the categorical variable are reordered according to the conditional medians, so that boxplots are sorted. Default is FALSE.}
   \item{box}{Whether to draw boxplots. Default is TRUE.}
   \item{notch}{If FALSE (default) make a standard box plot. If TRUE, make a notched box plot. Notches are used to compare groups; if the notches of two boxes do not overlap, this suggests that the medians are significantly different.}
   \item{violin}{Whether to draw a violin plot. Default is TRUE.}

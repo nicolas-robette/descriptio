@@ -1,7 +1,7 @@
 ggassoc_boxplot <- function(data, mapping,
                             na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
                             axes.labs = TRUE, ticks.labs = TRUE, text.size = 3,
-                            box = TRUE, notch = FALSE, violin = TRUE) {
+                            sort = FALSE, box = TRUE, notch = FALSE, violin = TRUE) {
 
   xVal <- rlang::eval_tidy(mapping$x, data)
   yVal <- rlang::eval_tidy(mapping$y, data)
@@ -37,9 +37,11 @@ ggassoc_boxplot <- function(data, mapping,
   }
   
   if(na.rm.cat==FALSE) {
-    catVal <- factor(catVal, levels=c(levels(catVal), na.value.cat))
-    catVal[is.na(catVal)] <- na.value.cat
-    catVal <- factor(catVal)
+    if(any(is.na(catVal))) {
+      catVal <- factor(catVal, levels=c(levels(catVal), na.value.cat))
+      catVal[is.na(catVal)] <- na.value.cat
+      catVal <- factor(catVal)
+    }
   } else {
     complete <- !is.na(catVal)
     catVal <- factor(catVal[complete])
@@ -47,6 +49,11 @@ ggassoc_boxplot <- function(data, mapping,
     wVal <- wVal[complete]
   }
   
+  if(sort==TRUE) {
+    meds <- sapply(split(data.frame(contVal,wVal), catVal), function(x) weighted.quantile(x[,1],x[,2],probs=.5))
+    catVal <- factor(catVal, levels = names(sort(meds)))
+  }
+
   assoc <- assoc.catcont(catVal, contVal, weights = wVal, na.rm.cat = TRUE, na.rm.cont = TRUE)$eta.squared
   
   newdata <- data.frame(catVal, contVal, wVal)
@@ -83,7 +90,7 @@ ggassoc_boxplot <- function(data, mapping,
 # data(Movies)
 # ggassoc_boxplot(Movies, aes(x = Budget, y = Genre))
 # ggassoc_boxplot(Movies, aes(x = Budget, y = Genre, weight = Critics))
-# 
+
 # MoviesNA <- Movies
 # MoviesNA$BudgetNA <- MoviesNA$Budget
 # MoviesNA$GenreNA <- MoviesNA$Genre
