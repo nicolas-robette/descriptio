@@ -63,10 +63,12 @@ catdesc <- function(y, x, weights = NULL,
       temp$variables <- rep(names(xcon)[i],nrow(temp))
       temp$categories <- rownames(temp)
       if(robust==TRUE) {
-        temp$median.x.in.ycat <- sapply(levels(y), function(x) weighted.quantile(xcon[y[!is.na(y)]==x,i], weights[y[!is.na(y)]==x], 
-                                                                                 na.rm = na.rm.cont, probs = .5))
+        # temp$median.x.in.ycat <- sapply(levels(y), function(x) weighted.quantile(xcon[y[!is.na(y)]==x,i], weights[y[!is.na(y)]==x], 
+        #                                                                          na.rm = na.rm.cont, probs = .5))
+        temp$median.x.in.ycat <- sapply(split(data.frame(xcon[,i],weights), y), function(x) weighted.quantile(x[,1],x[,2],probs=.5, na.rm = na.rm.cont))
         temp$median.x.global <- rep(weighted.quantile(xcon[,i], weights, na.rm = na.rm.cont, probs = .5), nrow(temp))
-        temp$mad.x.in.ycat <- sapply(levels(y), function(x) weighted.mad(xcon[y[!is.na(y)]==x,i], weights[y[!is.na(y)]==x], na.rm = na.rm.cont))
+        # temp$mad.x.in.ycat <- sapply(levels(y), function(x) weighted.mad(xcon[y[!is.na(y)]==x,i], weights[y[!is.na(y)]==x], na.rm = na.rm.cont))
+        temp$mad.x.in.ycat <- sapply(split(data.frame(xcon[,i],weights), y), function(x) weighted.mad(x[,1],x[,2], na.rm = na.rm.cont))
         temp$mad.x.global <- rep(weighted.mad(xcon[,i], weights, na.rm = na.rm.cont), nrow(temp))
       }
       if(robust==FALSE) {
@@ -124,7 +126,7 @@ catdesc <- function(y, x, weights = NULL,
 # catdesc(y0, data.frame(a0,b0,c0), weights = w1)
 # catdesc(y0, data.frame(a1,b0,c0), na.rm.cont = FALSE)
 # catdesc(y0, data.frame(a1,b0,c0), na.rm.cont = TRUE)
-# catdesc(y0, data.frame(a0,b1,c0), na.rm.cat = FALSE, na.value.cat = "99")
-# catdesc(y0, data.frame(a0,b1,c0), na.rm.cat = TRUE, na.value.cat = "99")
-# catdesc(y1, data.frame(a0,b0,c0), na.rm.cat = FALSE, na.value.cat = "99")
-# catdesc(y1, data.frame(a0,b0,c0), na.rm.cat = TRUE, na.value.cat = "99")
+# catdesc(y0, data.frame(a0,b1,c0), na.rm.cat = FALSE, na.value.cat = "99", robust = FALSE)
+# catdesc(y0, data.frame(a0,b1,c0), na.rm.cat = TRUE, na.value.cat = "99", robust = FALSE)
+# catdesc(y1, data.frame(a0,b0,c0), na.rm.cat = FALSE, na.value.cat = "99", robust = FALSE)
+# catdesc(y1, data.frame(a0,b0,c0), na.rm.cat = TRUE, na.value.cat = "99", robust = FALSE)
