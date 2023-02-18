@@ -5,14 +5,19 @@
 \description{
 Measures the association between a categorical variable and some continuous and/or categorical variables}
 \usage{
-catdesc(y, x, weights=rep(1,length(y)), min.phi=NULL, 
-robust=TRUE, nperm=NULL, distrib="asympt", dec=c(3,3,3,3,1,3))
+catdesc(y, x, weights = NULL, 
+na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+min.phi = NULL, robust = TRUE, 
+nperm = NULL, distrib = "asympt", dec = c(3,3,3,3,1,3))
 }
 
 \arguments{
   \item{y}{the categorical variable to describe (must be a factor)}
   \item{x}{a data frame with continuous and/or categorical variables}
-  \item{weights}{an optional numeric vector of weights (by default, a vector of 1 for uniform weights)}
+  \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
+  \item{na.rm.cat}{logical, indicating whether NA values in the categorical variables should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the categorical variables (see na.value.cat argument).}
+  \item{na.value.cat}{character. Name of the level for NA category. Default is "NA". Only used if na.rm.cat = FALSE.}
+  \item{na.rm.cont}{logical, indicating whether NA values in the continuous variables should be silently removed before the computation proceeds. Default is FALSE.}
   \item{min.phi}{for the relationship between y and a categorical variable, only associations higher or equal to min.phi will be displayed. If NULL (default), they are all displayed.}
   \item{robust}{logical. If FALSE, mean and standard deviation are used instead of median and mad. Default is TRUE.}
   \item{nperm}{numeric. Number of permutations for the permutation test of independence. If NULL (default), no permutation test is performed.}
