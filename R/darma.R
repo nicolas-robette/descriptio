@@ -1,6 +1,6 @@
 darma <- function(y, x, weights = NULL, target = 1,
                   na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
-                  twocont = "kendall",
+                  correlation = "kendall",
                   nperm = NULL, distrib = "asympt", dec = c(1,3,3)) {
   
   if(is.null(weights)) weights <- rep(1, length(y))
@@ -67,7 +67,7 @@ darma <- function(y, x, weights = NULL, target = 1,
       biv <- assoc.twocont(y,x[,i],weights=weights,nperm=nperm,distrib=distrib,
                            na.rm = na.rm.cont)
       ldf[[i]] <- data.frame(variable=names(x)[i],category="",median=NA,
-                             association=biv[1,twocont],perm.pvalue=biv[2,twocont],
+                             association=biv[1,correlation],perm.pvalue=biv[2,correlation],
                              stringsAsFactors = FALSE)
     }
   }
