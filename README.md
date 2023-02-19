@@ -12,7 +12,8 @@
 
 * measures of local and global association between variables (phi, Cramer's V, point-biserial correlation, eta-squared, Goodman & Kruskal tau, PEM, etc.),
 * graphical representations of the associations between two variables (using ggplot2),
-* weighted statistics.
+* weighted statistics,
+* permutation tests.
 
 ## Documentation
 
