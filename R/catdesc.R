@@ -1,6 +1,6 @@
 catdesc <- function(y, x, weights = NULL,
                     na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
-                    min.phi = NULL, robust = TRUE,
+                    measure = "phi", limit = NULL, correlation = "kendall", robust = TRUE,
                     nperm = NULL, distrib = "asympt", dec = c(3,3,3,3,1,3)) {
   
   if(is.null(weights)) weights <- rep(1, length(y))
@@ -36,15 +36,15 @@ catdesc <- function(y, x, weights = NULL,
       lcat[[i]] <- merge(temp, aggregate(prop~var.y, data=temp, sum), by="var.y")
     }
     lcat <- do.call("rbind.data.frame",lcat)
-    lcat <- lcat[order(-lcat$phi),]
-    if(!is.null(min.phi)) lcat <- lcat[abs(lcat$phi)>=min.phi,]
+    lcat <- lcat[order(-lcat[,measure]),]
+    if(!is.null(limit)) lcat <- lcat[abs(lcat[,measure])>=limit,]
     lcat$cprop <- round(lcat$cprop, dec[3])
     lcat$rprop <- round(lcat$rprop, dec[3])
     lcat$prop.y <- round(lcat$prop.y, dec[3])
-    lcat$phi <- round(lcat$phi, dec[4])
+    lcat[,measure] <- round(lcat[,measure], dec[4])
     splitvar <- lcat$var.x
-    lcat <- lcat[,c("categories","cprop","rprop","prop.y","phi")]
-    names(lcat) <- c("categories","pct.ycat.in.xcat","pct.xcat.in.ycat","pct.xcat.global","phi")
+    lcat <- lcat[,c("categories","cprop","rprop","prop.y",measure)]
+    names(lcat) <- c("categories","pct.ycat.in.xcat","pct.xcat.in.ycat","pct.xcat.global",measure)
     rownames(lcat) <- NULL
     lcat <- split(lcat, splitvar)
   }
@@ -100,7 +100,7 @@ catdesc <- function(y, x, weights = NULL,
     bylevel[[i]]$continuous.var <- lcon[[i]]
   }
   
-  res <- list(variables = assoc.yx(y, x, weights = weights, 
+  res <- list(variables = assoc.yx(y, x, weights = weights, correlation = correlation,
                                    na.rm.cat = na.rm.cat, na.value.cat = na.value.cat, na.rm.cont = na.rm.cont,
                                    xx = FALSE, nperm = nperm, distrib = distrib, dec = dec[1:2])$YX,
               bylevel = bylevel)
@@ -109,6 +109,8 @@ catdesc <- function(y, x, weights = NULL,
 
 # data(Movies)
 # catdesc(Movies$ArtHouse, Movies[,c("Budget","Genre","Country")])
+# catdesc(Movies$ArtHouse, Movies[,c("Budget","Genre","Country")], measure = "pem")
+
 
 # data(Movies)
 # y0 = y1 = Movies$ArtHouse

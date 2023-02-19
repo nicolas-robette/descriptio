@@ -7,7 +7,7 @@ Measures the association between a categorical variable and some continuous and/
 \usage{
 catdesc(y, x, weights = NULL, 
 na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
-min.phi = NULL, robust = TRUE, 
+measure = "phi", limit = NULL, correlation = "kendall", robust = TRUE, 
 nperm = NULL, distrib = "asympt", dec = c(3,3,3,3,1,3))
 }
 
@@ -18,7 +18,9 @@ nperm = NULL, distrib = "asympt", dec = c(3,3,3,3,1,3))
   \item{na.rm.cat}{logical, indicating whether NA values in the categorical variables should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the categorical variables (see na.value.cat argument).}
   \item{na.value.cat}{character. Name of the level for NA category. Default is "NA". Only used if na.rm.cat = FALSE.}
   \item{na.rm.cont}{logical, indicating whether NA values in the continuous variables should be silently removed before the computation proceeds. Default is FALSE.}
-  \item{min.phi}{for the relationship between y and a categorical variable, only associations higher or equal to min.phi will be displayed. If NULL (default), they are all displayed.}
+  \item{measure}{character. The measure of local association between categories of categorical variables. Can be "phi" for phi coefficient, "or" for odds ratios, "std.residuals" (default) for standardized (i.e. Pearson) residuals, "adj.residuals" for adjusted standardized residuals or "pem" for local percentages of maximum deviation from independence.}
+  \item{limit}{for the relationship between y and a categorical variable, only associations higher or equal to \code{limit} will be displayed. If NULL (default), they are all displayed.}
+  \item{correlation}{character. The type of measure of correlation measure to use between two continuous variables : "pearson", "spearman" or "kendall" (default).}
   \item{robust}{logical. If FALSE, mean and standard deviation are used instead of median and mad. Default is TRUE.}
   \item{nperm}{numeric. Number of permutations for the permutation test of independence. If NULL (default), no permutation test is performed.}
   \item{distrib}{the null distribution of permutation test of independence can be approximated by its asymptotic distribution (\code{"asympt"}, default) or via Monte Carlo resampling (\code{"approx"}).}
