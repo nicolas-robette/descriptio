@@ -1,6 +1,6 @@
 condesc <- function(y, x, weights = NULL, 
                     na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
-                    min.cor = NULL, robust = TRUE, 
+                    limit = NULL, correlation = "kendall", robust = TRUE, 
                     nperm = NULL, distrib = "asympt", dec = c(3,3,0,3)) {
 
   if(is.null(weights)) weights <- rep(1, length(y))
@@ -62,9 +62,9 @@ condesc <- function(y, x, weights = NULL,
   if(robust==FALSE) names(categories) <- c("categories","mean.y.in.xcat","mean.y.global",
                                            "sd.y.in.xcat","sd.y.global","cor")
   categories <- categories[order(-categories$cor),]
-  if(!is.null(min.cor)) categories <- categories[abs(categories$cor)>=min.cor,]
+  if(!is.null(limit)) categories <- categories[abs(categories$cor)>=limit,]
   
-  res <- list(variables=assoc.yx(y,x,xx=FALSE,weights=weights,
+  res <- list(variables=assoc.yx(y,x,xx=FALSE,weights=weights, correlation = correlation,
                                  na.rm.cat = na.rm.cat, na.value.cat = na.value.cat, na.rm.cont = na.rm.cont,
                                  nperm=nperm,distrib=distrib,dec=dec[1:2])$YX,
               categories=categories)
