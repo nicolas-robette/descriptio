@@ -1,4 +1,4 @@
-assoc.yx <- function(y, x, weights = NULL, xx = TRUE, twocont = "kendall",
+assoc.yx <- function(y, x, weights = NULL, xx = TRUE, correlation = "kendall",
                      na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
                      nperm = NULL, distrib = "asympt", dec = c(3,3)) {
   
@@ -16,9 +16,9 @@ assoc.yx <- function(y, x, weights = NULL, xx = TRUE, twocont = "kendall",
   for(i in 1:ncol(x)) {
     if(yformat %in% c('numeric','integer') & xformats[i] %in% c('numeric','integer')) {
       z <- assoc.twocont(y, x[,i], weights = weights, na.rm = na.rm.cont, nperm = nperm, distrib = distrib)
-      measure = twocont
-      association = z[,twocont][1]
-      permutation.pvalue = z[,twocont][2]
+      measure = correlation
+      association = z[,correlation][1]
+      permutation.pvalue = z[,correlation][2]
     }
     if(yformat %in% c('numeric','integer') & xformats[i]=='factor') {
       z <- assoc.catcont(x[,i], y, weights = weights,
@@ -68,9 +68,9 @@ assoc.yx <- function(y, x, weights = NULL, xx = TRUE, twocont = "kendall",
       
       if(inherits(x1,c('numeric','integer')) & inherits(x2,c('numeric','integer'))) {
         z <- assoc.twocont(x1, x2, weights = weights, na.rm = na.rm.cont, nperm = nperm, distrib = distrib)
-        measure = twocont
-        association = z[,twocont][1]
-        permutation.pvalue = z[,twocont][2]
+        measure = correlation
+        association = z[,correlation][1]
+        permutation.pvalue = z[,correlation][2]
       }
       if(inherits(x1,c('numeric','integer')) & inherits(x2,'factor')) {
         z <- assoc.catcont(x2, x1, weights = weights,
