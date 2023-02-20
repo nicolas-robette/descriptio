@@ -32,10 +32,10 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/english/Tutorial_descr.html">Descriptive analysis of statistical associations with descriptio</a>
+      <a href="../articles/Article_eng.html">Descriptive analysis of statistical associations with descriptio</a>
     </li>
     <li>
-      <a href="../articles/french/Tutoriel_descr.html">L'analyse descriptive des associations statistiques avec descriptio</a>
+      <a href="../articles/Article_fr.html">L'analyse descriptive des associations entre variables avec descriptio</a>
     </li>
   </ul></li>
 <li>
@@ -66,7 +66,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">assoc.twocat</span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span>,weights<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep.int</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,na_value<span class="op">=</span><span class="cn">NULL</span>,nperm<span class="op">=</span><span class="cn">NULL</span>,distrib<span class="op">=</span><span class="st">"asympt"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">assoc.twocat</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, weights <span class="op">=</span> <span class="cn">NULL</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, na.value <span class="op">=</span> <span class="st">"NA"</span>,</span>
+<span>             nperm <span class="op">=</span> <span class="cn">NULL</span>, distrib <span class="op">=</span> <span class="st">"asympt"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -78,11 +79,13 @@
 <dd><p>the second categorical variable (must be a factor)</p></dd>
 
   <dt>weights</dt>
-<dd><p>an optional numeric vector of weights (by default, a vector of 1 for uniform weights)</p></dd>
+<dd><p>numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.</p></dd>
 
-  <dt>na_value</dt>
-<dd><p>character. Name of the level for NA category. If NULL (default), NA values are ignored.</p></dd>
+  <dt>na.rm</dt>
+<dd><p>logical, indicating whether NA values should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the variables (see na.value argument).</p></dd>
 
+  <dt>na.value</dt>
+<dd><p>character. Name of the level for NA category. Default is "NA". Only used if na.rm = FALSE.</p></dd>
   <dt>nperm</dt>
 <dd><p>numeric. Number of permutations for the permutation test of independence. If NULL (default), no permutation test is performed.</p></dd>
 
@@ -225,7 +228,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $global$global.pem</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 59.29383</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 64.04814</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $global$GK.tau.xy</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2201263</span>
@@ -257,11 +260,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> USA    11.1500000  0.0896861</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $local$local.pem</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               No       Yes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Europe   5.69273  -5.69273</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> France -51.55493  51.55493</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Other  -55.10326  55.10326</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> USA     72.28804 -72.28804</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x               No       Yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Europe   5.69273  -5.69273</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   France -51.55493  51.55493</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Other  -55.10326  55.10326</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USA     72.28804 -72.28804</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $local$phi</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 No         Yes</span>
@@ -272,10 +276,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $local$phi.perm.pval</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  No          Yes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Europe 3.221518e-01 3.221518e-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> France 5.718864e-45 0.000000e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Other  2.203003e-03 2.203003e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> USA    0.000000e+00 2.942021e-44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Europe 2.900872e-01 2.900872e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> France 2.650923e-36 0.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Other  1.710981e-03 1.710981e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> USA    0.000000e+00 6.702499e-46</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $gather</span>
@@ -289,14 +293,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7   Yes  Other   20 0.020 0.7692308 0.04115226   12.636     2.0716146</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8   Yes    USA   40 0.040 0.1346801 0.08230453  144.342    -8.6848595</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   adj.residuals         or       pem         phi    perm.pval freq.x freq.y</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      0.487584  1.1270813   5.69273  0.01541876 3.221518e-01     72    514</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    -12.809366  0.1661190 -51.55493 -0.40506773 5.718864e-45    605    514</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     -2.927844  0.2751969 -55.10326 -0.09258656 2.203003e-03     26    514</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      0.487584  1.1270813   5.69273  0.01541876 2.900872e-01     72    514</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    -12.809366  0.1661190 -51.55493 -0.40506773 2.650923e-36    605    514</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     -2.927844  0.2751969 -55.10326 -0.09258656 1.710981e-03     26    514</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     14.447862 11.1500000  72.28804  0.45688150 0.000000e+00    297    514</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     -0.487584  0.8872474  -5.69273 -0.01541876 3.221518e-01     72    486</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     -0.487584  0.8872474  -5.69273 -0.01541876 2.900872e-01     72    486</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     12.809366  6.0197809  51.55493  0.40506773 0.000000e+00    605    486</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      2.927844  3.6337625  55.10326  0.09258656 2.203003e-03     26    486</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    -14.447862  0.0896861 -72.28804 -0.45688150 2.942021e-44    297    486</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7      2.927844  3.6337625  55.10326  0.09258656 1.710981e-03     26    486</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    -14.447862  0.0896861 -72.28804 -0.45688150 6.702499e-46    297    486</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   prop.x prop.y</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.072  0.514</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.605  0.514</span>
@@ -321,7 +325,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

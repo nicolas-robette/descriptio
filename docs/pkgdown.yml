@@ -1,10 +1,10 @@
 pandoc: '2.18'
-pkgdown: 2.0.6
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  Tutorial_descr: english/Tutorial_descr.html
-  Tutoriel_descr: french/Tutoriel_descr.html
-last_built: 2023-02-11T20:18Z
+  Article_eng: Article_eng.html
+  Article_fr: Article_fr.html
+last_built: 2023-02-20T13:20Z
 urls:
   reference: https://nicolas-robette.github.io/descriptio/reference
   article: https://nicolas-robette.github.io/descriptio/articles

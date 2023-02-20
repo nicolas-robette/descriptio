@@ -36,6 +36,7 @@ reference:
   - ggassoc_marimekko
   - ggassoc_boxplot
   - ggassoc_scatter
+  - stat_twocat
 
 - title: Miscellaneous
 - desc: Additional tools

@@ -32,10 +32,10 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/english/Tutorial_descr.html">Descriptive analysis of statistical associations with descriptio</a>
+      <a href="../articles/Article_eng.html">Descriptive analysis of statistical associations with descriptio</a>
     </li>
     <li>
-      <a href="../articles/french/Tutoriel_descr.html">L'analyse descriptive des associations statistiques avec descriptio</a>
+      <a href="../articles/Article_fr.html">L'analyse descriptive des associations entre variables avec descriptio</a>
     </li>
   </ul></li>
 <li>
@@ -66,8 +66,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">darma</span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, weights<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>, target<span class="op">=</span><span class="fl">1</span>, twocont<span class="op">=</span><span class="st">"kendall"</span>,</span>
-<span>          nperm<span class="op">=</span><span class="cn">NULL</span>, distrib<span class="op">=</span><span class="st">"asympt"</span>, dec<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">darma</span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, weights <span class="op">=</span> <span class="cn">NULL</span>, target <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>      na.rm.cat <span class="op">=</span> <span class="cn">FALSE</span>, na.value.cat <span class="op">=</span> <span class="st">"NA"</span>, na.rm.cont <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>      correlation <span class="op">=</span> <span class="st">"kendall"</span>,</span>
+<span>      nperm <span class="op">=</span> <span class="cn">NULL</span>, distrib <span class="op">=</span> <span class="st">"asympt"</span>, dec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -79,12 +81,21 @@
 <dd><p>the predictor variables</p></dd>
 
   <dt>weights</dt>
-<dd><p>an optional numeric vector of weights (by default, a vector of 1 for uniform weights)</p></dd>
+<dd><p>numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.</p></dd>
 
   <dt>target</dt>
 <dd><p>rank or name of the category of interest when y is categorical</p></dd>
 
-  <dt>twocont</dt>
+  <dt>na.rm.cat</dt>
+<dd><p>logical, indicating whether NA values in the categorical variables should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the categorical variables (see na.value.cat argument).</p></dd>
+
+  <dt>na.value.cat</dt>
+<dd><p>character. Name of the level for NA category. Default is "NA". Only used if na.rm.cat = FALSE.</p></dd>
+
+  <dt>na.rm.cont</dt>
+<dd><p>logical, indicating whether NA values in the continuous variables should be silently removed before the computation proceeds. Default is FALSE.</p></dd>
+
+  <dt>correlation</dt>
 <dd><p>character. The type of measure of correlation measure to use between two continuous variables : "pearson", "spearman" or "kendall" (default).</p></dd>
 
   <dt>nperm</dt>
@@ -123,10 +134,10 @@
 <span class="r-in"><span>  <span class="va">iris2</span><span class="op">$</span><span class="va">Species</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">iris</span><span class="op">$</span><span class="va">Species</span> <span class="op">==</span> <span class="st">"versicolor"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">darma</span><span class="op">(</span><span class="va">iris2</span><span class="op">$</span><span class="va">Species</span>, <span class="va">iris2</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, target<span class="op">=</span><span class="fl">2</span>, nperm<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       variable category percent association perm.pvalue</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Sepal.Length               NA       0.079       0.529</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Sepal.Length               NA       0.079       0.464</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  Sepal.Width               NA      -0.468       0.000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3 Petal.Length               NA       0.202       0.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  Petal.Width               NA       0.118       0.176</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  Petal.Width               NA       0.118       0.248</span>
 </code></pre></div>
     </div>
   </div>
@@ -141,7 +152,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

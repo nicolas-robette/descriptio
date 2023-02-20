@@ -29,6 +29,8 @@ na.rm = FALSE, na.value ="NA")
 \details{
 The height of the bars is proportional to the conditional frequency of variable y. The bars are filled in black if the conditional frequency is higher than the marginal frequency; otherwise it's filled in white.
 
+This graphical representation is inspired by the principles of Jacques Bertin and the online AMADO tool (https://paris-timemachine.huma-num.fr/amado/main.html).
+
 Note : It does not allow faceting.
 }
 

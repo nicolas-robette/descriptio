@@ -3,16 +3,12 @@ title: "Descriptive analysis of statistical associations with descriptio"
 author: "Nicolas Robette"
 date: "`r Sys.Date()`"
 output: 
- rmdformats::html_clean:
-   thumbnails: FALSE
-   use_bookdown: FALSE
-vignette: >
-  %\VignetteIndexEntry{[en] Tutorial of descriptive analysis of statistical associations}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+  rmdformats::html_clean:
+    thumbnails: FALSE
+    use_bookdown: FALSE
 ---
 
-```{r setup, echo=FALSE, cache=FALSE}
+```{r setup, include=FALSE}
 library(knitr)
 library(rmdformats)
 
@@ -21,7 +17,9 @@ oldoptions <- options()
 
 ## Global options
 options(max.print="75", width=1000)
-opts_chunk$set(echo=TRUE,
+opts_chunk$set(collapse = TRUE,
+		           comment = "#>",
+		           echo=TRUE,
 	             cache=FALSE,
                prompt=FALSE,
                tidy=FALSE,
@@ -35,9 +33,9 @@ opts_knit$set(width=75)
 
 `descriptio` package provides some functions dedicated to the description of statistical associations between variables. They are based on effect size measures (also called association measures).
 
-All these measures are built from simple concepts (correlations, proportion of variance explained), they are bounded (between -1 and 1 or between 0 and 1) and are not sensitive to the number of observations.
+The main measures are built from simple concepts (correlations, proportion of variance explained), they are bounded (between -1 and 1 or between 0 and 1) and are not sensitive to the number of observations.
 
-The measures of *global* association are the following.
+The main measures of *global* association are the following.
 
 - For the relationship between two categorical variables: the **Cramér's V** which, unlike the chi-square, for example, is not sensitive to the number of observations or the number of categories of the variables. It varies between 0 (no association) and 1 (perfect association). Squared, it can be interpreted as the share of variation shared between two variables.
 
@@ -94,26 +92,72 @@ The function `assoc_twocat` computes :
 - the theoretical numbers, i.e. in a situation of independence
 - the chi-square 
 - the Cramér's V and the p-value of the corresponding permutation test
-- the Pearson residuals
+- the Goodman & Kruskal tau (an asymetrical measure of association)
+- the Pearson residuals, adjusted or not
+- the odds ratios for every cell of the contingency table
 - the phi coefficients and the p-values of the corresponding permutation tests
 - the global and local PEMs (Percentage of Maximum Deviation from Independence, see Cibois 1993)
 - a summary table of these results
 
 ```{r assoc_twocat}
-assoc.twocat(Movies$Country, Movies$ArtHouse, nperm=100)
+res <- assoc.twocat(Movies$Country, Movies$ArtHouse, nperm=100)
+res$tables
+res$global
+res$local
+res$gather
 ```
 
 \
-The function `ggassoc_crosstab` presents the contingency table in graphical form, with rectangles whose area corresponds to the numbers and whose color gradient corresponds to the attractions/repulsions (phi coefficients). The Cramér's V can be displayed in a corner of the graph. Here, the "art et essai" label is clearly over-represented among French films and under-represented among American films.
+The function `ggassoc_crosstab` presents the contingency table in graphical form, with rectangles whose area corresponds to the number of observations and whose color gradient corresponds to the attraction/repulsion (from one of the local association measures proposed in `assoc.twocat`, here the phi coefficients). The "art et essai" label is clearly over-represented among French films and under-represented among American films.
 
-```{r ggassoc_crosstab, eval = FALSE}
-ggassoc_crosstab(Movies, ggplot2::aes(x=Country, y=ArtHouse), max.asso=0.8)
+```{r ggassoc_crosstab}
+ggassoc_crosstab(Movies, ggplot2::aes(x=Country, y=ArtHouse))
 ```
 
-The function `ggassoc_phiplot` proposes another way to represent the attractions/repulsions. The width of the rectangles corresponds to the numbers of the variable x, their height to the phi coefficients. The rectangles are colored in black when there is attraction, in white when there is repulsion.
+The function `ggassoc_phiplot` proposes another way to represent the attractions/repulsions. The width of the rectangles corresponds to the numbers of the variable x, their height to the local associations (by default phi coefficients). The rectangles are colored in black when there is attraction, in white when there is repulsion.
 
-```{r ggassoc_phiplot, eval = FALSE}
+```{r ggassoc_phiplot}
 ggassoc_phiplot(Movies, ggplot2::aes(x=Country, y=ArtHouse))
+```
+
+The function `ggassoc_bertin` is inspired by Jacques Bertin's principles of graphical semiology for the representation of a data matrix and by the tool [AMADO Online](https://paris-timemachine.huma-num.fr/amado/main.html). The height of the bars corresponds to the conditional probabilities of y given x. They are colored black when the conditional probabilities are greater than the marginal probabilities of y. The width of the bars can be adjusted to be proportional to the marginal probabilities of x.
+
+```{r ggassoc_bertin}
+ggassoc_bertin(Movies, ggplot2::aes(x=Country, y=ArtHouse), prop.width = TRUE, add.gray = TRUE)
+```
+
+The function `ggassoc_assocplot` produces an "association plot" as proposed by Cohen (1980) and Friendly (1992). The width of the bars is proportional to the square root of the theoretical numbers. The height of the bars and the color gradient are proportional to the local associations. If these local associations are measured by Pearson residuals (the default choice), the area of the bars is proportional to the difference between the theoretical and observed numbers. 
+
+When the number of categories of the variables is high, as here when we cross the genre of the film and its geographical origin, it can be useful to sort the rows and/or the columns so that those which are similar are close.
+
+We see that action, animation, science fiction and horror films are over-represented among American films, and that documentaries, dramas and comedy-dramas are over-represented among French films.
+
+```{r ggassoc_assocplot}
+ggassoc_assocplot(Movies, ggplot2::aes(x=Country, y=Genre), sort = "both")
+```
+
+The function `ggassoc_chiasmogram` draws a "chiasmogram", a graphical representation proposed by Bozon and Héran (1988). The width of the rectangles is proportional to the marginal probabilities of the variable in column, their height is proportional to the marginal probabilities of the variable in row. The surface area of the rectangles is therefore proportional to the theoretical numbers. The rectangles are colored according to the degree of local association (by default the phi coefficients).
+
+```{r ggassoc_chiasmogram}
+ggassoc_chiasmogram(Movies, ggplot2::aes(x=Country, y=Genre), sort = "both")
+```
+
+The function `ggassoc_marimekko` produces marimekko charts, also called mosaic plots. The width of the bars is proportional to the marginal probabilities of the variable x, their height to the conditional probabilities of the variable y given x.
+
+```{r ggassoc_marimekko1}
+ggassoc_marimekko(Movies, ggplot2::aes(x=Country, y=Genre), sort = "both", type = "classic")
+```
+
+We can choose to color the bars according to the degree of local association (here the phi coefficients), as proposed by Friendly (1994).
+
+```{r ggassoc_marimekko2}
+ggassoc_marimekko(Movies, ggplot2::aes(x=Country, y=Genre), sort = "both", type = "shades")
+```
+
+We can also choose to replace the gradient of colors by textures more or less dense according to the degree of local association.
+
+```{r ggassoc_marimekko3}
+ggassoc_marimekko(Movies, ggplot2::aes(x=Country, y=Genre), sort = "both", type = "patterns")
 ```
 
 
@@ -130,7 +174,7 @@ assoc.catcont(Movies$Country, Movies$Critics, nperm=100)
 ```
 
 \
-The function `ggassoc_boxplot` represents the relationship between the variables in the form of box-plots and/or "violin" distributions. The eta² value is displayed in a corner of the graph.
+The function `ggassoc_boxplot` represents the relationship between the variables in the form of box-plots and/or "violin" distributions.
 
 ```{r ggassoc_boxplot, eval = FALSE}
 ggassoc_boxplot(Movies, ggplot2::aes(x=Country, y=Critics))
@@ -147,7 +191,7 @@ assoc.twocont(Movies$Budget, Movies$BoxOffice, nperm=100)
 ```
 
 \
-The function `ggassoc_scatter` represents the relationship between the two variables in the form of a scatterplot, with an approximation by smoothing (with the "Generalized Additive Model" method). Kendall's tau is displayed in a corner of the graph.
+The function `ggassoc_scatter` represents the relationship between the two variables in the form of a scatterplot, with an approximation by smoothing (with the "Generalized Additive Model" method).
 
 ```{r ggassoc_scatter, eval = FALSE}
 ggassoc_scatter(Movies, ggplot2::aes(x=Budget, y=BoxOffice))
@@ -165,7 +209,7 @@ It should be noted that if we do this work in a meticulous way, adding eventuall
 The function `assoc.yx` computes the global association between Y and each of the variables of X, and for all pairs of variables of X.
 
 ```{r assoc_yx}
-assoc.yx(Movies$BoxOffice, Movies[,-7], nperm=100)
+assoc.yx(Movies$BoxOffice, Movies[,-7], nperm=10)
 ```
 
 \
@@ -176,9 +220,9 @@ The functions `catdesc` and `condesc` allow to go into more detail about the rel
 - the percentage of the category of Y in the category of X1
 - the percentage of the X1 category in the Y category
 - the percentage of the X1 category in the whole sample
-- the phi coefficient
+- the local association (by default the phi coefficient)
 
-The results are sorted by decreasing phi coefficient and can be filtered to keep only the associations above a given threshold (in absolute value).
+The results are sorted by decreasing local association and can be filtered to keep only the associations above a given threshold (in absolute value).
 
 For a numerical variable X2, for a given category of Y, it computes :
 
@@ -188,10 +232,11 @@ For a numerical variable X2, for a given category of Y, it computes :
 - the dispersion of X2 in the whole sample
 - the point biserial correlation
 
-Dispersion is measured by the "median absolute deviation" (MAD), which is the median of the absolute deviations from the median. The median and MAD are so-called "robust" indicators, i.e. not sensitive to outliers.
+Dispersion is measured by the "median absolute deviation" (MAD), which is the median of the absolute deviations from the median. The median and MAD are so-called "robust" indicators, i.e. not sensitive to outliers, but one can choose to use the mean and standard deviation instead.
 
 ```{r catdesc}
-catdesc(Movies$Festival, Movies[,-5])$bylevel$Yes
+res <- catdesc(Movies$Festival, Movies[,-5], nperm = 10)
+res$bylevel$Yes
 ```
 
 \
@@ -205,7 +250,7 @@ catdesc(Movies$Festival, Movies[,-5])$bylevel$Yes
 
 The results are sorted by decreasing point biserial correlation and can be filtered to keep only associations above a given threshold (in absolute value).
 
-For the numerical variables of X, it calculates the Kendall's tau.
+For the numerical variables of X, it calculates the correlation (by default Kendall's tau).
 
 ```{r condesc}
 condesc(Movies$BoxOffice, Movies[,-7], nperm=100)
@@ -216,15 +261,15 @@ The `darma` function presents the results in a form close to that of a table of 
 
 When the variable Y is numerical, the function computes :
 
-- for numerical X variables, Kendall's tau and the p-value of the corresponding permutation test
+- for numerical X variables, the correlation (by deafult Kendall's tau) and the p-value of the corresponding permutation test
 - for the categories of the categorical X variables, the median of Y in the category, the point biserial correlation and the p-value of the corresponding permutation test
 
 ```{r darma1, eval=FALSE}
-darma(Movies$BoxOffice, Movies[,-7], nperm=100)
+res <- darma(Movies$BoxOffice, Movies[,-7], nperm=10)
 ```
 
 ```{r darma1b, echo=FALSE}
-knitr::kable(darma(Movies$BoxOffice, Movies[,-7], nperm=100), row.names=FALSE, format="simple")
+knitr::kable(res, row.names=FALSE, format="simple")
 ```
 
 \
@@ -234,11 +279,11 @@ When the variable Y is categorical, the function computes :
 - for the categories of the categorical X variables, the percentage of Y in the category, the phi coefficient and the p-value of the corresponding permutation test.
 
 ```{r darma2, eval=FALSE}
-darma(Movies$Festival, Movies[,-5], target=2, nperm=100)
+res <- darma(Movies$Festival, Movies[,-5], target=2, nperm=10)
 ```
 
 ```{r darma2b, echo=FALSE}
-knitr::kable(darma(Movies$Festival, Movies[,-5], target=2, nperm=100), row.names=FALSE, format="simple")
+knitr::kable(res, row.names=FALSE, format="simple")
 ```
 
 
@@ -246,7 +291,7 @@ knitr::kable(darma(Movies$Festival, Movies[,-5], target=2, nperm=100), row.names
 
 Finally, the `ggassoc_*` functions are designed to be integrated in the plot matrices of the [`GGally`](https://ggobi.github.io/ggally/) package. It is thus possible to use them to represent in a single plot all the bivariate relations of a group of variables. 
 
-```{r ggally, eval = FALSE}
+```{r ggally}
 library(GGally)
 ggpairs(Movies,
         lower = list(continuous = ggassoc_scatter,

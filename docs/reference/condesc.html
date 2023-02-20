@@ -32,10 +32,10 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/english/Tutorial_descr.html">Descriptive analysis of statistical associations with descriptio</a>
+      <a href="../articles/Article_eng.html">Descriptive analysis of statistical associations with descriptio</a>
     </li>
     <li>
-      <a href="../articles/french/Tutoriel_descr.html">L'analyse descriptive des associations statistiques avec descriptio</a>
+      <a href="../articles/Article_fr.html">L'analyse descriptive des associations entre variables avec descriptio</a>
     </li>
   </ul></li>
 <li>
@@ -66,8 +66,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">condesc</span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, weights<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>, min.cor<span class="op">=</span><span class="cn">NULL</span>, </span>
-<span>robust<span class="op">=</span><span class="cn">TRUE</span>, nperm<span class="op">=</span><span class="cn">NULL</span>, distrib<span class="op">=</span><span class="st">"asympt"</span>, dec<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">condesc</span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, weights <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>na.rm.cat <span class="op">=</span> <span class="cn">FALSE</span>, na.value.cat <span class="op">=</span> <span class="st">"NA"</span>, na.rm.cont <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>limit <span class="op">=</span> <span class="cn">NULL</span>, correlation <span class="op">=</span> <span class="st">"kendall"</span>, robust <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>nperm <span class="op">=</span> <span class="cn">NULL</span>, distrib <span class="op">=</span> <span class="st">"asympt"</span>, dec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -79,10 +81,22 @@
 <dd><p>a data frame with continuous and/or categorical variables</p></dd>
 
   <dt>weights</dt>
-<dd><p>an optional numeric vector of weights (by default, a vector of 1 for uniform weights)</p></dd>
+<dd><p>numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.</p></dd>
 
-  <dt>min.cor</dt>
-<dd><p>for the relationship between y and a categorical variable, only associations higher or equal to min.cor will be displayed. If NULL (default), they are all displayed.</p></dd>
+  <dt>na.rm.cat</dt>
+<dd><p>logical, indicating whether NA values in the categorical variables should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the categorical variables (see na.value.cat argument).</p></dd>
+
+  <dt>na.value.cat</dt>
+<dd><p>character. Name of the level for NA category. Default is "NA". Only used if na.rm.cat = FALSE.</p></dd>
+
+  <dt>na.rm.cont</dt>
+<dd><p>logical, indicating whether NA values in the continuous variables should be silently removed before the computation proceeds. Default is FALSE.</p></dd>
+
+  <dt>limit</dt>
+<dd><p>for the relationship between y and a category of a categorical variable, only associations (point-biserial correlations) higher or equal to <code>limit</code> will be displayed. If NULL (default), they are all displayed.</p></dd>
+
+  <dt>correlation</dt>
+<dd><p>character. The type of measure of correlation measure to use between two continuous variables : "pearson", "spearman" or "kendall" (default).</p></dd>
 
   <dt>robust</dt>
 <dd><p>logical. If FALSE, mean and standard deviation are used instead of median and mad. Default is TRUE.</p></dd>
@@ -176,7 +190,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

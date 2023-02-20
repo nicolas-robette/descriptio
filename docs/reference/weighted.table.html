@@ -32,10 +32,10 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/english/Tutorial_descr.html">Descriptive analysis of statistical associations with descriptio</a>
+      <a href="../articles/Article_eng.html">Descriptive analysis of statistical associations with descriptio</a>
     </li>
     <li>
-      <a href="../articles/french/Tutoriel_descr.html">L'analyse descriptive des associations statistiques avec descriptio</a>
+      <a href="../articles/Article_fr.html">L'analyse descriptive des associations entre variables avec descriptio</a>
     </li>
   </ul></li>
 <li>
@@ -66,8 +66,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">weighted.table</span><span class="op">(</span><span class="va">x</span>,y<span class="op">=</span><span class="cn">NULL</span>,weights<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep.int</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,stat<span class="op">=</span><span class="st">"freq"</span>,</span>
-<span>              digits<span class="op">=</span><span class="fl">1</span>,mar<span class="op">=</span><span class="cn">TRUE</span>,na_value<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">weighted.table</span><span class="op">(</span><span class="va">x</span>, y <span class="op">=</span> <span class="cn">NULL</span>, weights <span class="op">=</span> <span class="cn">NULL</span>, stat <span class="op">=</span> <span class="st">"freq"</span>,</span>
+<span>              mar <span class="op">=</span> <span class="cn">FALSE</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, na.value <span class="op">=</span> <span class="st">"NA"</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -79,19 +79,22 @@
 <dd><p>an optional object which can be interpreted as factor</p></dd>
 
   <dt>weights</dt>
-<dd><p>an optional numeric vector of weights (by default, a vector of 1 for uniform weights)</p></dd>
+<dd><p>numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.</p></dd>
 
   <dt>stat</dt>
-<dd><p>character. Whether to compute a contingenct table ("freq", default, percentages ("prop"), row percentages ("rprop") or column percentages ("cprop").</p></dd>
+<dd><p>character. Whether to compute a contingency table ("freq", default), percentages ("prop"), row percentages ("rprop") or column percentages ("cprop").</p></dd>
+
+  <dt>mar</dt>
+<dd><p>logical, indicating whether to compute margins. Default is FALSE.</p></dd>
+
+  <dt>na.rm</dt>
+<dd><p>logical, indicating whether NA values should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the variables (see na.value argument).</p></dd>
+
+  <dt>na.value</dt>
+<dd><p>character. Name of the level for NA category. Default is "NA". Only used if na.rm = FALSE.</p></dd>
 
   <dt>digits</dt>
 <dd><p>integer indicating the number of decimal places (default is 1)</p></dd>
-
-  <dt>mar</dt>
-<dd><p>logical. If TRUE (default), margins are computed</p></dd>
-
-  <dt>na_value</dt>
-<dd><p>character. Name of the level for NA category. If NULL (default), NA values are ignored.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -111,12 +114,11 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">weighted.table</span><span class="op">(</span><span class="va">Movies</span><span class="op">$</span><span class="va">Country</span>, <span class="va">Movies</span><span class="op">$</span><span class="va">ArtHouse</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          No  Yes  Sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Europe   39   33   72</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> France  212  393  605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Other     6   20   26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> USA     257   40  297</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sum     514  486 1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         No Yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Europe  39  33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> France 212 393</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Other    6  20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> USA    257  40</span>
 </code></pre></div>
     </div>
   </div>
@@ -131,7 +133,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
