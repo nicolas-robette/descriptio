@@ -1,0 +1,11 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
+^doc$
+^Meta$
+^R/pretty_crosstab\.R$
+^R/pretty_crosstab_strata\.R$
+^vignettes/articles$
