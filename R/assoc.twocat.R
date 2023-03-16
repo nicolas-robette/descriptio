@@ -1,11 +1,3 @@
-# assoc.twocat(x0, y0, weights = w0, na.rm = FALSE)
-# assoc.twocat(x0, y0, weights = w0, na.rm = FALSE, nperm = 10)
-# assoc.twocat(x0, y0, weights = w0, na.rm = TRUE)
-# assoc.twocat(x0, y0, weights = w1, na.rm = FALSE)
-# assoc.twocat(x0, y0, weights = w1, na.rm = TRUE)
-# assoc.twocat(x1, y0, weights = w0, na.rm = FALSE)
-# assoc.twocat(x1, y0, weights = w0, na.rm = TRUE)
-
 assoc.twocat <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", nperm = NULL, distrib = "asympt") {
 
   if(is.null(weights)) weights <- rep(1, length(x))
@@ -52,14 +44,9 @@ assoc.twocat <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", n
   cramer.v <- sqrt(chi.squared / (length(x)*(min(nrow(t),ncol(t))-1)))
   expected <- as.table(expected)
   
-  # stdres <- (t-expected)/sqrt(expected)
-  # stdres <- as.table(stdres)
-  old.warn <- options()$warn
-  options(warn = -1)
-  temp <- stats::chisq.test(t)
+  temp <- suppressWarnings(stats::chisq.test(t))
   stdres <- as.table(temp$stdres)
   res <- as.table(temp$res)
-  options(warn = old.warn)
   
   if(!is.null(nperm)) {
     h0distrib <- numeric()

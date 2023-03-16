@@ -1,17 +1,3 @@
-# data(Movies)
-# x = Movies$Country
-# y = Movies$Genre
-# weights = Movies$Critics
-# digits = 1
-# sort = FALSE
-
-# pem.table(x0, y0, weights = w0, na.rm = FALSE)
-# pem.table(x0, y0, weights = w0, na.rm = TRUE)
-# pem.table(x0, y0, weights = w1, na.rm = FALSE)
-# pem.table(x0, y0, weights = w1, na.rm = TRUE)
-# pem.table(x1, y0, weights = w0, na.rm = FALSE)
-# pem.table(x1, y0, weights = w0, na.rm = TRUE)
-
 pem.table <- function(x, y, weights = NULL, sort = FALSE, na.rm = FALSE, na.value = "NA", digits = 1) {
 
   if(is.null(weights)) weights <- rep(1, length(x))
@@ -32,12 +18,13 @@ pem.table <- function(x, y, weights = NULL, sort = FALSE, na.rm = FALSE, na.valu
   }
   
   cont <- stats::xtabs(data = data.frame(x, y, weights), weights~x+y)
-  # cont <- t(as.matrix(dichot(X,out='numeric')))%*%diag(W)%*%as.matrix(dichot(Y,out='numeric'))
   tota <- colSums(cont)
   totb <- rowSums(cont)
   total <- sum(cont)
   theo <- matrix(nrow=nrow(cont),ncol=ncol(cont))
-  for(i in 1:nrow(cont)) { for(j in 1:ncol(cont)) theo[i,j] <- tota[j]*totb[i]/total }
+  for(i in 1:nrow(cont)) { 
+    for(j in 1:ncol(cont)) theo[i,j] <- tota[j]*totb[i]/total
+    }
   ecart <- cont-theo
   max <- matrix(nrow=nrow(cont),ncol=ncol(cont))
   emax <- matrix(nrow=nrow(cont),ncol=ncol(cont))
@@ -53,11 +40,8 @@ pem.table <- function(x, y, weights = NULL, sort = FALSE, na.rm = FALSE, na.valu
   if(isFALSE(sort)) {
     z <- cont
   } else {
-    old.warn <- options()$warn
-    options(warn = -1)
-    temp <- MASS::corresp(cont,nf=1)
+    temp <- suppressWarnings(MASS::corresp(cont,nf=1))
     z <- cont[order(temp$rscore),order(temp$cscore)]
-    options(warn = old.warn)
   }
   tota <- colSums(z)
   totb <- rowSums(z)
@@ -81,9 +65,7 @@ pem.table <- function(x, y, weights = NULL, sort = FALSE, na.rm = FALSE, na.valu
   pemg <- 100*pemg
   
   pem <- as.table(pem)
-  # rownames(pem) <- gsub('data.','',rownames(pem))
-  # colnames(pem) <- gsub('data.','',colnames(pem))
-  
+
   if(!is.null(digits)) pem <- round(pem,digits)
   if(!is.null(digits)) pemg <- round(pemg,digits)
   
