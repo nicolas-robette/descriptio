@@ -84,6 +84,11 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
         ggplot2::geom_text(data = labs.y2, ggplot2::aes(label = sub(".","",as.character(.data$var.y)), y = .data$y.center, x = 1.05), size = ggplot2::rel(3), vjust = "top", angle = -90) +
         ggplot2::labs(x = xName, y = yName, fill = measure)
   } else if (type=="patterns") {
+    if (!requireNamespace("ggpattern", quietly = TRUE)) {
+      stop("ggpattern package should be installed to use this type of plot")
+    } else {
+      library(ggpattern)
+    }
     p <- 
       ggplot2::ggplot(res, ggplot2::aes(x = .data$x.center, y = .data$rprop, width = .data$prop.x)) +
         ggpattern::geom_bar_pattern(stat = "identity", 
@@ -101,8 +106,8 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
   p <- p +
     ggplot2::scale_x_continuous(labels = NULL) +
     ggplot2::scale_y_continuous(labels = NULL) +
-    geom_text(data = labs.x, aes(label = sub(".","",as.character(.data$var.x)), x = .data$x.center, y = -0.05), size = ggplot2::rel(3), vjust = "inward") +
-    geom_text(data = labs.y, aes(label = sub(".","",as.character(.data$var.y)), y = .data$y.center, x = -0.05), size = ggplot2::rel(3), vjust = "top", angle = 90) +
+    ggplot2::geom_text(data = labs.x, ggplot2::aes(label = sub(".","",as.character(.data$var.x)), x = .data$x.center, y = -0.05), size = ggplot2::rel(3), vjust = "inward") +
+    ggplot2::geom_text(data = labs.y, ggplot2::aes(label = sub(".","",as.character(.data$var.y)), y = .data$y.center, x = -0.05), size = ggplot2::rel(3), vjust = "top", angle = 90) +
     ggplot2::theme_minimal() +
     ggplot2::theme(legend.position = legend,
                    panel.grid.major = ggplot2::element_blank(),
@@ -132,8 +137,8 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
 
 
 
-# ggassoc_marimekko(Movies, aes(Genre, Country), type = "classic", direction = -1)
-# ggassoc_marimekko(Movies, aes(Genre, Country), type = "shades", sort = "both", colors = c("pink","white","purple"), limits = c(-0.5,0.5))
-# ggassoc_marimekko(Movies, aes(Genre, Country), type = "patterns", sort = "both")
-# ggassoc_marimekko(Movies, aes(Genre, Country), type = "patterns", limits = c(-0.9,0.9), sort = "both")
-# ggassoc_marimekko(Movies, aes(x = Genre, y = Country, weight = Critics), type = "classic", direction = -1)
+# ggassoc_marimekko(Movies, ggplot2::aes(Genre, Country), type = "classic", direction = -1)
+# ggassoc_marimekko(Movies, ggplot2::aes(Genre, Country), type = "shades", sort = "both", colors = c("pink","white","purple"), limits = c(-0.5,0.5))
+# ggassoc_marimekko(Movies, ggplot2::aes(Genre, Country), type = "patterns", sort = "both")
+# ggassoc_marimekko(Movies, ggplot2::aes(Genre, Country), type = "patterns", limits = c(-0.9,0.9), sort = "both")
+# ggassoc_marimekko(Movies, ggplot2::aes(x = Genre, y = Country, weight = Critics), type = "classic", direction = -1)
