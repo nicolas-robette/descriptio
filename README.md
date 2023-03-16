@@ -11,13 +11,15 @@
 [`descriptio`](https://nicolas-robette.github.io/descriptio/) provides functions for the description of statistical associations between two variables :
 
 * measures of local and global association between variables (phi, Cramer's V, point-biserial correlation, eta-squared, Goodman & Kruskal tau, PEM, etc.),
-* graphical representations of the associations between two variables (using ggplot2),
+* graphical representations of the associations between two variables (using `ggplot2`),
 * weighted statistics,
 * permutation tests.
+
 
 ## Documentation
 
 Please visit [https://nicolas-robette.github.io/descriptio/](https://nicolas-robette.github.io/descriptio/) for documentation
+
 
 ## Installation
 
@@ -30,6 +32,14 @@ if (!require(devtools)){
 }
 install_github("nicolas-robette/descriptio")
 ```
+
+
+## Citation
+
+To cite `descriptio` in publications, use :
+
+Robette N. (2023), *`descriptio` : Descriptive Analysis of Associations between two Variables in `R`*, version 1.0, https://nicolas-robette.github.io/descriptio/
+
 
 ## References
 
