@@ -87,7 +87,7 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
     if (!requireNamespace("ggpattern", quietly = TRUE)) {
       stop("ggpattern package should be installed to use this type of plot")
     } else {
-      library(ggpattern)
+      attachNamespace("ggpattern")
     }
     p <- 
       ggplot2::ggplot(res, ggplot2::aes(x = .data$x.center, y = .data$rprop, width = .data$prop.x)) +
