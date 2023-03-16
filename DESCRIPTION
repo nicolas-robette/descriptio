@@ -1,14 +1,14 @@
 Package: descriptio
 Type: Package
-Title: A Toolbox for Descriptive Statistical Analysis
-Version: 1.0
-Author: Nicolas Robette
-Maintainer: Nicolas Robette <nicolas.robette@uvsq.fr>
-Imports: MASS, ggplot2, rlang, ggpattern 
-Suggests: rmarkdown, knitr, rmdformats, paletteer, GGally, vcd
-Description: Functions for the description of statistical associations between two variables : measures of local and global association between variables (phi, Cramér V, correlations, eta-squared, Goodman and Kruskal tau, permutation tests, etc.), multiple graphical representations of the associations between two variables (using 'ggplot2') and weighted statistics.
+Title: Descriptive Statistical Analysis
+Version: 1.1
+Authors@R: c(person("Nicolas", "Robette", role = c("aut", "cre"), email = "nicolas.robette@uvsq.fr"))
+Imports: MASS, ggplot2, rlang
+Suggests: rmarkdown, knitr, rmdformats, ggpattern, paletteer, GGally
+Description: Description of statistical associations between two variables : measures of local and global association between variables (phi, Cramér V, correlations, eta-squared, Goodman and Kruskal tau, permutation tests, etc.), multiple graphical representations of the associations between two variables (using 'ggplot2') and weighted statistics.
 License: GPL (>= 2)
 Encoding: UTF-8
 URL: https://github.com/nicolas-robette/descriptio, https://nicolas-robette.github.io/descriptio/
+BugReports: https://github.com/nicolas-robette/descriptio/issues
 LazyData: true
 RoxygenNote: 7.2.1
