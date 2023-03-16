@@ -10,6 +10,12 @@
     <loc>https://nicolas-robette.github.io/descriptio/articles/Article_fr.html</loc>
   </url>
   <url>
+    <loc>https://nicolas-robette.github.io/descriptio/articles/articles/Article_eng.html</loc>
+  </url>
+  <url>
+    <loc>https://nicolas-robette.github.io/descriptio/articles/articles/Article_fr.html</loc>
+  </url>
+  <url>
     <loc>https://nicolas-robette.github.io/descriptio/articles/english/Tutorial_descr.html</loc>
   </url>
   <url>
@@ -101,6 +107,15 @@
   </url>
   <url>
     <loc>https://nicolas-robette.github.io/descriptio/reference/weighted.cor.html</loc>
+  </url>
+  <url>
+    <loc>https://nicolas-robette.github.io/descriptio/reference/weighted.cor2.html</loc>
+  </url>
+  <url>
+    <loc>https://nicolas-robette.github.io/descriptio/reference/weighted.cov.html</loc>
+  </url>
+  <url>
+    <loc>https://nicolas-robette.github.io/descriptio/reference/weighted.cov2.html</loc>
   </url>
   <url>
     <loc>https://nicolas-robette.github.io/descriptio/reference/weighted.mad.html</loc>
