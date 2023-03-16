@@ -19,7 +19,7 @@ weighted.quantile(x, weights = NULL, probs = seq(0, 1, 0.25),
 }
 
 \value{
-A numeric vector of the same length as probs.
+A numeric vector of the same length as \code{probs} argument.
 }
 
 \note{

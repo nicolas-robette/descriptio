@@ -15,6 +15,10 @@ weighted.mad(x, weights = NULL, na.rm = FALSE)
   \item{na.rm}{logical, indicating whether NA values should be silently removed before the computation proceeds. Default is FALSE.}
 }
 
+\value{
+a length-one numeric vector
+}
+
 \author{Nicolas Robette}
 
 \seealso{
