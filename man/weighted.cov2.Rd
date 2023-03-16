@@ -31,7 +31,6 @@ a matrix of covariances
 \examples{
 data(Movies)
 weighted.cov2(Movies[,c("Budget", "Critics", "BoxOffice")], weights = rep(c(.8,1.2), 500))
-weighted.cov2(Movies[,c("Budget", "Critics")], Movies[,"BoxOffice"], weights = rep(c(.8,1.2), 500))
 }
 
 \keyword{ multivariate }
