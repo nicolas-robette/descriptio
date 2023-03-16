@@ -1,4 +1,4 @@
-import(ggplot2, ggpattern)
+import(ggplot2)
 
   importFrom("stats", "aggregate", 
              "as.formula", 
@@ -27,7 +27,7 @@ import(ggplot2, ggpattern)
 
 export(assoc.twocat,assoc.catcont,assoc.twocont,assoc.yx,
        catdesc,condesc,darma,or.table,pem.table,phi.table,
-       weighted.table,weighted.quantile,weighted.mad,weighted.sd,weighted.cor,
+       weighted.table,weighted.quantile,weighted.mad,weighted.sd,weighted.cor,weighted.cor2,weighted.cov,weighted.cov2,
        ggassoc_assocplot,ggassoc_bertin,ggassoc_chiasmogram,ggassoc_crosstab,ggassoc_phiplot,ggassoc_marimekko,
        ggassoc_boxplot,ggassoc_scatter)
 export(StatTwocat,stat_twocat)

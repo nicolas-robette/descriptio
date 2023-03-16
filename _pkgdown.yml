@@ -13,6 +13,9 @@ reference:
 - desc: Tools to describe statistical associations between two variables
 - contents:
   - weighted.cor
+  - weighted.cor2
+  - weighted.cov
+  - weighted.cov2
   - weighted.table
   - phi.table
   - or.table

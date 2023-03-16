@@ -153,6 +153,45 @@ weighted.cor <- function(x, y, weights = NULL, method = "pearson", na.rm = FALSE
 }
 
 
+weighted.cor2 <- function(x, y  = NULL, weights = NULL, method = "pearson", na.rm = FALSE) {
+  if (is.null(weights)) weights <- rep(1, nrow(x))
+  if (any(is.na(weights))) stop("There are empty values in weights.")
+  if(is.null(y)) {
+    sapply(x, function(z) sapply(x, weighted.cor, y = z, weights = weights, method = method, na.rm = na.rm))
+  } else {
+    sapply(y, function(z) sapply(x, weighted.cor, y = z, weights = weights, method = method, na.rm = na.rm))
+  }
+}
+
+
+weighted.cov <- function(x, y, weights = NULL, na.rm = FALSE) {
+  if (is.null(weights)) weights <- rep(1, length(x))
+  if (any(is.na(weights))) stop("There are empty values in weights.")
+  if (na.rm) {
+    complete <- !(is.na(x) | is.na(y))
+    x <- x[complete]
+    y <- y[complete]
+    weights <- weights[complete]
+  } else {
+    if (any(is.na(x) | is.na(y))) stop("There are empty values in x, y or both. \nPlease consider transforming your data (filtering, recoding, imputation, etc.) or set na.rm to TRUE.")
+  }
+  mx <- stats::weighted.mean(x, weights)
+  my <- stats::weighted.mean(y, weights)
+  cov <- stats::weighted.mean((x - mx) * (y - my), weights)
+  return(cov)
+}
+
+
+weighted.cov2 <- function(x, y = NULL, weights = NULL, na.rm = FALSE) {
+  if (is.null(weights)) weights <- rep(1, nrow(x))
+  if (any(is.na(weights))) stop("There are empty values in weights.")
+  if(is.null(y)) {
+    sapply(x, function(z) sapply(x, weighted.cov, y = z, weights = weights, na.rm = na.rm))
+  } else {
+    sapply(y, function(z) sapply(x, weighted.cov, y = z, weights = weights, na.rm = na.rm))
+  }}
+
+
 # x0 <- c(1,3,4,12,3,3,6)
 # y0 <- c(34,87,35,12,23,98,56)
 # w0 <- c(2,1.5,2,1.5,1,1.5,2)
