@@ -106,7 +106,10 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">weighted.cor2</span><span class="op">(</span><span class="va">Movies</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Budget"</span>, <span class="st">"Critics"</span>, <span class="st">"BoxOffice"</span><span class="op">)</span><span class="op">]</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.8</span>,<span class="fl">1.2</span><span class="op">)</span>, <span class="fl">500</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in weighted.cor2(Movies[, c("Budget", "Critics", "BoxOffice")],     weights = rep(c(0.8, 1.2), 500)):</span> could not find function "weighted.cor2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Budget     Critics  BoxOffice</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Budget     1.00000000 -0.09755667 0.60973789</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Critics   -0.09755667  1.00000000 0.05410962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BoxOffice  0.60973789  0.05410962 1.00000000</span>
 </code></pre></div>
     </div>
   </div>

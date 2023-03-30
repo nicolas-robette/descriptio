@@ -103,7 +103,7 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">weighted.cov</span><span class="op">(</span><span class="va">Movies</span><span class="op">$</span><span class="va">Critics</span>, <span class="va">Movies</span><span class="op">$</span><span class="va">BoxOffice</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.8</span>,<span class="fl">1.2</span><span class="op">)</span>, <span class="fl">500</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in weighted.cov(Movies$Critics, Movies$BoxOffice, weights = rep(c(0.8,     1.2), 500)):</span> could not find function "weighted.cov"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 49038.14</span>
 </code></pre></div>
     </div>
   </div>
