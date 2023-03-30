@@ -34,8 +34,8 @@ A list of lists with the following elements :
 \item{cramer.v}{Cramer's V between the two variables}
 \item{permutation.pvalue}{p-value from a permutation (so non-parametric) test of independence}
 \item{global.pem}{global PEM}
-\item{GK.tau.xy}{Goodman and Kruskal tau (forward association)}
-\item{GK.tau.yx}{Goodman and Kruskal tau (backward association)}
+\item{GK.tau.xy}{Goodman and Kruskal tau (forward association, i.e. x is the predictor and y is the response)}
+\item{GK.tau.yx}{Goodman and Kruskal tau (backward association, i.e. y is the predictor and x is the respons)}
 \code{local} list :
 \item{std.residuals}{the table of standardized (i.e.Pearson) residuals.}
 \item{adj.residuals}{the table of adjusted standardized residuals.}
