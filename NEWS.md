@@ -1,4 +1,4 @@
-# descriptio 1.1
+# descriptio 1.1 [CRAN]
 
 ## new functions
 
