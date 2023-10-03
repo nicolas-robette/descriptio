@@ -34,7 +34,11 @@ weighted.quantile <- function(x, weights = NULL, probs = seq(0, 1, 0.25),
   weights <- weights[order(x)] / sum(weights)
   x <- x[order(x)]
   cum_w <- cumsum(weights) - weights * (1 - (seq_along(weights) - 1) / (length(weights) - 1))
-  res <- stats::approx(x = cum_w, y = x, xout = probs)$y
+  if(length(x)==1) {
+    res <- rep(x, length(probs)) 
+  } else {
+    res <- stats::approx(x = cum_w, y = x, xout = probs)$y
+  }
   if (isTRUE(names)) res <- setNames(res, paste0(format(100 * probs, digits = 7), "%"))
   return(res)
 }
@@ -50,9 +54,13 @@ weighted.mad <- function(x, weights = NULL, na.rm = FALSE) {
   } else {
     if(any(is.na(x))) stop("There are empty values in x. \nPlease consider transforming your data (filtering, recoding, imputation, etc.) or set na.rm to TRUE.")
   }
-  med <- weighted.quantile(x=x, weights=weights, probs = .5)
-  ad <- abs(x-med)
-  mad <- weighted.quantile(x=ad, weights=weights, probs = .5)
+  if(length(x)==1) {
+    mad <- 0 
+  } else {
+    med <- weighted.quantile(x=x, weights=weights, probs = .5)
+    ad <- abs(x-med)
+    mad <- weighted.quantile(x=ad, weights=weights, probs = .5)
+  }
   return(mad)
 }
 
