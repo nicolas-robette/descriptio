@@ -47,6 +47,7 @@ assoc.twocat <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", n
   temp <- suppressWarnings(stats::chisq.test(t))
   stdres <- as.table(temp$stdres)
   res <- as.table(temp$res)
+  adj.pval <- 2*(1 -pnorm(abs(stdres)))
   
   if(!is.null(nperm)) {
     h0distrib <- numeric()
@@ -88,7 +89,8 @@ assoc.twocat <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", n
   
   dimnames(expected) <- dimnames(phi)
   dimnames(stdres) <- dimnames(phi)
-  
+  dimnames(adj.pval) <- dimnames(phi)
+
   pij <- t/sum(t)
   pi <- rowSums(pij)
   pj <- colSums(pij)
@@ -143,6 +145,7 @@ assoc.twocat <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", n
                               'GK.tau.yx'=tauyx),
               'local' = list('std.residuals'=res,
                              'adj.residuals'=stdres,
+                             'adj.res.pval'=adj.pval,
                              'odds.ratios'=or,
                              'local.pem'=peml,
                              'phi'=phi,
