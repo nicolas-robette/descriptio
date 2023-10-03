@@ -107,11 +107,16 @@ ggassoc_marimekko <- function(data, mapping, type = "classic",
     ggplot2::scale_x_continuous(labels = NULL) +
     ggplot2::scale_y_continuous(labels = NULL) +
     ggplot2::geom_text(data = labs.x, ggplot2::aes(label = sub(".","",as.character(.data$var.x)), x = .data$x.center, y = -0.05), size = ggplot2::rel(3), vjust = "inward") +
-    ggplot2::geom_text(data = labs.y, ggplot2::aes(label = sub(".","",as.character(.data$var.y)), y = .data$y.center, x = -0.05), size = ggplot2::rel(3), vjust = "top", angle = 90) +
+    ggplot2::geom_text(data = labs.y, ggplot2::aes(label = sub(".","",as.character(.data$var.y)), y = .data$y.center, x = -0.01), size = ggplot2::rel(3), vjust = "center", hjust = 1, angle = 0) +
     ggplot2::theme_minimal() +
     ggplot2::theme(legend.position = legend,
                    panel.grid.major = ggplot2::element_blank(),
-                   panel.grid.minor = ggplot2::element_blank())
+                   panel.grid.minor = ggplot2::element_blank(),
+                   plot.margin = ggplot2::margin(l = 40),
+                   axis.title.x = ggplot2::element_text(vjust = +4),
+                   axis.title.y = ggplot2::element_blank()
+                   ) +
+    ggplot2::coord_cartesian(clip = 'off')
     
   return(p)
 }
