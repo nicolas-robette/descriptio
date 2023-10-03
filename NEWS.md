@@ -1,3 +1,13 @@
+# descriptio 1.2
+
+## changes in existing functions
+
+* `assoc.catcont()` : new items in the results (summary statistics, test-values)
+* `assoc.twocat()` : new item in the results (p-values  of adjusted standardized residuals)
+* `ggassoc_marimekko()` : y axis labels are now horizontal
+
+
+
 # descriptio 1.1 [CRAN]
 
 ## new functions
