@@ -25,13 +25,18 @@ assoc.catcont(x, y, weights = NULL,
 
 \value{
 A list with the following elements :
+\item{summary}{summary statistics (mean, median, etc.) of the continuous variable for each level of the categorical variable}
 \item{eta.squared}{eta-squared between the two variables}
-\item{permutation.pvalue}{p-value from a permutation (so non-parametric) test of independence}
+\item{permutation.pvalue}{p-value from a permutation (i.e. non-parametric) test of independence}
 \item{cor}{point biserial correlation between the two variables, for each level of the categorical variable}
 \item{cor.perm.pval}{permutation p-value of the correlation between the two variables, for each level of the categorical variable}
+\item{test.values}{test-values as proposed by Lebart et al (1984)}
+\item{test.values.pval}{p-values corresponding to the test-values}
 }
 \references{
 Rakotomalala R., 'Comprendre la taille d'effet (effect size)', [http://eric.univ-lyon2.fr/~ricco/cours/slides/effect_size.pdf]
+
+Lebart L., Morineau A. and Warwick K., 1984, *Multivariate Descriptive Statistical Analysis*, John Wiley and sons, New-York.
 }
 \author{Nicolas Robette}
 
@@ -41,13 +46,8 @@ Rakotomalala R., 'Comprendre la taille d'effet (effect size)', [http://eric.univ
 }
 
 \examples{
-## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
-## Page 9: Plant Weight Data.
-ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
-trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
-group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
-weight <- c(ctl, trt)
-assoc.catcont(group,weight,nperm=100)
+data(Movies)
+with(Movies, assoc.catcont(Country, Budget, nperm = 10))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

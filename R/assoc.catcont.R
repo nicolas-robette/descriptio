@@ -65,9 +65,22 @@ assoc.catcont <- function(x, y, weights = NULL,
     names(ppval) <- levels(x)
   }
   if(is.null(nperm)) ppval <- NULL
+  
+  a1 <- sapply(split(data.frame(y,weights), x), function(x) weighted.mean(x[,1],x[,2]))
+  a2 <- sapply(split(data.frame(y,weights), x), function(x) weighted.sd(x[,1],x[,2]))
+  a3 <- aggregate(y ~ x, FUN = min)$y
+  a4 <- t(sapply(split(data.frame(y,weights), x), function(x) weighted.quantile(x[,1],x[,2], probs = c(.25,.5,.75))))
+  a5 <- aggregate(y ~ x, FUN = max)$y
+  a6 <- sapply(split(data.frame(y,weights), x), function(x) weighted.mad(x[,1],x[,2]))
+  summ <- data.frame(a1,a2,a3,a4,a5,a6)
+  names(summ) <- c("mean", "sd", "min", "q1", "median", "q3", "max", "mad")
+  
+  tv <- test.values(x, y, weights)
+  tvpv <- 2*(1 -pnorm(abs(tv)))
 
   cor.coeff <- round(cor.coeff,digits)
-  return(list('eta.squared'=eta.squared, 'permutation.pvalue'=permutation.pvalue, 'cor'=cor.coeff, 'cor.perm.pval'=ppval))
+  return(list('summary'=summ, 'eta.squared'=eta.squared, 'permutation.pvalue'=permutation.pvalue,
+              'cor'=cor.coeff, 'cor.perm.pval'=ppval, 'test.values'=tv, 'test.values.pval'=tvpv))
 }
 
 # x0 <- x1 <- Movies$Country
