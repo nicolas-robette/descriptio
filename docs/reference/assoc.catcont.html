@@ -106,11 +106,14 @@
     
 
 <p>A list with the following elements :</p>
-<dl><dt>eta.squared</dt>
+<dl><dt>summary</dt>
+<dd><p>summary statistics (mean, median, etc.) of the continuous variable for each level of the categorical variable</p></dd>
+
+<dt>eta.squared</dt>
 <dd><p>eta-squared between the two variables</p></dd>
 
 <dt>permutation.pvalue</dt>
-<dd><p>p-value from a permutation (so non-parametric) test of independence</p></dd>
+<dd><p>p-value from a permutation (i.e. non-parametric) test of independence</p></dd>
 
 <dt>cor</dt>
 <dd><p>point biserial correlation between the two variables, for each level of the categorical variable</p></dd>
@@ -118,10 +121,17 @@
 <dt>cor.perm.pval</dt>
 <dd><p>permutation p-value of the correlation between the two variables, for each level of the categorical variable</p></dd>
 
+<dt>test.values</dt>
+<dd><p>test-values as proposed by Lebart et al (1984)</p></dd>
+
+<dt>test.values.pval</dt>
+<dd><p>p-values corresponding to the test-values</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
     <p>Rakotomalala R., 'Comprendre la taille d'effet (effect size)', [http://eric.univ-lyon2.fr/~ricco/cours/slides/effect_size.pdf]</p>
+<p>Lebart L., Morineau A. and Warwick K., 1984, *Multivariate Descriptive Statistical Analysis*, John Wiley and sons, New-York.</p>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -135,26 +145,41 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Annette Dobson (1990) "An Introduction to Generalized Linear Models".</span></span></span>
-<span class="r-in"><span><span class="co">## Page 9: Plant Weight Data.</span></span></span>
-<span class="r-in"><span><span class="va">ctl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4.17</span>,<span class="fl">5.58</span>,<span class="fl">5.18</span>,<span class="fl">6.11</span>,<span class="fl">4.50</span>,<span class="fl">4.61</span>,<span class="fl">5.17</span>,<span class="fl">4.53</span>,<span class="fl">5.33</span>,<span class="fl">5.14</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">trt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4.81</span>,<span class="fl">4.17</span>,<span class="fl">4.41</span>,<span class="fl">3.59</span>,<span class="fl">5.87</span>,<span class="fl">3.83</span>,<span class="fl">6.03</span>,<span class="fl">4.89</span>,<span class="fl">4.32</span>,<span class="fl">4.69</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html" class="external-link">gl</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">20</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Ctl"</span>,<span class="st">"Trt"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">weight</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">ctl</span>, <span class="va">trt</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">assoc.catcont</span><span class="op">(</span><span class="va">group</span>,<span class="va">weight</span>,nperm<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">assoc.catcont</span><span class="op">(</span><span class="va">Country</span>, <span class="va">Budget</span>, nperm <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $summary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            mean       sd       min       q1   median       q3       max</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Europe 25171951 38337712   500.000  2338250 10310500 24305750 163400000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> France  5915391 10329243 29500.000  1303662  3399000  7159867 181621894</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Other  14178774 25915170 40850.000  1382000  3401171  8170000 103759000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> USA    42053782 39735878     0.817 16340000 30229000 53105000 245100000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             mad</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Europe  8594800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> France  2359928</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Other   2461621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> USA    17157000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $eta.squared</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0730776</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2868784</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $permutation.pvalue</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3478015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $cor</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Ctl   Trt </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.27 -0.27 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Europe France  Other    USA </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0.064 -0.503 -0.022  0.510 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $cor.perm.pval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Ctl       Trt </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1104047 0.1006466 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Europe       France        Other          USA </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.934429e-03 2.395518e-30 2.644957e-01 0.000000e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $test.values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Europe      France       Other         USA </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   2.0081076 -15.8983644  -0.6927347  16.1140394 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $test.values.pval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Europe     France      Other        USA </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.04463186 0.00000000 0.48847608 0.00000000 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
