@@ -8,7 +8,7 @@ Measures the association between a continuous variable and some continuous and/o
 condesc(y, x, weights = NULL, 
 na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
 limit = NULL, correlation = "kendall", robust = TRUE, 
-nperm = NULL, distrib = "asympt", dec = c(3,3,0,3))
+nperm = NULL, distrib = "asympt", digits = 2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,21 +19,27 @@ nperm = NULL, distrib = "asympt", dec = c(3,3,0,3))
   \item{na.value.cat}{character. Name of the level for NA category. Default is "NA". Only used if na.rm.cat = FALSE.}
   \item{na.rm.cont}{logical, indicating whether NA values in the continuous variables should be silently removed before the computation proceeds. Default is FALSE.}
   \item{limit}{for the relationship between y and a category of a categorical variable, only associations (point-biserial correlations) higher or equal to \code{limit} will be displayed. If NULL (default), they are all displayed.}
-  \item{correlation}{character. The type of measure of correlation measure to use between two continuous variables : "pearson", "spearman" or "kendall" (default).}
-  \item{robust}{logical. If FALSE, mean and standard deviation are used instead of median and mad. Default is TRUE.}
+  \item{correlation}{character. The type of correlation measure to use between two continuous variables : "pearson", "spearman" or "kendall" (default).}
+  \item{robust}{logical. If TRUE (default), meadian and mad are used instead of mean and standard deviation.}
   \item{nperm}{numeric. Number of permutations for the permutation test of independence. If NULL (default), no permutation test is performed.}
   \item{distrib}{the null distribution of permutation test of independence can be approximated by its asymptotic distribution (\code{"asympt"}, default) or via Monte Carlo resampling (\code{"approx"}).}
-  \item{dec}{vector of 4 integers for number of decimals. The first value if for association measures, the second for permutation p-values, the third for medians and mads, the fourth for point biserial correlations. Default is c(3,3,0,3).}
+  \item{digits}{numeric. Number of digits for mean, median, standard deviation and mad. Default is 2.}
 }
 
 \value{
 A list of the following items :
 \item{variables}{associations between y and the variables in x}
-\item{categories}{a data frame with categorical variables from x and associations measured by point biserial correlation}
+\item{categories}{a data frame with categorical variables from x and associations measured by point biserial correlation.}
 }
+
+\note{
+If nperm is not NULL, permutation tests of independence are computed and the p-values from these tests are provided.
+}
+
 \references{
 Rakotomalala R., 'Comprendre la taille d'effet (effect size)', [http://eric.univ-lyon2.fr/~ricco/cours/slides/effect_size.pdf]
 }
+
 \author{Nicolas Robette}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
