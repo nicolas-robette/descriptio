@@ -82,18 +82,3 @@ assoc.catcont <- function(x, y, weights = NULL,
   return(list('summary'=summ, 'eta.squared'=eta.squared, 'permutation.pvalue'=permutation.pvalue,
               'cor'=cor.coeff, 'cor.perm.pval'=ppval, 'test.values'=tv, 'test.values.pval'=tvpv))
 }
-
-# x0 <- x1 <- Movies$Country
-# y0 <- y1 <- Movies$BoxOffice
-# w0 <- w1 <- Movies$Critics
-# w1[c(1,3)] <- NA
-# x1[c(2,4)] <- NA
-# y1[c(5,6)] <- NA
-# assoc.catcont(x0, y = y0, weights = w0, na.rm.cat = FALSE, na.value.cat = "99")
-# assoc.catcont(x0, y0, weights = w0, na.rm.cat = TRUE, na.value.cat = "99")
-# assoc.catcont(x0, y0, weights = w1, na.rm.cat = FALSE, na.value.cat = "99")
-# assoc.catcont(x0, y0, weights = w1, na.rm.cat = TRUE, na.value.cat = "99")
-# assoc.catcont(x1, y0, weights = w0, na.rm.cat = FALSE, na.value.cat = "99")
-# assoc.catcont(x1, y0, weights = w0, na.rm.cat = TRUE, na.value.cat = "99")
-# assoc.catcont(x0, y1, weights = w0, na.rm.cont = FALSE)
-# assoc.catcont(x0, y1, weights = w0, na.rm.cont = TRUE)
