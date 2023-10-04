@@ -69,7 +69,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">condesc</span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, weights <span class="op">=</span> <span class="cn">NULL</span>, </span>
 <span>na.rm.cat <span class="op">=</span> <span class="cn">FALSE</span>, na.value.cat <span class="op">=</span> <span class="st">"NA"</span>, na.rm.cont <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>limit <span class="op">=</span> <span class="cn">NULL</span>, correlation <span class="op">=</span> <span class="st">"kendall"</span>, robust <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>nperm <span class="op">=</span> <span class="cn">NULL</span>, distrib <span class="op">=</span> <span class="st">"asympt"</span>, dec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>nperm <span class="op">=</span> <span class="cn">NULL</span>, distrib <span class="op">=</span> <span class="st">"asympt"</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -96,10 +96,10 @@
 <dd><p>for the relationship between y and a category of a categorical variable, only associations (point-biserial correlations) higher or equal to <code>limit</code> will be displayed. If NULL (default), they are all displayed.</p></dd>
 
   <dt>correlation</dt>
-<dd><p>character. The type of measure of correlation measure to use between two continuous variables : "pearson", "spearman" or "kendall" (default).</p></dd>
+<dd><p>character. The type of correlation measure to use between two continuous variables : "pearson", "spearman" or "kendall" (default).</p></dd>
 
   <dt>robust</dt>
-<dd><p>logical. If FALSE, mean and standard deviation are used instead of median and mad. Default is TRUE.</p></dd>
+<dd><p>logical. If TRUE (default), meadian and mad are used instead of mean and standard deviation.</p></dd>
 
   <dt>nperm</dt>
 <dd><p>numeric. Number of permutations for the permutation test of independence. If NULL (default), no permutation test is performed.</p></dd>
@@ -107,8 +107,8 @@
   <dt>distrib</dt>
 <dd><p>the null distribution of permutation test of independence can be approximated by its asymptotic distribution (<code>"asympt"</code>, default) or via Monte Carlo resampling (<code>"approx"</code>).</p></dd>
 
-  <dt>dec</dt>
-<dd><p>vector of 4 integers for number of decimals. The first value if for association measures, the second for permutation p-values, the third for medians and mads, the fourth for point biserial correlations. Default is c(3,3,0,3).</p></dd>
+  <dt>digits</dt>
+<dd><p>numeric. Number of digits for mean, median, standard deviation and mad. Default is 2.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -120,9 +120,13 @@
 <dd><p>associations between y and the variables in x</p></dd>
 
 <dt>categories</dt>
-<dd><p>a data frame with categorical variables from x and associations measured by point biserial correlation</p></dd>
+<dd><p>a data frame with categorical variables from x and associations measured by point biserial correlation.</p></dd>
 
 </dl></div>
+    <div id="note">
+    <h2>Note</h2>
+    <p>If nperm is not NULL, permutation tests of independence are computed and the p-values from these tests are provided.</p>
+    </div>
     <div id="references">
     <h2>References</h2>
     <p>Rakotomalala R., 'Comprendre la taille d'effet (effect size)', [http://eric.univ-lyon2.fr/~ricco/cours/slides/effect_size.pdf]</p>
@@ -147,34 +151,34 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   Budget Kendall tau       0.518</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $categories</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           categories median.y.in.xcat median.y.global mad.y.in.xcat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        Genre.SciFi           680900          107326        607448</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Genre.Animation           668896          107326        633265</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13       Country.USA           328559          107326        274892</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       Genre.Action           240080          107326        202793</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    Country.Europe           108122          107326        104607</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       Genre.Comedy           202090          107326        191819</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Genre.Other           186084          107326        171739</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12     Country.Other            55643          107326         37068</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8       Genre.Horror           302635          107326        171803</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  Genre.Documentary             9303          107326          7890</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Genre.ComDram            67341          107326         64317</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        Genre.Drama            37160          107326         34368</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11    Country.France            57140          107326         54425</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    mad.y.global    cor</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        104060  0.294</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        104060  0.211</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13       104060  0.192</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        104060  0.087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10       104060  0.068</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        104060  0.004</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        104060 -0.005</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12       104060 -0.013</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8        104060 -0.015</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        104060 -0.108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        104060 -0.114</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        104060 -0.162</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11       104060 -0.211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           categories median.in.category overall.median mad.in.category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        Genre.SciFi           680900.0       107326.5        607448.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Genre.Animation           668896.0       107326.5        633265.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Country.USA           328559.0       107326.5        274892.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       Genre.Action           240080.0       107326.5        202793.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     Country.Europe           108121.5       107326.5        104606.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       Genre.Comedy           202090.0       107326.5        191819.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7        Genre.Other           186084.5       107326.5        171739.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8      Country.Other            55643.0       107326.5         37068.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       Genre.Horror           302635.0       107326.5        171803.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 Genre.Documentary             9303.0       107326.5          7890.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11     Genre.ComDram            67341.0       107326.5         64317.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12       Genre.Drama            37160.0       107326.5         34368.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13    Country.France            57140.0       107326.5         54425.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    overall.mad correlation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       104060       0.294</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       104060       0.211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       104060       0.192</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       104060       0.087</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       104060       0.068</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       104060       0.004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       104060      -0.005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8       104060      -0.013</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       104060      -0.015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10      104060      -0.108</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11      104060      -0.114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12      104060      -0.162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13      104060      -0.211</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

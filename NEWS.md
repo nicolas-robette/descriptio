@@ -5,6 +5,7 @@
 * `assoc.catcont()` : new items in the results (summary statistics, test-values)
 * `assoc.twocat()` : new item in the results (p-values  of adjusted standardized residuals)
 * `ggassoc_marimekko()` : y axis labels are now horizontal
+* `condesc()` and `catdesc()` : labels of the results have been renamed ; dec argument is replaced by digits and simplified ; permutation p-values can be provided for variables and categories
 
 
 

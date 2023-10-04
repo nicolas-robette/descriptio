@@ -69,7 +69,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">catdesc</span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, weights <span class="op">=</span> <span class="cn">NULL</span>, </span>
 <span>na.rm.cat <span class="op">=</span> <span class="cn">FALSE</span>, na.value.cat <span class="op">=</span> <span class="st">"NA"</span>, na.rm.cont <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>measure <span class="op">=</span> <span class="st">"phi"</span>, limit <span class="op">=</span> <span class="cn">NULL</span>, correlation <span class="op">=</span> <span class="st">"kendall"</span>, robust <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>nperm <span class="op">=</span> <span class="cn">NULL</span>, distrib <span class="op">=</span> <span class="st">"asympt"</span>, dec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>nperm <span class="op">=</span> <span class="cn">NULL</span>, distrib <span class="op">=</span> <span class="st">"asympt"</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -93,7 +93,7 @@
 <dd><p>logical, indicating whether NA values in the continuous variables should be silently removed before the computation proceeds. Default is FALSE.</p></dd>
 
   <dt>measure</dt>
-<dd><p>character. The measure of local association between categories of categorical variables. Can be "phi" for phi coefficient, "or" for odds ratios, "std.residuals" (default) for standardized (i.e. Pearson) residuals, "adj.residuals" for adjusted standardized residuals or "pem" for local percentages of maximum deviation from independence.</p></dd>
+<dd><p>character. The measure of local association between categories of categorical variables. Can be "phi" for phi coefficient (default), "or" for odds ratios, "std.residuals" for standardized (i.e. Pearson) residuals, "adj.residuals" for adjusted standardized residuals or "pem" for local percentages of maximum deviation from independence.</p></dd>
 
   <dt>limit</dt>
 <dd><p>for the relationship between y and a categorical variable, only associations higher or equal to <code>limit</code> will be displayed. If NULL (default), they are all displayed.</p></dd>
@@ -102,7 +102,7 @@
 <dd><p>character. The type of measure of correlation measure to use between two continuous variables : "pearson", "spearman" or "kendall" (default).</p></dd>
 
   <dt>robust</dt>
-<dd><p>logical. If FALSE, mean and standard deviation are used instead of median and mad. Default is TRUE.</p></dd>
+<dd><p>logical. If TRUE (default), median and mad are used instead of mean and standard deviation.</p></dd>
 
   <dt>nperm</dt>
 <dd><p>numeric. Number of permutations for the permutation test of independence. If NULL (default), no permutation test is performed.</p></dd>
@@ -110,8 +110,8 @@
   <dt>distrib</dt>
 <dd><p>the null distribution of permutation test of independence can be approximated by its asymptotic distribution (<code>"asympt"</code>, default) or via Monte Carlo resampling (<code>"approx"</code>).</p></dd>
 
-  <dt>dec</dt>
-<dd><p>vector of 6 integers for number of decimals. The first value if for association measures, the second for permutation p-values, the third for percents, the fourth for phi coefficients, the fifth for medians and mads, the sixth for point biserial correlations. Default is c(3,3,3,3,1,3).</p></dd>
+  <dt>digits</dt>
+<dd><p>numeric. Number of digits for mean, median, standard deviation and mad. Default is 2.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -127,12 +127,16 @@
 
 </dl><p>Each element in bylevel has the following items :</p>
 <dl><dt>categories</dt>
-<dd><p>a data frame with categorical variables from x and associations measured by phi</p></dd>
+<dd><p>a data frame with categorical variables from x and local associations</p></dd>
 
 <dt>continuous.var</dt>
 <dd><p>a data frame with continuous variables from x and associations measured by correlation coefficients</p></dd>
 
 </dl></div>
+    <div id="note">
+    <h2>Note</h2>
+    <p>If nperm is not NULL, permutation tests of independence are computed and the p-values from these tests are provided.</p>
+    </div>
     <div id="references">
     <h2>References</h2>
     <p>Rakotomalala R., 'Comprendre la taille d'effet (effect size)', [http://eric.univ-lyon2.fr/~ricco/cours/slides/effect_size.pdf]</p>
@@ -159,46 +163,50 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $bylevel</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $bylevel$No</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $bylevel$No$categories</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           categories pct.ycat.in.xcat pct.xcat.in.ycat pct.xcat.global    phi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        Country.USA            0.865            0.500           0.297  0.457</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       Genre.Comedy            0.725            0.313           0.222  0.226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6       Genre.Action            0.745            0.239           0.165  0.206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        Genre.SciFi            0.898            0.086           0.049  0.174</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8       Genre.Horror            1.000            0.049           0.025  0.156</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   Genre.Animation            0.826            0.074           0.046  0.137</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12       Genre.Other            0.577            0.029           0.026  0.021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13    Country.Europe            0.542            0.076           0.072  0.015</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16     Country.Other            0.231            0.012           0.026 -0.093</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18     Genre.ComDram            0.336            0.097           0.149 -0.149</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23 Genre.Documentary            0.117            0.018           0.077 -0.229</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24       Genre.Drama            0.203            0.095           0.241 -0.350</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25    Country.France            0.350            0.412           0.605 -0.405</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           categories freq pct.y.in.x pct.x.in.y overall.pct.x    phi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        Country.USA  257       86.5       50.0          29.7  0.457</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       Genre.Comedy  161       72.5       31.3          22.2  0.226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       Genre.Action  123       74.5       23.9          16.5  0.206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4        Genre.SciFi   44       89.8        8.6           4.9  0.174</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       Genre.Horror   25      100.0        4.9           2.5  0.156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    Genre.Animation   38       82.6        7.4           4.6  0.137</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7        Genre.Other   15       57.7        2.9           2.6  0.021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     Country.Europe   39       54.2        7.6           7.2  0.015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9      Country.Other    6       23.1        1.2           2.6 -0.093</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10     Genre.ComDram   50       33.6        9.7          14.9 -0.149</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 Genre.Documentary    9       11.7        1.8           7.7 -0.229</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12       Genre.Drama   49       20.3        9.5          24.1 -0.350</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13    Country.France  212       35.0       41.2          60.5 -0.405</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $bylevel$No$continuous.var</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   variables median.x.in.ycat median.x.global mad.x.in.ycat mad.x.global   cor</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Budget         17218500         6127500      12309532      5156921 0.426</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   variables median.in.category overall.median mad.in.category overall.mad</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Budget           17218500        6127500        12309532     5156921</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   correlation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       0.426</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $bylevel$Yes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $bylevel$Yes$categories</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           categories pct.ycat.in.xcat pct.xcat.in.ycat pct.xcat.global    phi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     Country.France            0.650            0.809           0.605  0.405</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Genre.Drama            0.797            0.395           0.241  0.350</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  Genre.Documentary            0.883            0.140           0.077  0.229</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      Genre.ComDram            0.664            0.204           0.149  0.149</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11     Country.Other            0.769            0.041           0.026  0.093</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14    Country.Europe            0.458            0.068           0.072 -0.015</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15       Genre.Other            0.423            0.023           0.026 -0.021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17   Genre.Animation            0.174            0.016           0.046 -0.137</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19      Genre.Horror            0.000            0.000           0.025 -0.156</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20       Genre.SciFi            0.102            0.010           0.049 -0.174</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21      Genre.Action            0.255            0.086           0.165 -0.206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22      Genre.Comedy            0.275            0.126           0.222 -0.226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26       Country.USA            0.135            0.082           0.297 -0.457</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           categories freq pct.y.in.x pct.x.in.y overall.pct.x    phi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     Country.France  393       65.0       80.9          60.5  0.405</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        Genre.Drama  192       79.7       39.5          24.1  0.350</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  Genre.Documentary   68       88.3       14.0           7.7  0.229</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Genre.ComDram   99       66.4       20.4          14.9  0.149</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      Country.Other   20       76.9        4.1           2.6  0.093</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     Country.Europe   33       45.8        6.8           7.2 -0.015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7        Genre.Other   11       42.3        2.3           2.6 -0.021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    Genre.Animation    8       17.4        1.6           4.6 -0.137</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       Genre.Horror    0        0.0        0.0           2.5 -0.156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10       Genre.SciFi    5       10.2        1.0           4.9 -0.174</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11      Genre.Action   42       25.5        8.6          16.5 -0.206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12      Genre.Comedy   61       27.5       12.6          22.2 -0.226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13       Country.USA   40       13.5        8.2          29.7 -0.457</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $bylevel$Yes$continuous.var</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   variables median.x.in.ycat median.x.global mad.x.in.ycat mad.x.global    cor</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Budget          2281690         6127500       1629608      5156921 -0.426</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   variables median.in.category overall.median mad.in.category overall.mad</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Budget            2281690        6127500         1629608     5156921</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   correlation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      -0.426</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
