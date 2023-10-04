@@ -1,7 +1,7 @@
 Package: descriptio
 Type: Package
 Title: Descriptive Statistical Analysis
-Version: 1.1
+Version: 1.2
 Authors@R: c(person("Nicolas", "Robette", role = c("aut", "cre"), email = "nicolas.robette@uvsq.fr"))
 Imports: MASS, ggplot2, rlang
 Suggests: rmarkdown, knitr, rmdformats, ggpattern, paletteer, GGally
