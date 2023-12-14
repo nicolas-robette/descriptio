@@ -6,6 +6,5 @@
 ^\.github$
 ^doc$
 ^Meta$
-^R/pretty_crosstab\.R$
-^R/pretty_crosstab_strata\.R$
+^devel$
 ^vignettes/articles$
