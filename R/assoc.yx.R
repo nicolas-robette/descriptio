@@ -119,24 +119,3 @@ assoc.yx <- function(y, x, weights = NULL, xx = TRUE, correlation = "kendall",
 
   return(list(YX=restot, XX=restot2))
 }
-
-
-# data(Movies)
-# y0 = y1 = Movies$ArtHouse
-# a0 = a1 = Movies$Budget
-# b0 = b1 = Movies$Genre
-# c0 = c1 = Movies$Country
-# w0 = w1 = Movies$Critics
-# w1[1:2] <- NA
-# a1[3:4] <- NA
-# b1[5:6] <- NA
-# c1[7:8] <- NA
-# 
-# assoc.yx(y0, data.frame(a0,b0,c0), weights = w0)
-# assoc.yx(y0, data.frame(a0,b0,c0), weights = w1)
-# assoc.yx(y0, data.frame(a1,b0,c0), na.rm.cont = FALSE)
-# assoc.yx(y0, data.frame(a1,b0,c0), na.rm.cont = TRUE)
-# assoc.yx(y0, data.frame(a0,b1,c0), na.rm.cat = FALSE, na.value.cat = "99")
-# assoc.yx(y0, data.frame(a0,b1,c0), na.rm.cat = TRUE, na.value.cat = "99")
-# assoc.yx(y1, data.frame(a0,b0,c0), na.rm.cat = FALSE, na.value.cat = "99")
-# assoc.yx(y1, data.frame(a0,b0,c0), na.rm.cat = TRUE, na.value.cat = "99")
