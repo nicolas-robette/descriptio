@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">descriptio</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@ with descriptio</h1>
                         <h4 data-toc-skip class="author">Nicolas
 Robette</h4>
             
-            <h4 data-toc-skip class="date">2023-10-04</h4>
+            <h4 data-toc-skip class="date">2023-12-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nicolas-robette/descriptio/blob/HEAD/vignettes/articles/Article_eng.Rmd" class="external-link"><code>vignettes/articles/Article_eng.Rmd</code></a></small>
       <div class="hidden name"><code>Article_eng.Rmd</code></div>
@@ -197,17 +197,17 @@ selection in a festival (Cannes, Berlin or Venice), the average rating
 of intellectual critics (according to Allociné) and the number of
 admissions. Some of these variables are numerical, others are
 categorical.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(descriptio)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Movies)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Movies)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">'data.frame'</span><span class="sc">:</span>   <span class="dv">1000</span> obs. of  <span class="dv">7</span> variables<span class="sc">:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="er">$</span> Budget   <span class="sc">:</span> num  <span class="fl">3.10e+07</span> <span class="fl">4.88e+06</span> <span class="fl">3.50e+06</span> <span class="fl">1.63e+08</span> <span class="fl">2.17e+07</span> ...</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="sc">$</span> Genre    <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">9</span> levels <span class="st">"Action"</span>,<span class="st">"Animation"</span>,..<span class="sc">:</span> <span class="dv">1</span> <span class="dv">5</span> <span class="dv">7</span> <span class="dv">1</span> <span class="dv">7</span> <span class="dv">5</span> <span class="dv">1</span> <span class="dv">7</span> <span class="dv">5</span> <span class="dv">7</span> ...</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> <span class="sc">$</span> Country  <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">4</span> levels <span class="st">"Europe"</span>,<span class="st">"France"</span>,..<span class="sc">:</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">4</span> ...</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a> <span class="sc">$</span> ArtHouse <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">2</span> levels <span class="st">"No"</span>,<span class="st">"Yes"</span><span class="sc">:</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> ...</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> <span class="sc">$</span> Festival <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">2</span> levels <span class="st">"No"</span>,<span class="st">"Yes"</span><span class="sc">:</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> ...</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a> <span class="sc">$</span> Critics  <span class="sc">:</span> num  <span class="dv">3</span> <span class="dv">1</span> <span class="fl">3.75</span> <span class="fl">3.75</span> <span class="fl">3.6</span> <span class="fl">2.75</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> ...</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a> <span class="sc">$</span> BoxOffice<span class="sc">:</span> num  <span class="dv">1013509</span> <span class="dv">24241</span> <span class="dv">39376</span> <span class="dv">6996996</span> <span class="dv">493416</span> ...</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(descriptio)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">data</span>(Movies)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">str</span>(Movies)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="st">'data.frame'</span><span class="sc">:</span>   <span class="dv">1000</span> obs. of  <span class="dv">7</span> variables<span class="sc">:</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a> <span class="er">$</span> Budget   <span class="sc">:</span> num  <span class="fl">3.10e+07</span> <span class="fl">4.88e+06</span> <span class="fl">3.50e+06</span> <span class="fl">1.63e+08</span> <span class="fl">2.17e+07</span> ...</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a> <span class="sc">$</span> Genre    <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">9</span> levels <span class="st">"Action"</span>,<span class="st">"Animation"</span>,..<span class="sc">:</span> <span class="dv">1</span> <span class="dv">5</span> <span class="dv">7</span> <span class="dv">1</span> <span class="dv">7</span> <span class="dv">5</span> <span class="dv">1</span> <span class="dv">7</span> <span class="dv">5</span> <span class="dv">7</span> ...</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a> <span class="sc">$</span> Country  <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">4</span> levels <span class="st">"Europe"</span>,<span class="st">"France"</span>,..<span class="sc">:</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">4</span> ...</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a> <span class="sc">$</span> ArtHouse <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">2</span> levels <span class="st">"No"</span>,<span class="st">"Yes"</span><span class="sc">:</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> ...</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a> <span class="sc">$</span> Festival <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">2</span> levels <span class="st">"No"</span>,<span class="st">"Yes"</span><span class="sc">:</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> ...</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a> <span class="sc">$</span> Critics  <span class="sc">:</span> num  <span class="dv">3</span> <span class="dv">1</span> <span class="fl">3.75</span> <span class="fl">3.75</span> <span class="fl">3.6</span> <span class="fl">2.75</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> ...</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a> <span class="sc">$</span> BoxOffice<span class="sc">:</span> num  <span class="dv">1013509</span> <span class="dv">24241</span> <span class="dv">39376</span> <span class="dv">6996996</span> <span class="dv">493416</span> ...</span></code></pre></div>
 <hr>
 <div class="section level2">
 <h2 id="relationship-between-two-variables">Relationship between two variables<a class="anchor" aria-label="anchor" href="#relationship-between-two-variables"></a>
@@ -236,121 +236,121 @@ permutation tests</li>
 Independence, see Cibois 1993)</li>
 <li>a summary table of these results</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">assoc.twocat</span>(Movies<span class="sc">$</span>Country, Movies<span class="sc">$</span>ArtHouse, <span class="at">nperm=</span><span class="dv">100</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>tables</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>freq</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         No  Yes  Sum</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Europe   <span class="dv">39</span>   <span class="dv">33</span>   <span class="dv">72</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>France  <span class="dv">212</span>  <span class="dv">393</span>  <span class="dv">605</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Other     <span class="dv">6</span>   <span class="dv">20</span>   <span class="dv">26</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>USA     <span class="dv">257</span>   <span class="dv">40</span>  <span class="dv">297</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>Sum     <span class="dv">514</span>  <span class="dv">486</span> <span class="dv">1000</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>prop</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>          No   Yes   Sum</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>Europe   <span class="fl">3.9</span>   <span class="fl">3.3</span>   <span class="fl">7.2</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>France  <span class="fl">21.2</span>  <span class="fl">39.3</span>  <span class="fl">60.5</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>Other    <span class="fl">0.6</span>   <span class="fl">2.0</span>   <span class="fl">2.6</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>USA     <span class="fl">25.7</span>   <span class="fl">4.0</span>  <span class="fl">29.7</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>Sum     <span class="fl">51.4</span>  <span class="fl">48.6</span> <span class="fl">100.0</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>rprop</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>             No      Yes Sum</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>Europe <span class="fl">54.16667</span> <span class="fl">45.83333</span> <span class="dv">100</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>France <span class="fl">35.04132</span> <span class="fl">64.95868</span> <span class="dv">100</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>Other  <span class="fl">23.07692</span> <span class="fl">76.92308</span> <span class="dv">100</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>USA    <span class="fl">86.53199</span> <span class="fl">13.46801</span> <span class="dv">100</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>Sum    <span class="fl">51.40000</span> <span class="fl">48.60000</span> <span class="dv">100</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>cprop</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>               No        Yes   Sum</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>Europe   <span class="fl">7.587549</span>   <span class="fl">6.790123</span>   <span class="fl">7.2</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>France  <span class="fl">41.245136</span>  <span class="fl">80.864198</span>  <span class="fl">60.5</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>Other    <span class="fl">1.167315</span>   <span class="fl">4.115226</span>   <span class="fl">2.6</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>USA     <span class="fl">50.000000</span>   <span class="fl">8.230453</span>  <span class="fl">29.7</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>Sum    <span class="fl">100.000000</span> <span class="fl">100.000000</span> <span class="fl">100.0</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>expected</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>            No     Yes</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>Europe  <span class="fl">37.008</span>  <span class="fl">34.992</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>France <span class="fl">310.970</span> <span class="fl">294.030</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>Other   <span class="fl">13.364</span>  <span class="fl">12.636</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>USA    <span class="fl">152.658</span> <span class="fl">144.342</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>global</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>chi.squared</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">220.1263</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>cramer.v</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.4691762</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>permutation.pvalue</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">0</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>global.pem</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">64.04814</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>GK.tau.xy</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.2201263</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>GK.tau.yx</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1537807</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>local</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>std.residuals</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>               No        Yes</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>Europe  <span class="fl">0.3274474</span> <span class="sc">-</span><span class="fl">0.3367479</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>France <span class="sc">-</span><span class="fl">5.6123445</span>  <span class="fl">5.7717531</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>Other  <span class="sc">-</span><span class="fl">2.0143992</span>  <span class="fl">2.0716146</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>USA     <span class="fl">8.4449945</span> <span class="sc">-</span><span class="fl">8.6848595</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>adj.residuals</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>               No        Yes</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>Europe   <span class="fl">0.487584</span>  <span class="sc">-</span><span class="fl">0.487584</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>France <span class="sc">-</span><span class="fl">12.809366</span>  <span class="fl">12.809366</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>Other   <span class="sc">-</span><span class="fl">2.927844</span>   <span class="fl">2.927844</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>USA     <span class="fl">14.447862</span> <span class="sc">-</span><span class="fl">14.447862</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>adj.res.pval</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>                No         Yes</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>Europe <span class="fl">0.625844564</span> <span class="fl">0.625844564</span></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>France <span class="fl">0.000000000</span> <span class="fl">0.000000000</span></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>Other  <span class="fl">0.003413213</span> <span class="fl">0.003413213</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>USA    <span class="fl">0.000000000</span> <span class="fl">0.000000000</span></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>odds.ratios</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>               No        Yes</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>Europe  <span class="fl">1.1270813</span>  <span class="fl">0.8872474</span></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>France  <span class="fl">0.1661190</span>  <span class="fl">6.0197809</span></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>Other   <span class="fl">0.2751969</span>  <span class="fl">3.6337625</span></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>USA    <span class="fl">11.1500000</span>  <span class="fl">0.0896861</span></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>local.pem</span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>        y</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>x               No       Yes</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>  Europe   <span class="fl">5.69273</span>  <span class="sc">-</span><span class="fl">5.69273</span></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>  France <span class="sc">-</span><span class="fl">51.55493</span>  <span class="fl">51.55493</span></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>  Other  <span class="sc">-</span><span class="fl">55.10326</span>  <span class="fl">55.10326</span></span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>  USA     <span class="fl">72.28804</span> <span class="sc">-</span><span class="fl">72.28804</span></span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>phi</span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>                No         Yes</span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>Europe  <span class="fl">0.01541876</span> <span class="sc">-</span><span class="fl">0.01541876</span></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>France <span class="sc">-</span><span class="fl">0.40506773</span>  <span class="fl">0.40506773</span></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>Other  <span class="sc">-</span><span class="fl">0.09258656</span>  <span class="fl">0.09258656</span></span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>USA     <span class="fl">0.45688150</span> <span class="sc">-</span><span class="fl">0.45688150</span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>phi.perm.pval</span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>                 No          Yes</span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>Europe <span class="fl">3.283107e-01</span> <span class="fl">3.283107e-01</span></span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>France <span class="fl">1.204580e-33</span> <span class="fl">0.000000e+00</span></span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>Other  <span class="fl">2.611610e-03</span> <span class="fl">2.611610e-03</span></span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>USA    <span class="fl">0.000000e+00</span> <span class="fl">3.416452e-52</span></span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>gather</span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>  var.y  var.x freq  prop     rprop      cprop expected std.residuals adj.residuals         or       pem         phi    perm.pval freq.x freq.y prop.x prop.y</span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>    No Europe   <span class="dv">39</span> <span class="fl">0.039</span> <span class="fl">0.5416667</span> <span class="fl">0.07587549</span>   <span class="fl">37.008</span>     <span class="fl">0.3274474</span>      <span class="fl">0.487584</span>  <span class="fl">1.1270813</span>   <span class="fl">5.69273</span>  <span class="fl">0.01541876</span> <span class="fl">3.283107e-01</span>     <span class="dv">72</span>    <span class="dv">514</span>  <span class="fl">0.072</span>  <span class="fl">0.514</span></span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>    No France  <span class="dv">212</span> <span class="fl">0.212</span> <span class="fl">0.3504132</span> <span class="fl">0.41245136</span>  <span class="fl">310.970</span>    <span class="sc">-</span><span class="fl">5.6123445</span>    <span class="sc">-</span><span class="fl">12.809366</span>  <span class="fl">0.1661190</span> <span class="sc">-</span><span class="fl">51.55493</span> <span class="sc">-</span><span class="fl">0.40506773</span> <span class="fl">1.204580e-33</span>    <span class="dv">605</span>    <span class="dv">514</span>  <span class="fl">0.605</span>  <span class="fl">0.514</span></span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>    No  Other    <span class="dv">6</span> <span class="fl">0.006</span> <span class="fl">0.2307692</span> <span class="fl">0.01167315</span>   <span class="fl">13.364</span>    <span class="sc">-</span><span class="fl">2.0143992</span>     <span class="sc">-</span><span class="fl">2.927844</span>  <span class="fl">0.2751969</span> <span class="sc">-</span><span class="fl">55.10326</span> <span class="sc">-</span><span class="fl">0.09258656</span> <span class="fl">2.611610e-03</span>     <span class="dv">26</span>    <span class="dv">514</span>  <span class="fl">0.026</span>  <span class="fl">0.514</span></span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>    No    USA  <span class="dv">257</span> <span class="fl">0.257</span> <span class="fl">0.8653199</span> <span class="fl">0.50000000</span>  <span class="fl">152.658</span>     <span class="fl">8.4449945</span>     <span class="fl">14.447862</span> <span class="fl">11.1500000</span>  <span class="fl">72.28804</span>  <span class="fl">0.45688150</span> <span class="fl">0.000000e+00</span>    <span class="dv">297</span>    <span class="dv">514</span>  <span class="fl">0.297</span>  <span class="fl">0.514</span></span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a> [ reached <span class="st">'max'</span> <span class="sc">/</span> <span class="fu">getOption</span>(<span class="st">"max.print"</span>) <span class="sc">--</span> omitted <span class="dv">4</span> rows ]</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">assoc.twocat</span>(Movies<span class="sc">$</span>Country, Movies<span class="sc">$</span>ArtHouse, <span class="at">nperm=</span><span class="dv">100</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>res<span class="sc">$</span>tables</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="sc">$</span>freq</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>         No  Yes  Sum</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>Europe   <span class="dv">39</span>   <span class="dv">33</span>   <span class="dv">72</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>France  <span class="dv">212</span>  <span class="dv">393</span>  <span class="dv">605</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>Other     <span class="dv">6</span>   <span class="dv">20</span>   <span class="dv">26</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>USA     <span class="dv">257</span>   <span class="dv">40</span>  <span class="dv">297</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>Sum     <span class="dv">514</span>  <span class="dv">486</span> <span class="dv">1000</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="sc">$</span>prop</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>          No   Yes   Sum</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>Europe   <span class="fl">3.9</span>   <span class="fl">3.3</span>   <span class="fl">7.2</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>France  <span class="fl">21.2</span>  <span class="fl">39.3</span>  <span class="fl">60.5</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>Other    <span class="fl">0.6</span>   <span class="fl">2.0</span>   <span class="fl">2.6</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>USA     <span class="fl">25.7</span>   <span class="fl">4.0</span>  <span class="fl">29.7</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>Sum     <span class="fl">51.4</span>  <span class="fl">48.6</span> <span class="fl">100.0</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="sc">$</span>rprop</span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>             No      Yes Sum</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>Europe <span class="fl">54.16667</span> <span class="fl">45.83333</span> <span class="dv">100</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>France <span class="fl">35.04132</span> <span class="fl">64.95868</span> <span class="dv">100</span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>Other  <span class="fl">23.07692</span> <span class="fl">76.92308</span> <span class="dv">100</span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>USA    <span class="fl">86.53199</span> <span class="fl">13.46801</span> <span class="dv">100</span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>Sum    <span class="fl">51.40000</span> <span class="fl">48.60000</span> <span class="dv">100</span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="sc">$</span>cprop</span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>               No        Yes   Sum</span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>Europe   <span class="fl">7.587549</span>   <span class="fl">6.790123</span>   <span class="fl">7.2</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a>France  <span class="fl">41.245136</span>  <span class="fl">80.864198</span>  <span class="fl">60.5</span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a>Other    <span class="fl">1.167315</span>   <span class="fl">4.115226</span>   <span class="fl">2.6</span></span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a>USA     <span class="fl">50.000000</span>   <span class="fl">8.230453</span>  <span class="fl">29.7</span></span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a>Sum    <span class="fl">100.000000</span> <span class="fl">100.000000</span> <span class="fl">100.0</span></span>
+<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a><span class="sc">$</span>expected</span>
+<span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a>            No     Yes</span>
+<span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a>Europe  <span class="fl">37.008</span>  <span class="fl">34.992</span></span>
+<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a>France <span class="fl">310.970</span> <span class="fl">294.030</span></span>
+<span id="cb2-39"><a href="#cb2-39" tabindex="-1"></a>Other   <span class="fl">13.364</span>  <span class="fl">12.636</span></span>
+<span id="cb2-40"><a href="#cb2-40" tabindex="-1"></a>USA    <span class="fl">152.658</span> <span class="fl">144.342</span></span>
+<span id="cb2-41"><a href="#cb2-41" tabindex="-1"></a>res<span class="sc">$</span>global</span>
+<span id="cb2-42"><a href="#cb2-42" tabindex="-1"></a><span class="sc">$</span>chi.squared</span>
+<span id="cb2-43"><a href="#cb2-43" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">220.1263</span></span>
+<span id="cb2-44"><a href="#cb2-44" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" tabindex="-1"></a><span class="sc">$</span>cramer.v</span>
+<span id="cb2-46"><a href="#cb2-46" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.4691762</span></span>
+<span id="cb2-47"><a href="#cb2-47" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" tabindex="-1"></a><span class="sc">$</span>permutation.pvalue</span>
+<span id="cb2-49"><a href="#cb2-49" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">0</span></span>
+<span id="cb2-50"><a href="#cb2-50" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" tabindex="-1"></a><span class="sc">$</span>global.pem</span>
+<span id="cb2-52"><a href="#cb2-52" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">64.04814</span></span>
+<span id="cb2-53"><a href="#cb2-53" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" tabindex="-1"></a><span class="sc">$</span>GK.tau.xy</span>
+<span id="cb2-55"><a href="#cb2-55" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.2201263</span></span>
+<span id="cb2-56"><a href="#cb2-56" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" tabindex="-1"></a><span class="sc">$</span>GK.tau.yx</span>
+<span id="cb2-58"><a href="#cb2-58" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1537807</span></span>
+<span id="cb2-59"><a href="#cb2-59" tabindex="-1"></a>res<span class="sc">$</span>local</span>
+<span id="cb2-60"><a href="#cb2-60" tabindex="-1"></a><span class="sc">$</span>std.residuals</span>
+<span id="cb2-61"><a href="#cb2-61" tabindex="-1"></a>               No        Yes</span>
+<span id="cb2-62"><a href="#cb2-62" tabindex="-1"></a>Europe  <span class="fl">0.3274474</span> <span class="sc">-</span><span class="fl">0.3367479</span></span>
+<span id="cb2-63"><a href="#cb2-63" tabindex="-1"></a>France <span class="sc">-</span><span class="fl">5.6123445</span>  <span class="fl">5.7717531</span></span>
+<span id="cb2-64"><a href="#cb2-64" tabindex="-1"></a>Other  <span class="sc">-</span><span class="fl">2.0143992</span>  <span class="fl">2.0716146</span></span>
+<span id="cb2-65"><a href="#cb2-65" tabindex="-1"></a>USA     <span class="fl">8.4449945</span> <span class="sc">-</span><span class="fl">8.6848595</span></span>
+<span id="cb2-66"><a href="#cb2-66" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" tabindex="-1"></a><span class="sc">$</span>adj.residuals</span>
+<span id="cb2-68"><a href="#cb2-68" tabindex="-1"></a>               No        Yes</span>
+<span id="cb2-69"><a href="#cb2-69" tabindex="-1"></a>Europe   <span class="fl">0.487584</span>  <span class="sc">-</span><span class="fl">0.487584</span></span>
+<span id="cb2-70"><a href="#cb2-70" tabindex="-1"></a>France <span class="sc">-</span><span class="fl">12.809366</span>  <span class="fl">12.809366</span></span>
+<span id="cb2-71"><a href="#cb2-71" tabindex="-1"></a>Other   <span class="sc">-</span><span class="fl">2.927844</span>   <span class="fl">2.927844</span></span>
+<span id="cb2-72"><a href="#cb2-72" tabindex="-1"></a>USA     <span class="fl">14.447862</span> <span class="sc">-</span><span class="fl">14.447862</span></span>
+<span id="cb2-73"><a href="#cb2-73" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" tabindex="-1"></a><span class="sc">$</span>adj.res.pval</span>
+<span id="cb2-75"><a href="#cb2-75" tabindex="-1"></a>                No         Yes</span>
+<span id="cb2-76"><a href="#cb2-76" tabindex="-1"></a>Europe <span class="fl">0.625844564</span> <span class="fl">0.625844564</span></span>
+<span id="cb2-77"><a href="#cb2-77" tabindex="-1"></a>France <span class="fl">0.000000000</span> <span class="fl">0.000000000</span></span>
+<span id="cb2-78"><a href="#cb2-78" tabindex="-1"></a>Other  <span class="fl">0.003413213</span> <span class="fl">0.003413213</span></span>
+<span id="cb2-79"><a href="#cb2-79" tabindex="-1"></a>USA    <span class="fl">0.000000000</span> <span class="fl">0.000000000</span></span>
+<span id="cb2-80"><a href="#cb2-80" tabindex="-1"></a></span>
+<span id="cb2-81"><a href="#cb2-81" tabindex="-1"></a><span class="sc">$</span>odds.ratios</span>
+<span id="cb2-82"><a href="#cb2-82" tabindex="-1"></a>               No        Yes</span>
+<span id="cb2-83"><a href="#cb2-83" tabindex="-1"></a>Europe  <span class="fl">1.1270813</span>  <span class="fl">0.8872474</span></span>
+<span id="cb2-84"><a href="#cb2-84" tabindex="-1"></a>France  <span class="fl">0.1661190</span>  <span class="fl">6.0197809</span></span>
+<span id="cb2-85"><a href="#cb2-85" tabindex="-1"></a>Other   <span class="fl">0.2751969</span>  <span class="fl">3.6337625</span></span>
+<span id="cb2-86"><a href="#cb2-86" tabindex="-1"></a>USA    <span class="fl">11.1500000</span>  <span class="fl">0.0896861</span></span>
+<span id="cb2-87"><a href="#cb2-87" tabindex="-1"></a></span>
+<span id="cb2-88"><a href="#cb2-88" tabindex="-1"></a><span class="sc">$</span>local.pem</span>
+<span id="cb2-89"><a href="#cb2-89" tabindex="-1"></a>        y</span>
+<span id="cb2-90"><a href="#cb2-90" tabindex="-1"></a>x               No       Yes</span>
+<span id="cb2-91"><a href="#cb2-91" tabindex="-1"></a>  Europe   <span class="fl">5.69273</span>  <span class="sc">-</span><span class="fl">5.69273</span></span>
+<span id="cb2-92"><a href="#cb2-92" tabindex="-1"></a>  France <span class="sc">-</span><span class="fl">51.55493</span>  <span class="fl">51.55493</span></span>
+<span id="cb2-93"><a href="#cb2-93" tabindex="-1"></a>  Other  <span class="sc">-</span><span class="fl">55.10326</span>  <span class="fl">55.10326</span></span>
+<span id="cb2-94"><a href="#cb2-94" tabindex="-1"></a>  USA     <span class="fl">72.28804</span> <span class="sc">-</span><span class="fl">72.28804</span></span>
+<span id="cb2-95"><a href="#cb2-95" tabindex="-1"></a></span>
+<span id="cb2-96"><a href="#cb2-96" tabindex="-1"></a><span class="sc">$</span>phi</span>
+<span id="cb2-97"><a href="#cb2-97" tabindex="-1"></a>                No         Yes</span>
+<span id="cb2-98"><a href="#cb2-98" tabindex="-1"></a>Europe  <span class="fl">0.01541876</span> <span class="sc">-</span><span class="fl">0.01541876</span></span>
+<span id="cb2-99"><a href="#cb2-99" tabindex="-1"></a>France <span class="sc">-</span><span class="fl">0.40506773</span>  <span class="fl">0.40506773</span></span>
+<span id="cb2-100"><a href="#cb2-100" tabindex="-1"></a>Other  <span class="sc">-</span><span class="fl">0.09258656</span>  <span class="fl">0.09258656</span></span>
+<span id="cb2-101"><a href="#cb2-101" tabindex="-1"></a>USA     <span class="fl">0.45688150</span> <span class="sc">-</span><span class="fl">0.45688150</span></span>
+<span id="cb2-102"><a href="#cb2-102" tabindex="-1"></a></span>
+<span id="cb2-103"><a href="#cb2-103" tabindex="-1"></a><span class="sc">$</span>phi.perm.pval</span>
+<span id="cb2-104"><a href="#cb2-104" tabindex="-1"></a>                 No          Yes</span>
+<span id="cb2-105"><a href="#cb2-105" tabindex="-1"></a>Europe <span class="fl">3.047309e-01</span> <span class="fl">3.047309e-01</span></span>
+<span id="cb2-106"><a href="#cb2-106" tabindex="-1"></a>France <span class="fl">7.945944e-36</span> <span class="fl">0.000000e+00</span></span>
+<span id="cb2-107"><a href="#cb2-107" tabindex="-1"></a>Other  <span class="fl">1.547662e-03</span> <span class="fl">1.547662e-03</span></span>
+<span id="cb2-108"><a href="#cb2-108" tabindex="-1"></a>USA    <span class="fl">0.000000e+00</span> <span class="fl">2.345833e-45</span></span>
+<span id="cb2-109"><a href="#cb2-109" tabindex="-1"></a>res<span class="sc">$</span>gather</span>
+<span id="cb2-110"><a href="#cb2-110" tabindex="-1"></a>  var.y  var.x freq  prop     rprop      cprop expected std.residuals adj.residuals         or       pem         phi    perm.pval freq.x freq.y prop.x prop.y</span>
+<span id="cb2-111"><a href="#cb2-111" tabindex="-1"></a><span class="dv">1</span>    No Europe   <span class="dv">39</span> <span class="fl">0.039</span> <span class="fl">0.5416667</span> <span class="fl">0.07587549</span>   <span class="fl">37.008</span>     <span class="fl">0.3274474</span>      <span class="fl">0.487584</span>  <span class="fl">1.1270813</span>   <span class="fl">5.69273</span>  <span class="fl">0.01541876</span> <span class="fl">3.047309e-01</span>     <span class="dv">72</span>    <span class="dv">514</span>  <span class="fl">0.072</span>  <span class="fl">0.514</span></span>
+<span id="cb2-112"><a href="#cb2-112" tabindex="-1"></a><span class="dv">2</span>    No France  <span class="dv">212</span> <span class="fl">0.212</span> <span class="fl">0.3504132</span> <span class="fl">0.41245136</span>  <span class="fl">310.970</span>    <span class="sc">-</span><span class="fl">5.6123445</span>    <span class="sc">-</span><span class="fl">12.809366</span>  <span class="fl">0.1661190</span> <span class="sc">-</span><span class="fl">51.55493</span> <span class="sc">-</span><span class="fl">0.40506773</span> <span class="fl">7.945944e-36</span>    <span class="dv">605</span>    <span class="dv">514</span>  <span class="fl">0.605</span>  <span class="fl">0.514</span></span>
+<span id="cb2-113"><a href="#cb2-113" tabindex="-1"></a><span class="dv">3</span>    No  Other    <span class="dv">6</span> <span class="fl">0.006</span> <span class="fl">0.2307692</span> <span class="fl">0.01167315</span>   <span class="fl">13.364</span>    <span class="sc">-</span><span class="fl">2.0143992</span>     <span class="sc">-</span><span class="fl">2.927844</span>  <span class="fl">0.2751969</span> <span class="sc">-</span><span class="fl">55.10326</span> <span class="sc">-</span><span class="fl">0.09258656</span> <span class="fl">1.547662e-03</span>     <span class="dv">26</span>    <span class="dv">514</span>  <span class="fl">0.026</span>  <span class="fl">0.514</span></span>
+<span id="cb2-114"><a href="#cb2-114" tabindex="-1"></a><span class="dv">4</span>    No    USA  <span class="dv">257</span> <span class="fl">0.257</span> <span class="fl">0.8653199</span> <span class="fl">0.50000000</span>  <span class="fl">152.658</span>     <span class="fl">8.4449945</span>     <span class="fl">14.447862</span> <span class="fl">11.1500000</span>  <span class="fl">72.28804</span>  <span class="fl">0.45688150</span> <span class="fl">0.000000e+00</span>    <span class="dv">297</span>    <span class="dv">514</span>  <span class="fl">0.297</span>  <span class="fl">0.514</span></span>
+<span id="cb2-115"><a href="#cb2-115" tabindex="-1"></a> [ reached <span class="st">'max'</span> <span class="sc">/</span> <span class="fu">getOption</span>(<span class="st">"max.print"</span>) <span class="sc">--</span> omitted <span class="dv">4</span> rows ]</span></code></pre></div>
 <p><br>
 The function <code>ggassoc_crosstab</code> presents the contingency
 table in graphical form, with rectangles whose area corresponds to the
@@ -438,35 +438,35 @@ corresponding permutation test</li>
 <li>the point biserial correlations and the p-values of the
 corresponding permutation tests</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">assoc.catcont</span>(Movies<span class="sc">$</span>Country, Movies<span class="sc">$</span>Critics, <span class="at">nperm=</span><span class="dv">100</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>summary</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>           mean        sd min       q1   median   q3      max       mad</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>Europe <span class="fl">2.886343</span> <span class="fl">0.7328983</span> <span class="fl">1.4</span> <span class="fl">2.458333</span> <span class="fl">3.000000</span> <span class="fl">3.40</span> <span class="fl">4.833333</span> <span class="fl">0.5000000</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>France <span class="fl">2.923361</span> <span class="fl">0.8469909</span> <span class="fl">1.0</span> <span class="fl">2.333333</span> <span class="fl">3.000000</span> <span class="fl">3.50</span> <span class="fl">5.000000</span> <span class="fl">0.6000000</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>Other  <span class="fl">3.041026</span> <span class="fl">0.8039995</span> <span class="fl">1.0</span> <span class="fl">2.425000</span> <span class="fl">3.208333</span> <span class="fl">3.65</span> <span class="fl">4.400000</span> <span class="fl">0.6000000</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>USA    <span class="fl">2.686700</span> <span class="fl">0.8601259</span> <span class="fl">1.0</span> <span class="fl">2.000000</span> <span class="fl">2.666667</span> <span class="fl">3.20</span> <span class="fl">5.000000</span> <span class="fl">0.6666667</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>eta.squared</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.0169216</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>permutation.pvalue</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">3.070165e-09</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>cor</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>Europe France  Other    USA </span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.011</span>  <span class="fl">0.102</span>  <span class="fl">0.036</span> <span class="sc">-</span><span class="fl">0.128</span> </span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>cor.perm.pval</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>      Europe       France        Other          USA </span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="fl">0.3328495034</span> <span class="fl">0.0009102748</span> <span class="fl">0.1151119232</span> <span class="fl">0.0002070785</span> </span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>test.values</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>   Europe    France     Other       USA </span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.340764</span>  <span class="fl">3.218873</span>  <span class="fl">1.140324</span> <span class="sc">-</span><span class="fl">4.033595</span> </span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>test.values.pval</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>      Europe       France        Other          USA </span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="fl">7.332813e-01</span> <span class="fl">1.286957e-03</span> <span class="fl">2.541511e-01</span> <span class="fl">5.492984e-05</span> </span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">assoc.catcont</span>(Movies<span class="sc">$</span>Country, Movies<span class="sc">$</span>Critics, <span class="at">nperm=</span><span class="dv">100</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="sc">$</span>summary</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>           mean        sd min       q1   median   q3      max       mad</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>Europe <span class="fl">2.886343</span> <span class="fl">0.7328983</span> <span class="fl">1.4</span> <span class="fl">2.458333</span> <span class="fl">3.000000</span> <span class="fl">3.40</span> <span class="fl">4.833333</span> <span class="fl">0.5000000</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>France <span class="fl">2.923361</span> <span class="fl">0.8469909</span> <span class="fl">1.0</span> <span class="fl">2.333333</span> <span class="fl">3.000000</span> <span class="fl">3.50</span> <span class="fl">5.000000</span> <span class="fl">0.6000000</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>Other  <span class="fl">3.041026</span> <span class="fl">0.8039995</span> <span class="fl">1.0</span> <span class="fl">2.425000</span> <span class="fl">3.208333</span> <span class="fl">3.65</span> <span class="fl">4.400000</span> <span class="fl">0.6000000</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>USA    <span class="fl">2.686700</span> <span class="fl">0.8601259</span> <span class="fl">1.0</span> <span class="fl">2.000000</span> <span class="fl">2.666667</span> <span class="fl">3.20</span> <span class="fl">5.000000</span> <span class="fl">0.6666667</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="sc">$</span>eta.squared</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.0169216</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="sc">$</span>permutation.pvalue</span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">6.774837e-09</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="sc">$</span>cor</span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a>Europe France  Other    USA </span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a> <span class="fl">0.011</span>  <span class="fl">0.102</span>  <span class="fl">0.036</span> <span class="sc">-</span><span class="fl">0.128</span> </span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="sc">$</span>cor.perm.pval</span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a>      Europe       France        Other          USA </span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="fl">0.3367626237</span> <span class="fl">0.0003333766</span> <span class="fl">0.1131525030</span> <span class="fl">0.0000136652</span> </span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="sc">$</span>test.values</span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a>   Europe    France     Other       USA </span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a> <span class="fl">0.340764</span>  <span class="fl">3.218873</span>  <span class="fl">1.140324</span> <span class="sc">-</span><span class="fl">4.033595</span> </span>
+<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" tabindex="-1"></a><span class="sc">$</span>test.values.pval</span>
+<span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a>      Europe       France        Other          USA </span>
+<span id="cb11-29"><a href="#cb11-29" tabindex="-1"></a><span class="fl">7.332813e-01</span> <span class="fl">1.286957e-03</span> <span class="fl">2.541511e-01</span> <span class="fl">5.492984e-05</span> </span></code></pre></div>
 <p><br>
 The function <code>ggassoc_boxplot</code> represents the relationship
 between the variables in the form of box-plots and/or “violin”
@@ -480,10 +480,10 @@ distributions.</p>
 <p>The function <code>assoc_twocont</code> computes the Kendall and
 Spearman rank correlations and the Pearson linear correlation, as well
 as the p-values of the corresponding permutation tests.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">assoc.twocont</span>(Movies<span class="sc">$</span>Budget, Movies<span class="sc">$</span>BoxOffice, <span class="at">nperm=</span><span class="dv">100</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                     pearson  spearman   kendall</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>value              <span class="fl">0.6053018</span> <span class="fl">0.7084613</span> <span class="fl">0.5184719</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>permutation.pvalue <span class="fl">0.0000000</span> <span class="fl">0.0000000</span> <span class="fl">0.0000000</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">assoc.twocont</span>(Movies<span class="sc">$</span>Budget, Movies<span class="sc">$</span>BoxOffice, <span class="at">nperm=</span><span class="dv">100</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>                     pearson  spearman   kendall</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>value              <span class="fl">0.6053018</span> <span class="fl">0.7084613</span> <span class="fl">0.5184719</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>permutation.pvalue <span class="fl">0.0000000</span> <span class="fl">0.0000000</span> <span class="fl">0.0000000</span></span></code></pre></div>
 <p><br>
 The function <code>ggassoc_scatter</code> represents the relationship
 between the two variables in the form of a scatterplot, with an
@@ -510,33 +510,33 @@ brought by the regression models is quite limited.<br><br></p>
 <p>The function <code>assoc.yx</code> computes the global association
 between Y and each of the variables of X, and for all pairs of variables
 of X.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">assoc.yx</span>(Movies<span class="sc">$</span>BoxOffice, Movies[,<span class="sc">-</span><span class="dv">7</span>], <span class="at">nperm=</span><span class="dv">10</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>YX</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  variable     measure association permutation.pvalue</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>    Genre        Eta2       <span class="fl">0.173</span>              <span class="fl">0.000</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> ArtHouse        Eta2       <span class="fl">0.075</span>              <span class="fl">0.000</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  Country        Eta2       <span class="fl">0.048</span>              <span class="fl">0.000</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>   Budget Kendall tau       <span class="fl">0.518</span>              <span class="fl">0.000</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  Critics Kendall tau       <span class="fl">0.006</span>              <span class="fl">0.116</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> Festival        Eta2       <span class="fl">0.000</span>              <span class="fl">0.862</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>XX</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>   variable1 variable2     measure association permutation.pvalue</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>      Genre  ArtHouse    Cramer V       <span class="fl">0.554</span>              <span class="fl">0.000</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>    Country  ArtHouse    Cramer V       <span class="fl">0.469</span>              <span class="fl">0.000</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>      Genre   Country    Cramer V       <span class="fl">0.275</span>              <span class="fl">0.000</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>   ArtHouse  Festival    Cramer V       <span class="fl">0.229</span>              <span class="fl">0.000</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>     Budget   Country        Eta2       <span class="fl">0.287</span>              <span class="fl">0.000</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>     Budget     Genre        Eta2       <span class="fl">0.281</span>              <span class="fl">0.000</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>   ArtHouse   Critics        Eta2       <span class="fl">0.236</span>              <span class="fl">0.000</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>     Budget  ArtHouse        Eta2       <span class="fl">0.181</span>              <span class="fl">0.000</span></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>      Genre   Critics        Eta2       <span class="fl">0.090</span>              <span class="fl">0.000</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>  Festival   Critics        Eta2       <span class="fl">0.041</span>              <span class="fl">0.000</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span>    Budget   Critics Kendall tau      <span class="sc">-</span><span class="fl">0.178</span>              <span class="fl">0.000</span></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span>     Genre  Festival    Cramer V       <span class="fl">0.183</span>              <span class="fl">0.000</span></span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span>   Country   Critics        Eta2       <span class="fl">0.017</span>              <span class="fl">0.000</span></span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span>    Budget  Festival        Eta2       <span class="fl">0.003</span>              <span class="fl">0.000</span></span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span>   Country  Festival    Cramer V       <span class="fl">0.035</span>              <span class="fl">0.756</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">assoc.yx</span>(Movies<span class="sc">$</span>BoxOffice, Movies[,<span class="sc">-</span><span class="dv">7</span>], <span class="at">nperm=</span><span class="dv">10</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="sc">$</span>YX</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  variable     measure association permutation.pvalue</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="dv">1</span>    Genre        Eta2       <span class="fl">0.173</span>              <span class="fl">0.000</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="dv">2</span> ArtHouse        Eta2       <span class="fl">0.075</span>              <span class="fl">0.000</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="dv">3</span>  Country        Eta2       <span class="fl">0.048</span>              <span class="fl">0.000</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="dv">4</span>   Budget Kendall tau       <span class="fl">0.518</span>              <span class="fl">0.000</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="dv">5</span>  Critics Kendall tau       <span class="fl">0.006</span>              <span class="fl">0.653</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="dv">6</span> Festival        Eta2       <span class="fl">0.000</span>              <span class="fl">0.887</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="sc">$</span>XX</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>   variable1 variable2     measure association permutation.pvalue</span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a><span class="dv">1</span>      Genre  ArtHouse    Cramer V       <span class="fl">0.554</span>              <span class="fl">0.000</span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="dv">2</span>    Country  ArtHouse    Cramer V       <span class="fl">0.469</span>              <span class="fl">0.000</span></span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a><span class="dv">3</span>      Genre   Country    Cramer V       <span class="fl">0.275</span>              <span class="fl">0.000</span></span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a><span class="dv">4</span>   ArtHouse  Festival    Cramer V       <span class="fl">0.229</span>              <span class="fl">0.000</span></span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a><span class="dv">5</span>      Genre  Festival    Cramer V       <span class="fl">0.183</span>              <span class="fl">0.000</span></span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a><span class="dv">6</span>     Budget   Country        Eta2       <span class="fl">0.287</span>              <span class="fl">0.000</span></span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a><span class="dv">7</span>     Budget     Genre        Eta2       <span class="fl">0.281</span>              <span class="fl">0.000</span></span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a><span class="dv">8</span>   ArtHouse   Critics        Eta2       <span class="fl">0.236</span>              <span class="fl">0.000</span></span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a><span class="dv">9</span>     Budget  ArtHouse        Eta2       <span class="fl">0.181</span>              <span class="fl">0.000</span></span>
+<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a><span class="dv">10</span>     Genre   Critics        Eta2       <span class="fl">0.090</span>              <span class="fl">0.000</span></span>
+<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a><span class="dv">11</span>  Festival   Critics        Eta2       <span class="fl">0.041</span>              <span class="fl">0.000</span></span>
+<span id="cb15-24"><a href="#cb15-24" tabindex="-1"></a><span class="dv">12</span>   Country   Critics        Eta2       <span class="fl">0.017</span>              <span class="fl">0.000</span></span>
+<span id="cb15-25"><a href="#cb15-25" tabindex="-1"></a><span class="dv">13</span>    Budget   Critics Kendall tau      <span class="sc">-</span><span class="fl">0.178</span>              <span class="fl">0.000</span></span>
+<span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a><span class="dv">14</span>    Budget  Festival        Eta2       <span class="fl">0.003</span>              <span class="fl">0.053</span></span>
+<span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a><span class="dv">15</span>   Country  Festival    Cramer V       <span class="fl">0.035</span>              <span class="fl">0.800</span></span></code></pre></div>
 <p><br>
 The functions <code>catdesc</code> and <code>condesc</code> allow to go
 into more detail about the relationships, by going to the category
@@ -567,27 +567,27 @@ which is the median of the absolute deviations from the median. The
 median and MAD are so-called “robust” indicators, i.e. not sensitive to
 outliers, but one can choose to use the mean and standard deviation
 instead.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">catdesc</span>(Movies<span class="sc">$</span>Festival, Movies[,<span class="sc">-</span><span class="dv">5</span>], <span class="at">nperm =</span> <span class="dv">10</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>bylevel<span class="sc">$</span>Yes</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>categories</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       categories freq pct.y.in.x pct.x.in.y overall.pct.x    phi  pvalue</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>    ArtHouse.Yes   <span class="dv">68</span>       <span class="fl">14.0</span>       <span class="fl">88.3</span>          <span class="fl">48.6</span>  <span class="fl">0.229</span> <span class="fl">0.00000</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     Genre.Drama   <span class="dv">36</span>       <span class="fl">14.9</span>       <span class="fl">46.8</span>          <span class="fl">24.1</span>  <span class="fl">0.153</span> <span class="fl">0.00000</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     Genre.Other    <span class="dv">3</span>       <span class="fl">11.5</span>        <span class="fl">3.9</span>           <span class="fl">2.6</span>  <span class="fl">0.024</span> <span class="fl">0.26227</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  Country.Europe    <span class="dv">7</span>        <span class="fl">9.7</span>        <span class="fl">9.1</span>           <span class="fl">7.2</span>  <span class="fl">0.021</span> <span class="fl">0.23852</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  Country.France   <span class="dv">49</span>        <span class="fl">8.1</span>       <span class="fl">63.6</span>          <span class="fl">60.5</span>  <span class="fl">0.019</span> <span class="fl">0.31660</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   Genre.ComDram   <span class="dv">13</span>        <span class="fl">8.7</span>       <span class="fl">16.9</span>          <span class="fl">14.9</span>  <span class="fl">0.016</span> <span class="fl">0.39984</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>    Genre.Action   <span class="dv">13</span>        <span class="fl">7.9</span>       <span class="fl">16.9</span>          <span class="fl">16.5</span>  <span class="fl">0.003</span> <span class="fl">0.21835</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>   Country.Other    <span class="dv">2</span>        <span class="fl">7.7</span>        <span class="fl">2.6</span>           <span class="fl">2.6</span>  <span class="fl">0.000</span> <span class="fl">0.58823</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>     Genre.SciFi    <span class="dv">3</span>        <span class="fl">6.1</span>        <span class="fl">3.9</span>           <span class="fl">4.9</span> <span class="sc">-</span><span class="fl">0.013</span> <span class="fl">0.52431</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>    Country.USA   <span class="dv">19</span>        <span class="fl">6.4</span>       <span class="fl">24.7</span>          <span class="fl">29.7</span> <span class="sc">-</span><span class="fl">0.032</span> <span class="fl">0.18713</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a> [ reached <span class="st">'max'</span> <span class="sc">/</span> <span class="fu">getOption</span>(<span class="st">"max.print"</span>) <span class="sc">--</span> omitted <span class="dv">5</span> rows ]</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>continuous.var</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  variables median.in.category overall.median mad.in.category overall.mad correlation  pvalue</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   Critics                <span class="fl">3.5</span>            <span class="fl">3.0</span>            <span class="fl">0.67</span>         <span class="fl">0.6</span>       <span class="fl">0.204</span> <span class="fl">0.00000</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> BoxOffice           <span class="fl">198796.0</span>       <span class="fl">107326.5</span>       <span class="fl">181590.00</span>    <span class="fl">104060.0</span>       <span class="fl">0.008</span> <span class="fl">0.45371</span></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>    Budget          <span class="fl">7000000.0</span>      <span class="fl">6127500.0</span>      <span class="fl">4438000.00</span>   <span class="fl">5156921.0</span>      <span class="sc">-</span><span class="fl">0.057</span> <span class="fl">0.02416</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">catdesc</span>(Movies<span class="sc">$</span>Festival, Movies[,<span class="sc">-</span><span class="dv">5</span>], <span class="at">nperm =</span> <span class="dv">10</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>res<span class="sc">$</span>bylevel<span class="sc">$</span>Yes</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="sc">$</span>categories</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>       categories freq pct.y.in.x pct.x.in.y overall.pct.x    phi  pvalue</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="dv">1</span>    ArtHouse.Yes   <span class="dv">68</span>       <span class="fl">14.0</span>       <span class="fl">88.3</span>          <span class="fl">48.6</span>  <span class="fl">0.229</span> <span class="fl">0.00000</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="dv">2</span>     Genre.Drama   <span class="dv">36</span>       <span class="fl">14.9</span>       <span class="fl">46.8</span>          <span class="fl">24.1</span>  <span class="fl">0.153</span> <span class="fl">0.00000</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="dv">3</span>     Genre.Other    <span class="dv">3</span>       <span class="fl">11.5</span>        <span class="fl">3.9</span>           <span class="fl">2.6</span>  <span class="fl">0.024</span> <span class="fl">0.31971</span></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="dv">4</span>  Country.Europe    <span class="dv">7</span>        <span class="fl">9.7</span>        <span class="fl">9.1</span>           <span class="fl">7.2</span>  <span class="fl">0.021</span> <span class="fl">0.07606</span></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="dv">5</span>  Country.France   <span class="dv">49</span>        <span class="fl">8.1</span>       <span class="fl">63.6</span>          <span class="fl">60.5</span>  <span class="fl">0.019</span> <span class="fl">0.22262</span></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="dv">6</span>   Genre.ComDram   <span class="dv">13</span>        <span class="fl">8.7</span>       <span class="fl">16.9</span>          <span class="fl">14.9</span>  <span class="fl">0.016</span> <span class="fl">0.31070</span></span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="dv">7</span>    Genre.Action   <span class="dv">13</span>        <span class="fl">7.9</span>       <span class="fl">16.9</span>          <span class="fl">16.5</span>  <span class="fl">0.003</span> <span class="fl">0.08502</span></span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="dv">8</span>   Country.Other    <span class="dv">2</span>        <span class="fl">7.7</span>        <span class="fl">2.6</span>           <span class="fl">2.6</span>  <span class="fl">0.000</span> <span class="fl">0.35658</span></span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a><span class="dv">9</span>     Genre.SciFi    <span class="dv">3</span>        <span class="fl">6.1</span>        <span class="fl">3.9</span>           <span class="fl">4.9</span> <span class="sc">-</span><span class="fl">0.013</span> <span class="fl">0.39030</span></span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="dv">10</span>    Country.USA   <span class="dv">19</span>        <span class="fl">6.4</span>       <span class="fl">24.7</span>          <span class="fl">29.7</span> <span class="sc">-</span><span class="fl">0.032</span> <span class="fl">0.14399</span></span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a> [ reached <span class="st">'max'</span> <span class="sc">/</span> <span class="fu">getOption</span>(<span class="st">"max.print"</span>) <span class="sc">--</span> omitted <span class="dv">5</span> rows ]</span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a><span class="sc">$</span>continuous.var</span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a>  variables median.in.category overall.median mad.in.category overall.mad correlation  pvalue</span>
+<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a><span class="dv">1</span>   Critics                <span class="fl">3.5</span>            <span class="fl">3.0</span>            <span class="fl">0.67</span>         <span class="fl">0.6</span>       <span class="fl">0.204</span> <span class="fl">0.00000</span></span>
+<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a><span class="dv">2</span> BoxOffice           <span class="fl">198796.0</span>       <span class="fl">107326.5</span>       <span class="fl">181590.00</span>    <span class="fl">104060.0</span>       <span class="fl">0.008</span> <span class="fl">0.44976</span></span>
+<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a><span class="dv">3</span>    Budget          <span class="fl">7000000.0</span>      <span class="fl">6127500.0</span>      <span class="fl">4438000.00</span>   <span class="fl">5156921.0</span>      <span class="sc">-</span><span class="fl">0.057</span> <span class="fl">0.00516</span></span></code></pre></div>
 <p><br><code>condesc</code> deals with the cases where Y is a numerical
 variable. For a categorical variable X1, it computes :</p>
 <ul>
@@ -602,29 +602,29 @@ can be filtered to keep only associations above a given threshold (in
 absolute value).</p>
 <p>For the numerical variables of X, it calculates the correlation (by
 default Kendall’s tau).</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">condesc</span>(Movies<span class="sc">$</span>BoxOffice, Movies[,<span class="sc">-</span><span class="dv">7</span>], <span class="at">nperm=</span><span class="dv">100</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>variables</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  variable     measure association  pvalue</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>    Genre        Eta2       <span class="fl">0.173</span> <span class="fl">0.00000</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> ArtHouse        Eta2       <span class="fl">0.075</span> <span class="fl">0.00000</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  Country        Eta2       <span class="fl">0.048</span> <span class="fl">0.00000</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>   Budget Kendall tau       <span class="fl">0.518</span> <span class="fl">0.00000</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  Critics Kendall tau       <span class="fl">0.006</span> <span class="fl">0.38212</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> Festival        Eta2       <span class="fl">0.000</span> <span class="fl">0.72976</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>categories</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        categories median.in.category overall.median mad.in.category overall.mad correlation  pvalue</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>      Genre.SciFi           <span class="fl">680900.0</span>       <span class="fl">107326.5</span>        <span class="fl">607448.0</span>      <span class="dv">104060</span>       <span class="fl">0.294</span> <span class="fl">0.00000</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>      ArtHouse.No           <span class="fl">264200.0</span>       <span class="fl">107326.5</span>        <span class="fl">232183.0</span>      <span class="dv">104060</span>       <span class="fl">0.274</span> <span class="fl">0.00000</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  Genre.Animation           <span class="fl">668896.0</span>       <span class="fl">107326.5</span>        <span class="fl">633265.0</span>      <span class="dv">104060</span>       <span class="fl">0.211</span> <span class="fl">0.00000</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>      Country.USA           <span class="fl">328559.0</span>       <span class="fl">107326.5</span>        <span class="fl">274892.0</span>      <span class="dv">104060</span>       <span class="fl">0.192</span> <span class="fl">0.00000</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>     Genre.Action           <span class="fl">240080.0</span>       <span class="fl">107326.5</span>        <span class="fl">202793.0</span>      <span class="dv">104060</span>       <span class="fl">0.087</span> <span class="fl">0.00185</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   Country.Europe           <span class="fl">108121.5</span>       <span class="fl">107326.5</span>        <span class="fl">104606.5</span>      <span class="dv">104060</span>       <span class="fl">0.068</span> <span class="fl">0.01087</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>     Festival.Yes           <span class="fl">198796.0</span>       <span class="fl">107326.5</span>        <span class="fl">181590.0</span>      <span class="dv">104060</span>       <span class="fl">0.008</span> <span class="fl">0.38417</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>     Genre.Comedy           <span class="fl">202090.0</span>       <span class="fl">107326.5</span>        <span class="fl">191819.0</span>      <span class="dv">104060</span>       <span class="fl">0.004</span> <span class="fl">0.50495</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>      Genre.Other           <span class="fl">186084.5</span>       <span class="fl">107326.5</span>        <span class="fl">171739.5</span>      <span class="dv">104060</span>      <span class="sc">-</span><span class="fl">0.005</span> <span class="fl">0.42698</span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>     Festival.No           <span class="fl">102726.0</span>       <span class="fl">107326.5</span>         <span class="fl">99642.0</span>      <span class="dv">104060</span>      <span class="sc">-</span><span class="fl">0.008</span> <span class="fl">0.38714</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a> [ reached <span class="st">'max'</span> <span class="sc">/</span> <span class="fu">getOption</span>(<span class="st">"max.print"</span>) <span class="sc">--</span> omitted <span class="dv">7</span> rows ]</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">condesc</span>(Movies<span class="sc">$</span>BoxOffice, Movies[,<span class="sc">-</span><span class="dv">7</span>], <span class="at">nperm=</span><span class="dv">100</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="sc">$</span>variables</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  variable     measure association  pvalue</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="dv">1</span>    Genre        Eta2       <span class="fl">0.173</span> <span class="fl">0.00000</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="dv">2</span> ArtHouse        Eta2       <span class="fl">0.075</span> <span class="fl">0.00000</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a><span class="dv">3</span>  Country        Eta2       <span class="fl">0.048</span> <span class="fl">0.00000</span></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="dv">4</span>   Budget Kendall tau       <span class="fl">0.518</span> <span class="fl">0.00000</span></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="dv">5</span>  Critics Kendall tau       <span class="fl">0.006</span> <span class="fl">0.41327</span></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="dv">6</span> Festival        Eta2       <span class="fl">0.000</span> <span class="fl">0.69544</span></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a><span class="sc">$</span>categories</span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>        categories median.in.category overall.median mad.in.category overall.mad correlation  pvalue</span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a><span class="dv">1</span>      Genre.SciFi           <span class="fl">680900.0</span>       <span class="fl">107326.5</span>        <span class="fl">607448.0</span>      <span class="dv">104060</span>       <span class="fl">0.294</span> <span class="fl">0.00000</span></span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a><span class="dv">2</span>      ArtHouse.No           <span class="fl">264200.0</span>       <span class="fl">107326.5</span>        <span class="fl">232183.0</span>      <span class="dv">104060</span>       <span class="fl">0.274</span> <span class="fl">0.00000</span></span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a><span class="dv">3</span>  Genre.Animation           <span class="fl">668896.0</span>       <span class="fl">107326.5</span>        <span class="fl">633265.0</span>      <span class="dv">104060</span>       <span class="fl">0.211</span> <span class="fl">0.00000</span></span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a><span class="dv">4</span>      Country.USA           <span class="fl">328559.0</span>       <span class="fl">107326.5</span>        <span class="fl">274892.0</span>      <span class="dv">104060</span>       <span class="fl">0.192</span> <span class="fl">0.00000</span></span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a><span class="dv">5</span>     Genre.Action           <span class="fl">240080.0</span>       <span class="fl">107326.5</span>        <span class="fl">202793.0</span>      <span class="dv">104060</span>       <span class="fl">0.087</span> <span class="fl">0.00330</span></span>
+<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a><span class="dv">6</span>   Country.Europe           <span class="fl">108121.5</span>       <span class="fl">107326.5</span>        <span class="fl">104606.5</span>      <span class="dv">104060</span>       <span class="fl">0.068</span> <span class="fl">0.02550</span></span>
+<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a><span class="dv">7</span>     Festival.Yes           <span class="fl">198796.0</span>       <span class="fl">107326.5</span>        <span class="fl">181590.0</span>      <span class="dv">104060</span>       <span class="fl">0.008</span> <span class="fl">0.40217</span></span>
+<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a><span class="dv">8</span>     Genre.Comedy           <span class="fl">202090.0</span>       <span class="fl">107326.5</span>        <span class="fl">191819.0</span>      <span class="dv">104060</span>       <span class="fl">0.004</span> <span class="fl">0.42556</span></span>
+<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a><span class="dv">9</span>      Genre.Other           <span class="fl">186084.5</span>       <span class="fl">107326.5</span>        <span class="fl">171739.5</span>      <span class="dv">104060</span>      <span class="sc">-</span><span class="fl">0.005</span> <span class="fl">0.40347</span></span>
+<span id="cb17-22"><a href="#cb17-22" tabindex="-1"></a><span class="dv">10</span>     Festival.No           <span class="fl">102726.0</span>       <span class="fl">107326.5</span>         <span class="fl">99642.0</span>      <span class="dv">104060</span>      <span class="sc">-</span><span class="fl">0.008</span> <span class="fl">0.39838</span></span>
+<span id="cb17-23"><a href="#cb17-23" tabindex="-1"></a> [ reached <span class="st">'max'</span> <span class="sc">/</span> <span class="fu">getOption</span>(<span class="st">"max.print"</span>) <span class="sc">--</span> omitted <span class="dv">7</span> rows ]</span></code></pre></div>
 <p><br>
 The <code>darma</code> function presents the results in a form close to
 that of a table of results of a regression.</p>
@@ -668,19 +668,19 @@ corresponding permutation test</li>
 <td align="left">Budget</td>
 <td align="left">Eta2</td>
 <td align="right">0.003</td>
-<td align="right">0.00005</td>
+<td align="right">0.00131</td>
 </tr>
 <tr class="odd">
-<td align="left">BoxOffice</td>
-<td align="left">Eta2</td>
-<td align="right">0.000</td>
-<td align="right">0.77716</td>
-</tr>
-<tr class="even">
 <td align="left">Country</td>
 <td align="left">Cramer V</td>
 <td align="right">0.035</td>
-<td align="right">0.95933</td>
+<td align="right">0.67998</td>
+</tr>
+<tr class="even">
+<td align="left">BoxOffice</td>
+<td align="left">Eta2</td>
+<td align="right">0.000</td>
+<td align="right">0.83665</td>
 </tr>
 </tbody>
 </table>
@@ -711,7 +711,7 @@ corresponding permutation test</li>
 <td align="right">23.4</td>
 <td align="right">22.2</td>
 <td align="right">0.100</td>
-<td align="right">0.00008</td>
+<td align="right">0.00030</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Documentary</td>
@@ -720,7 +720,7 @@ corresponding permutation test</li>
 <td align="right">8.1</td>
 <td align="right">7.7</td>
 <td align="right">0.055</td>
-<td align="right">0.01613</td>
+<td align="right">0.00004</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.Horror</td>
@@ -729,7 +729,7 @@ corresponding permutation test</li>
 <td align="right">2.7</td>
 <td align="right">2.5</td>
 <td align="right">0.046</td>
-<td align="right">0.03310</td>
+<td align="right">0.15279</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Animation</td>
@@ -738,7 +738,7 @@ corresponding permutation test</li>
 <td align="right">4.9</td>
 <td align="right">4.6</td>
 <td align="right">0.046</td>
-<td align="right">0.02959</td>
+<td align="right">0.02238</td>
 </tr>
 <tr class="even">
 <td align="left">Country.USA</td>
@@ -747,7 +747,7 @@ corresponding permutation test</li>
 <td align="right">30.1</td>
 <td align="right">29.7</td>
 <td align="right">0.032</td>
-<td align="right">0.18713</td>
+<td align="right">0.14399</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.SciFi</td>
@@ -756,7 +756,7 @@ corresponding permutation test</li>
 <td align="right">5.0</td>
 <td align="right">4.9</td>
 <td align="right">0.013</td>
-<td align="right">0.52431</td>
+<td align="right">0.39030</td>
 </tr>
 <tr class="even">
 <td align="left">Country.Other</td>
@@ -765,7 +765,7 @@ corresponding permutation test</li>
 <td align="right">2.6</td>
 <td align="right">2.6</td>
 <td align="right">0.000</td>
-<td align="right">0.58823</td>
+<td align="right">0.35658</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Action</td>
@@ -774,7 +774,7 @@ corresponding permutation test</li>
 <td align="right">16.5</td>
 <td align="right">16.5</td>
 <td align="right">-0.003</td>
-<td align="right">0.21835</td>
+<td align="right">0.08502</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.ComDram</td>
@@ -783,7 +783,7 @@ corresponding permutation test</li>
 <td align="right">14.7</td>
 <td align="right">14.9</td>
 <td align="right">-0.016</td>
-<td align="right">0.39984</td>
+<td align="right">0.31070</td>
 </tr>
 <tr class="odd">
 <td align="left">Country.France</td>
@@ -792,7 +792,7 @@ corresponding permutation test</li>
 <td align="right">60.2</td>
 <td align="right">60.5</td>
 <td align="right">-0.019</td>
-<td align="right">0.31660</td>
+<td align="right">0.22262</td>
 </tr>
 <tr class="even">
 <td align="left">Country.Europe</td>
@@ -801,7 +801,7 @@ corresponding permutation test</li>
 <td align="right">7.0</td>
 <td align="right">7.2</td>
 <td align="right">-0.021</td>
-<td align="right">0.23852</td>
+<td align="right">0.07606</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Other</td>
@@ -810,7 +810,7 @@ corresponding permutation test</li>
 <td align="right">2.5</td>
 <td align="right">2.6</td>
 <td align="right">-0.024</td>
-<td align="right">0.26227</td>
+<td align="right">0.31971</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.Drama</td>
@@ -850,7 +850,7 @@ corresponding permutation test</li>
 <td align="right">5160544.0</td>
 <td align="right">5156921.0</td>
 <td align="right">0.057</td>
-<td align="right">0.00394</td>
+<td align="right">0.06214</td>
 </tr>
 <tr class="even">
 <td align="left">BoxOffice</td>
@@ -859,7 +859,7 @@ corresponding permutation test</li>
 <td align="right">99642.0</td>
 <td align="right">104060.0</td>
 <td align="right">-0.008</td>
-<td align="right">0.29262</td>
+<td align="right">0.35947</td>
 </tr>
 <tr class="odd">
 <td align="left">Critics</td>
@@ -908,7 +908,7 @@ corresponding permutation test</li>
 <td align="right">3.9</td>
 <td align="right">2.6</td>
 <td align="right">0.024</td>
-<td align="right">0.26227</td>
+<td align="right">0.31971</td>
 </tr>
 <tr class="even">
 <td align="left">Country.Europe</td>
@@ -917,7 +917,7 @@ corresponding permutation test</li>
 <td align="right">9.1</td>
 <td align="right">7.2</td>
 <td align="right">0.021</td>
-<td align="right">0.23852</td>
+<td align="right">0.07606</td>
 </tr>
 <tr class="odd">
 <td align="left">Country.France</td>
@@ -926,7 +926,7 @@ corresponding permutation test</li>
 <td align="right">63.6</td>
 <td align="right">60.5</td>
 <td align="right">0.019</td>
-<td align="right">0.31660</td>
+<td align="right">0.22262</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.ComDram</td>
@@ -935,7 +935,7 @@ corresponding permutation test</li>
 <td align="right">16.9</td>
 <td align="right">14.9</td>
 <td align="right">0.016</td>
-<td align="right">0.39984</td>
+<td align="right">0.31070</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Action</td>
@@ -944,7 +944,7 @@ corresponding permutation test</li>
 <td align="right">16.9</td>
 <td align="right">16.5</td>
 <td align="right">0.003</td>
-<td align="right">0.21835</td>
+<td align="right">0.08502</td>
 </tr>
 <tr class="even">
 <td align="left">Country.Other</td>
@@ -953,7 +953,7 @@ corresponding permutation test</li>
 <td align="right">2.6</td>
 <td align="right">2.6</td>
 <td align="right">0.000</td>
-<td align="right">0.58823</td>
+<td align="right">0.35658</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.SciFi</td>
@@ -962,7 +962,7 @@ corresponding permutation test</li>
 <td align="right">3.9</td>
 <td align="right">4.9</td>
 <td align="right">-0.013</td>
-<td align="right">0.52431</td>
+<td align="right">0.39030</td>
 </tr>
 <tr class="even">
 <td align="left">Country.USA</td>
@@ -971,7 +971,7 @@ corresponding permutation test</li>
 <td align="right">24.7</td>
 <td align="right">29.7</td>
 <td align="right">-0.032</td>
-<td align="right">0.18713</td>
+<td align="right">0.14399</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Animation</td>
@@ -980,7 +980,7 @@ corresponding permutation test</li>
 <td align="right">1.3</td>
 <td align="right">4.6</td>
 <td align="right">-0.046</td>
-<td align="right">0.02959</td>
+<td align="right">0.02238</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.Horror</td>
@@ -989,7 +989,7 @@ corresponding permutation test</li>
 <td align="right">0.0</td>
 <td align="right">2.5</td>
 <td align="right">-0.046</td>
-<td align="right">0.03310</td>
+<td align="right">0.15279</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Documentary</td>
@@ -998,7 +998,7 @@ corresponding permutation test</li>
 <td align="right">2.6</td>
 <td align="right">7.7</td>
 <td align="right">-0.055</td>
-<td align="right">0.01613</td>
+<td align="right">0.00004</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.Comedy</td>
@@ -1007,7 +1007,7 @@ corresponding permutation test</li>
 <td align="right">7.8</td>
 <td align="right">22.2</td>
 <td align="right">-0.100</td>
-<td align="right">0.00008</td>
+<td align="right">0.00030</td>
 </tr>
 <tr class="odd">
 <td align="left">ArtHouse.No</td>
@@ -1047,7 +1047,7 @@ corresponding permutation test</li>
 <td align="right">181590.00</td>
 <td align="right">104060.0</td>
 <td align="right">0.008</td>
-<td align="right">0.45371</td>
+<td align="right">0.44976</td>
 </tr>
 <tr class="odd">
 <td align="left">Budget</td>
@@ -1056,7 +1056,7 @@ corresponding permutation test</li>
 <td align="right">4438000.00</td>
 <td align="right">5156921.0</td>
 <td align="right">-0.057</td>
-<td align="right">0.02416</td>
+<td align="right">0.00516</td>
 </tr>
 </tbody>
 </table>
@@ -1101,19 +1101,19 @@ corresponding permutation test.</li>
 <td align="left">Budget</td>
 <td align="left">Eta2</td>
 <td align="right">0.003</td>
-<td align="right">0.00005</td>
+<td align="right">0.00131</td>
 </tr>
 <tr class="odd">
-<td align="left">BoxOffice</td>
-<td align="left">Eta2</td>
-<td align="right">0.000</td>
-<td align="right">0.77716</td>
-</tr>
-<tr class="even">
 <td align="left">Country</td>
 <td align="left">Cramer V</td>
 <td align="right">0.035</td>
-<td align="right">0.95933</td>
+<td align="right">0.67998</td>
+</tr>
+<tr class="even">
+<td align="left">BoxOffice</td>
+<td align="left">Eta2</td>
+<td align="right">0.000</td>
+<td align="right">0.83665</td>
 </tr>
 </tbody>
 </table>
@@ -1144,7 +1144,7 @@ corresponding permutation test.</li>
 <td align="right">23.4</td>
 <td align="right">22.2</td>
 <td align="right">0.100</td>
-<td align="right">0.00008</td>
+<td align="right">0.00030</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Documentary</td>
@@ -1153,7 +1153,7 @@ corresponding permutation test.</li>
 <td align="right">8.1</td>
 <td align="right">7.7</td>
 <td align="right">0.055</td>
-<td align="right">0.01613</td>
+<td align="right">0.00004</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.Horror</td>
@@ -1162,7 +1162,7 @@ corresponding permutation test.</li>
 <td align="right">2.7</td>
 <td align="right">2.5</td>
 <td align="right">0.046</td>
-<td align="right">0.03310</td>
+<td align="right">0.15279</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Animation</td>
@@ -1171,7 +1171,7 @@ corresponding permutation test.</li>
 <td align="right">4.9</td>
 <td align="right">4.6</td>
 <td align="right">0.046</td>
-<td align="right">0.02959</td>
+<td align="right">0.02238</td>
 </tr>
 <tr class="even">
 <td align="left">Country.USA</td>
@@ -1180,7 +1180,7 @@ corresponding permutation test.</li>
 <td align="right">30.1</td>
 <td align="right">29.7</td>
 <td align="right">0.032</td>
-<td align="right">0.18713</td>
+<td align="right">0.14399</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.SciFi</td>
@@ -1189,7 +1189,7 @@ corresponding permutation test.</li>
 <td align="right">5.0</td>
 <td align="right">4.9</td>
 <td align="right">0.013</td>
-<td align="right">0.52431</td>
+<td align="right">0.39030</td>
 </tr>
 <tr class="even">
 <td align="left">Country.Other</td>
@@ -1198,7 +1198,7 @@ corresponding permutation test.</li>
 <td align="right">2.6</td>
 <td align="right">2.6</td>
 <td align="right">0.000</td>
-<td align="right">0.58823</td>
+<td align="right">0.35658</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Action</td>
@@ -1207,7 +1207,7 @@ corresponding permutation test.</li>
 <td align="right">16.5</td>
 <td align="right">16.5</td>
 <td align="right">-0.003</td>
-<td align="right">0.21835</td>
+<td align="right">0.08502</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.ComDram</td>
@@ -1216,7 +1216,7 @@ corresponding permutation test.</li>
 <td align="right">14.7</td>
 <td align="right">14.9</td>
 <td align="right">-0.016</td>
-<td align="right">0.39984</td>
+<td align="right">0.31070</td>
 </tr>
 <tr class="odd">
 <td align="left">Country.France</td>
@@ -1225,7 +1225,7 @@ corresponding permutation test.</li>
 <td align="right">60.2</td>
 <td align="right">60.5</td>
 <td align="right">-0.019</td>
-<td align="right">0.31660</td>
+<td align="right">0.22262</td>
 </tr>
 <tr class="even">
 <td align="left">Country.Europe</td>
@@ -1234,7 +1234,7 @@ corresponding permutation test.</li>
 <td align="right">7.0</td>
 <td align="right">7.2</td>
 <td align="right">-0.021</td>
-<td align="right">0.23852</td>
+<td align="right">0.07606</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Other</td>
@@ -1243,7 +1243,7 @@ corresponding permutation test.</li>
 <td align="right">2.5</td>
 <td align="right">2.6</td>
 <td align="right">-0.024</td>
-<td align="right">0.26227</td>
+<td align="right">0.31971</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.Drama</td>
@@ -1283,7 +1283,7 @@ corresponding permutation test.</li>
 <td align="right">5160544.0</td>
 <td align="right">5156921.0</td>
 <td align="right">0.057</td>
-<td align="right">0.00394</td>
+<td align="right">0.06214</td>
 </tr>
 <tr class="even">
 <td align="left">BoxOffice</td>
@@ -1292,7 +1292,7 @@ corresponding permutation test.</li>
 <td align="right">99642.0</td>
 <td align="right">104060.0</td>
 <td align="right">-0.008</td>
-<td align="right">0.29262</td>
+<td align="right">0.35947</td>
 </tr>
 <tr class="odd">
 <td align="left">Critics</td>
@@ -1341,7 +1341,7 @@ corresponding permutation test.</li>
 <td align="right">3.9</td>
 <td align="right">2.6</td>
 <td align="right">0.024</td>
-<td align="right">0.26227</td>
+<td align="right">0.31971</td>
 </tr>
 <tr class="even">
 <td align="left">Country.Europe</td>
@@ -1350,7 +1350,7 @@ corresponding permutation test.</li>
 <td align="right">9.1</td>
 <td align="right">7.2</td>
 <td align="right">0.021</td>
-<td align="right">0.23852</td>
+<td align="right">0.07606</td>
 </tr>
 <tr class="odd">
 <td align="left">Country.France</td>
@@ -1359,7 +1359,7 @@ corresponding permutation test.</li>
 <td align="right">63.6</td>
 <td align="right">60.5</td>
 <td align="right">0.019</td>
-<td align="right">0.31660</td>
+<td align="right">0.22262</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.ComDram</td>
@@ -1368,7 +1368,7 @@ corresponding permutation test.</li>
 <td align="right">16.9</td>
 <td align="right">14.9</td>
 <td align="right">0.016</td>
-<td align="right">0.39984</td>
+<td align="right">0.31070</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Action</td>
@@ -1377,7 +1377,7 @@ corresponding permutation test.</li>
 <td align="right">16.9</td>
 <td align="right">16.5</td>
 <td align="right">0.003</td>
-<td align="right">0.21835</td>
+<td align="right">0.08502</td>
 </tr>
 <tr class="even">
 <td align="left">Country.Other</td>
@@ -1386,7 +1386,7 @@ corresponding permutation test.</li>
 <td align="right">2.6</td>
 <td align="right">2.6</td>
 <td align="right">0.000</td>
-<td align="right">0.58823</td>
+<td align="right">0.35658</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.SciFi</td>
@@ -1395,7 +1395,7 @@ corresponding permutation test.</li>
 <td align="right">3.9</td>
 <td align="right">4.9</td>
 <td align="right">-0.013</td>
-<td align="right">0.52431</td>
+<td align="right">0.39030</td>
 </tr>
 <tr class="even">
 <td align="left">Country.USA</td>
@@ -1404,7 +1404,7 @@ corresponding permutation test.</li>
 <td align="right">24.7</td>
 <td align="right">29.7</td>
 <td align="right">-0.032</td>
-<td align="right">0.18713</td>
+<td align="right">0.14399</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Animation</td>
@@ -1413,7 +1413,7 @@ corresponding permutation test.</li>
 <td align="right">1.3</td>
 <td align="right">4.6</td>
 <td align="right">-0.046</td>
-<td align="right">0.02959</td>
+<td align="right">0.02238</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.Horror</td>
@@ -1422,7 +1422,7 @@ corresponding permutation test.</li>
 <td align="right">0.0</td>
 <td align="right">2.5</td>
 <td align="right">-0.046</td>
-<td align="right">0.03310</td>
+<td align="right">0.15279</td>
 </tr>
 <tr class="odd">
 <td align="left">Genre.Documentary</td>
@@ -1431,7 +1431,7 @@ corresponding permutation test.</li>
 <td align="right">2.6</td>
 <td align="right">7.7</td>
 <td align="right">-0.055</td>
-<td align="right">0.01613</td>
+<td align="right">0.00004</td>
 </tr>
 <tr class="even">
 <td align="left">Genre.Comedy</td>
@@ -1440,7 +1440,7 @@ corresponding permutation test.</li>
 <td align="right">7.8</td>
 <td align="right">22.2</td>
 <td align="right">-0.100</td>
-<td align="right">0.00008</td>
+<td align="right">0.00030</td>
 </tr>
 <tr class="odd">
 <td align="left">ArtHouse.No</td>
@@ -1480,7 +1480,7 @@ corresponding permutation test.</li>
 <td align="right">181590.00</td>
 <td align="right">104060.0</td>
 <td align="right">0.008</td>
-<td align="right">0.45371</td>
+<td align="right">0.44976</td>
 </tr>
 <tr class="odd">
 <td align="left">Budget</td>
@@ -1489,7 +1489,7 @@ corresponding permutation test.</li>
 <td align="right">4438000.00</td>
 <td align="right">5156921.0</td>
 <td align="right">-0.057</td>
-<td align="right">0.02416</td>
+<td align="right">0.00516</td>
 </tr>
 </tbody>
 </table>
