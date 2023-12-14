@@ -1,4 +1,12 @@
-# descriptio 1.2
+# descriptio 1.3
+
+## new function
+
+* `assoc.xx()` : Bivariate association measures between pairs of variables
+
+
+
+# descriptio 1.2 [CRAN]
 
 ## changes in existing functions
 

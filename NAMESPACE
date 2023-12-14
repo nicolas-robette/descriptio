@@ -25,7 +25,7 @@ import(ggplot2)
 #  importFrom("paletteer", "scale_color_paletteer_d")
 #  importFrom("ggpattern", "geom_bar_pattern", "scale_pattern_spacing_continuous")
 
-export(assoc.twocat,assoc.catcont,assoc.twocont,assoc.yx,
+export(assoc.twocat,assoc.catcont,assoc.twocont,assoc.yx,assoc.xx,
        catdesc,condesc,darma,or.table,pem.table,phi.table,
        weighted.table,weighted.quantile,weighted.mad,weighted.sd,weighted.cor,weighted.cor2,weighted.cov,weighted.cov2,
        ggassoc_assocplot,ggassoc_bertin,ggassoc_chiasmogram,ggassoc_crosstab,ggassoc_phiplot,ggassoc_marimekko,
