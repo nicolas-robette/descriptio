@@ -1,20 +1,3 @@
-# data(Movies)
-# dim(Movies)
-# y = Movies$Country
-# x = Movies[,-3]
-# weights = NULL
-# na.rm.cat = FALSE
-# na.value.cat = "NA"
-# na.rm.cont = FALSE
-# measure = "phi"
-# limit = NULL
-# correlation = "kendall"
-# robust = TRUE
-# nperm = NULL
-# distrib = "asympt"
-# dec = c(3,3,3,3,1,3)
-
-
 catdesc <- function(y, x, weights = NULL,
                     na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
                     measure = "phi", limit = NULL, correlation = "kendall", robust = TRUE,
