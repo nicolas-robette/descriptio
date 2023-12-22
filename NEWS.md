@@ -3,7 +3,9 @@
 ## new function
 
 * `assoc.xx()` : Bivariate association measures between pairs of variables
-
+* `assoc.twocat.by()` : Groupwise version of `assoc.twocat()`
+* `assoc.twocont.by()` : Groupwise version of `assoc.twocont()`
+* `assoc.catcont.by()` : Groupwise version of `assoc.catcont()`
 
 
 # descriptio 1.2 [CRAN]

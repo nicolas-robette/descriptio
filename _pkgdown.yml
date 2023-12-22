@@ -23,6 +23,9 @@ reference:
   - assoc.twocat
   - assoc.catcont
   - assoc.twocont
+  - assoc.twocat.by
+  - assoc.catcont.by
+  - assoc.twocont.by
   - catdesc
   - condesc
   - assoc.yx
