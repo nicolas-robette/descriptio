@@ -4,7 +4,7 @@
 \title{Weighted correlations}
 
 \description{
-Computes a matrix of weighted correlations between the columns of \code{x} and the columns of {y}. This can be Pearson, Spearman or Kendall correlation.
+Computes a matrix of weighted correlations between the columns of \code{x} and the columns of \code{y}. This can be Pearson, Spearman or Kendall correlation.
 }
 
 \usage{

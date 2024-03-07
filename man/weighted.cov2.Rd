@@ -4,7 +4,7 @@
 \title{Weighted covariances}
 
 \description{
-Computes a matrix of weighted covariances between the columns of \code{x} and the columns of {y}.
+Computes a matrix of weighted covariances between the columns of \code{x} and the columns of \code{y}.
 }
 
 \usage{
