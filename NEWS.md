@@ -1,11 +1,13 @@
 # descriptio 1.3
 
-## new function
+## new functions
 
 * `assoc.xx()` : Bivariate association measures between pairs of variables
 * `assoc.twocat.by()` : Groupwise version of `assoc.twocat()`
 * `assoc.twocont.by()` : Groupwise version of `assoc.twocont()`
 * `assoc.catcont.by()` : Groupwise version of `assoc.catcont()`
+* `profiles()` : Profiles by level of a categorical variable
+
 
 
 # descriptio 1.2 [CRAN]
@@ -13,7 +15,7 @@
 ## changes in existing functions
 
 * `assoc.catcont()` : new items in the results (summary statistics, test-values)
-* `assoc.twocat()` : new item in the results (p-values  of adjusted standardized residuals)
+* `assoc.twocat()` : new item in the results (p-values of adjusted standardized residuals)
 * `ggassoc_marimekko()` : y axis labels are now horizontal
 * `condesc()` and `catdesc()` : labels of the results have been renamed ; dec argument is replaced by digits and simplified ; permutation p-values can be provided for variables and categories
 
