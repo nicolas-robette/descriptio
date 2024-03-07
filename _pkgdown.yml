@@ -31,6 +31,7 @@ reference:
   - assoc.yx
   - assoc.xx
   - darma
+  - profiles
   
 - title: Plots
 - desc: Plots to describe statistical associations between two variables
