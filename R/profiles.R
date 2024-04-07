@@ -1,7 +1,3 @@
-# X <- Movies[,c(2,4,5)]
-# y <- Movies$Country
-# weights <- rep(1, nrow(X))
-
 profiles <- function(X, y, weights = NULL, stat = "cprop", mar = TRUE, digits = 1) {
 
   if(!is.factor(y)) stop("y should be a factor.")
@@ -34,19 +30,3 @@ profiles <- function(X, y, weights = NULL, stat = "cprop", mar = TRUE, digits = 
 
   return(res)
 }  
-
-# View(profiles(musique[,c(13,15:19)], musique$age))
-# profiles(musique[,c(13,15:19)], musique$age, digits = 3)
-# profiles(musique[,c(13,15:19)], musique$age, stat = "freq")
-# profiles(musique[,c(13,15:19)], musique$age, stat = "prop")
-# profiles(musique[,c(13,15:19)], musique$age, stat = "rprop")
-# 
-# profiles(Movies[,c(2,4,5)], Movies$Country, digits = 3)
-# profiles(Movies[,c(2,4,5)], Movies$Country, stat = "freq")
-# profiles(Movies[,c(2,4,5)], Movies$Country, stat = "prop")
-# profiles(Movies[,c(2,4,5)], Movies$Country, stat = "rprop")
-# profiles(Movies[,c(2,4,5)], Movies$Country, digits = 3, mar = FALSE)
-# profiles(Movies[,c(2,4,5)], Movies$Country, stat = "freq", mar = FALSE)
-# profiles(Movies[,c(2,4,5)], Movies$Country, stat = "prop", mar = FALSE)
-# profiles(Movies[,c(2,4,5)], Movies$Country, stat = "rprop", mar = FALSE)
-
