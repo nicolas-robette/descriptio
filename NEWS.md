@@ -1,4 +1,4 @@
-# descriptio 1.3
+# descriptio 1.3 [CRAN]
 
 ## new functions
 
@@ -42,5 +42,4 @@ Many functions in `descriptio` are imported from `GDAtools` (1.8), with some cha
 - Every function handles weights
 - Every function handles NA values
 - A few function and argument name changes
-
 
