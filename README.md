@@ -1,5 +1,7 @@
 # **descriptio** <img src="man/figures/descriptio.png" height=140px width=120px alt="" align="right" />
 
+<br>
+
 ## Descriptive Statistical Analysis
 
 <!-- badges: start -->
