@@ -6,7 +6,7 @@
 Measures the association between a categorical variable and some continuous and/or categorical variables}
 \usage{
 catdesc(y, x, weights = NULL, 
-na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+na.rm.cat = FALSE, na.value.cat = "NAs", na.rm.cont = FALSE,
 measure = "phi", limit = NULL, correlation = "kendall", robust = TRUE, 
 nperm = NULL, distrib = "asympt", digits = 2)
 }
@@ -16,7 +16,7 @@ nperm = NULL, distrib = "asympt", digits = 2)
   \item{x}{a data frame with continuous and/or categorical variables}
   \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
   \item{na.rm.cat}{logical, indicating whether NA values in the categorical variables should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the categorical variables (see na.value.cat argument).}
-  \item{na.value.cat}{character. Name of the level for NA category. Default is "NA". Only used if na.rm.cat = FALSE.}
+  \item{na.value.cat}{character. Name of the level for NA category. Default is "NAs". Only used if na.rm.cat = FALSE.}
   \item{na.rm.cont}{logical, indicating whether NA values in the continuous variables should be silently removed before the computation proceeds. Default is FALSE.}
   \item{measure}{character. The measure of local association between categories of categorical variables. Can be "phi" for phi coefficient (default), "or" for odds ratios, "std.residuals" for standardized (i.e. Pearson) residuals, "adj.residuals" for adjusted standardized residuals or "pem" for local percentages of maximum deviation from independence.}
   \item{limit}{for the relationship between y and a categorical variable, only associations higher or equal to \code{limit} will be displayed. If NULL (default), they are all displayed.}

@@ -1,5 +1,5 @@
 catdesc <- function(y, x, weights = NULL,
-                    na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+                    na.rm.cat = FALSE, na.value.cat = "NAs", na.rm.cont = FALSE,
                     measure = "phi", limit = NULL, correlation = "kendall", robust = TRUE,
                     nperm = NULL, distrib = "asympt", digits = 2) {
   

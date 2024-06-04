@@ -1,6 +1,6 @@
 ggassoc_chiasmogram <- function(data, mapping, measure = "phi",
                                 limits = NULL, sort = "none",
-                                na.rm = FALSE, na.value = "NA",
+                                na.rm = FALSE, na.value = "NAs",
                                 colors = NULL, direction = 1) {
 
   xVal <- rlang::eval_tidy(mapping$x, data)

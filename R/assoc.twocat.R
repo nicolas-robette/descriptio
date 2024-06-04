@@ -1,4 +1,12 @@
-assoc.twocat <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", nperm = NULL, distrib = "asympt") {
+# x = Movies$Genre[Movies$ArtHouse=="Yes"]
+# y = Movies$Country[Movies$ArtHouse=="Yes"]
+# weights = rep(1, length(x))
+# na.rm = FALSE
+# na.value = "NA"
+# nperm = NULL
+# distrib = "asympt"
+
+assoc.twocat <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NAs", nperm = NULL, distrib = "asympt") {
 
   if(is.null(weights)) weights <- rep(1, length(x))
   if(any(is.na(weights))) stop("There are empty values in weights.")
@@ -7,12 +15,12 @@ assoc.twocat <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", n
     if(any(is.na(x))) {
       x <- factor(x, levels=c(levels(x), na.value))
       x[is.na(x)] <- na.value
-      x <- factor(x)
+      # x <- factor(x)
     }
     if(any(is.na(y))) {
       y <- factor(y, levels=c(levels(y), na.value))
       y[is.na(y)] <- na.value
-      y <- factor(y)
+      # y <- factor(y)
     }
   } else {
     complete <- !(is.na(x) | is.na(y))
@@ -46,7 +54,7 @@ assoc.twocat <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", n
   
   temp <- suppressWarnings(stats::chisq.test(t))
   stdres <- as.table(temp$stdres)
-  res <- as.table(temp$res)
+  res <- as.table(temp$residuals)
   adj.pval <- 2*(1 -pnorm(abs(stdres)))
   
   if(!is.null(nperm)) {

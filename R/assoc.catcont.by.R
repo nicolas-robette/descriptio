@@ -1,5 +1,5 @@
 assoc.catcont.by  <- function(x, y, by, weights = NULL, 
-                              na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+                              na.rm.cat = FALSE, na.value.cat = "NAs", na.rm.cont = FALSE,
                               nperm = NULL, distrib = "asympt", digits = 3) {
 
   df <- data.frame(x,y)

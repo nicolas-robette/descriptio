@@ -1,5 +1,5 @@
 ggassoc_assocplot <- function(data, mapping, measure = "std.residuals", limits = NULL, sort = "none",
-                              na.rm = FALSE, na.value = "NA",
+                              na.rm = FALSE, na.value = "NAs",
                               colors = NULL, direction = 1, legend = "right") {
   
   xVal <- rlang::eval_tidy(mapping$x, data)

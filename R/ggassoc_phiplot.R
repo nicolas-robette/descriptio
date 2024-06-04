@@ -1,4 +1,4 @@
-ggassoc_phiplot <- function(data, mapping, measure = "phi", limit = NULL, sort = "none", na.rm = FALSE, na.value = "NA") {
+ggassoc_phiplot <- function(data, mapping, measure = "phi", limit = NULL, sort = "none", na.rm = FALSE, na.value = "NAs") {
   
   xVal <- rlang::eval_tidy(mapping$x, data)
   yVal <- rlang::eval_tidy(mapping$y, data)

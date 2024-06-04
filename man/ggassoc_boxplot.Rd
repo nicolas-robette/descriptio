@@ -10,7 +10,7 @@ Displays of boxplot and combines it with a violin plot, using ggplot2.
 
 \usage{
 ggassoc_boxplot(data, mapping, 
-na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+na.rm.cat = FALSE, na.value.cat = "NAs", na.rm.cont = FALSE,
 axes.labs = TRUE, ticks.labs = TRUE, text.size = 3,
 sort = FALSE, box = TRUE, notch = FALSE, violin = TRUE)
 }
@@ -19,7 +19,7 @@ sort = FALSE, box = TRUE, notch = FALSE, violin = TRUE)
   \item{data}{dataset to use for plot}
   \item{mapping}{aesthetic being used. It must specify x and y.}
   \item{na.rm.cat}{logical, indicating whether NA values in the categorical variable (i.e. x) should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the categorical variable (see na.value.cat argument).}
-  \item{na.value.cat}{character. Name of the level for NA category. Default is "NA". Only used if na.rm = FALSE.}
+  \item{na.value.cat}{character. Name of the level for NA category. Default is "NAs". Only used if na.rm = FALSE.}
   \item{na.rm.cont}{logical, indicating whether NA values in the continuous variable (i.e. y) should be silently removed before the computation proceeds. Default is FALSE.}
   \item{axes.labs}{Whether to display the labels of the axes, i.e. the names of x and y. Default is TRUE.}
   \item{ticks.labs}{Whether to display the labels of the categories of x and y. Default is TRUE.}

@@ -1,5 +1,5 @@
 assoc.yx <- function(y, x, weights = NULL, xx = TRUE, correlation = "kendall",
-                     na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+                     na.rm.cat = FALSE, na.value.cat = "NAs", na.rm.cont = FALSE,
                      nperm = NULL, distrib = "asympt", dec = c(3,3)) {
   
   if(is.null(weights)) weights <- rep(1, length(y))

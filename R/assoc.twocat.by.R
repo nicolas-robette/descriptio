@@ -1,4 +1,4 @@
-assoc.twocat.by  <- function(x, y, by, weights = NULL, na.rm = FALSE, na.value = "NA", nperm = NULL, distrib = "asympt") {
+assoc.twocat.by  <- function(x, y, by, weights = NULL, na.rm = FALSE, na.value = "NAs", nperm = NULL, distrib = "asympt") {
 
   df <- data.frame(x,y)
   spl <- split(df, by)

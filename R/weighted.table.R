@@ -1,31 +1,12 @@
-# data(Movies)
-# x0 = x1 = Movies$Country
-# y0 = y1 = Movies$Genre
-# w0 = w1 = Movies$Critics
-# x1[c(1,4:15)] <- NA
-# y1[2] <- NA
-# w1[3] <- NA
-# weighted.table(x0, weights = w0, na.rm = FALSE)
-# weighted.table(x0, weights = w0, na.rm = TRUE)
-# weighted.table(x0, weights = w1, na.rm = FALSE)
-# weighted.table(x0, weights = w1, na.rm = TRUE)
-# weighted.table(x1, weights = w0, na.rm = FALSE)
-# weighted.table(x1, weights = w0, na.rm = TRUE)
-# weighted.table(x1, weights = w0, na.rm = FALSE, stat = "prop")
-# weighted.table(x1, weights = w0, na.rm = TRUE, stat = "prop")
-# weighted.table(x1, y0, weights = w0, na.rm = FALSE)
-# weighted.table(x1, y0, weights = w0, na.rm = TRUE)
-# weighted.table(x1, y0, weights = w0, na.rm = FALSE, stat = "prop")
-# weighted.table(x1, y0, weights = w0, na.rm = TRUE, stat = "prop")
-# x = x1
-# y = y0
-# weights = w0
-# stat = "prop"
-# na.rm = FALSE
-# na.value = "NA"
+# x <- Movies$Genre
+# y <- Movies$Country
+# x[2:3] <- NA
+# y[9:10] <- NA
+# levels(x) <- c(levels(x), "Pouet pouet")
+# weighted.table(x,y)
 
 weighted.table <- function(x, y = NULL, weights = NULL, stat = "freq", mar = FALSE, 
-                           na.rm = FALSE, na.value = "NA", digits = 1) {
+                           na.rm = FALSE, na.value = "NAs", digits = 1) {
   
   if(is.null(weights)) weights <- rep(1, length(x))
   if(any(is.na(weights))) stop("There are empty values in weights.")
@@ -34,13 +15,13 @@ weighted.table <- function(x, y = NULL, weights = NULL, stat = "freq", mar = FAL
     if(any(is.na(x))) {
       x <- factor(x, levels=c(levels(x), na.value))
       x[is.na(x)] <- na.value
-      x <- factor(x)
+      # x <- factor(x)
     }
     if(!is.null(y)) {
       if(any(is.na(y))) {
         y <- factor(y, levels=c(levels(y), na.value))
         y[is.na(y)] <- na.value
-        y <- factor(y)
+        # y <- factor(y)
       }
     }
     X <- x

@@ -6,7 +6,7 @@
 Computes the phi coefficient for every cells of the cross-tabulation between two categorical variables
 }
 \usage{
-phi.table(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", digits = 3)
+phi.table(x, y, weights = NULL, na.rm = FALSE, na.value = "NAs", digits = 3)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -14,7 +14,7 @@ phi.table(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", digits = 3)
   \item{y}{the second categorical variable}
   \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
   \item{na.rm}{logical, indicating whether NA values should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the variables (see na.value argument).}
-  \item{na.value}{character. Name of the level for NA category. Default is "NA". Only used if na.rm = FALSE.}
+  \item{na.value}{character. Name of the level for NA category. Default is "NAs". Only used if na.rm = FALSE.}
   \item{digits}{integer. The number of digits (default is 3). If NULL, the results are not rounded.}
 }
 

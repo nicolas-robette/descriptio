@@ -6,7 +6,7 @@
 Measures the association between a continuous variable and some continuous and/or categorical variables}
 \usage{
 condesc(y, x, weights = NULL, 
-na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+na.rm.cat = FALSE, na.value.cat = "NAs", na.rm.cont = FALSE,
 limit = NULL, correlation = "kendall", robust = TRUE, 
 nperm = NULL, distrib = "asympt", digits = 2)
 }
@@ -16,7 +16,7 @@ nperm = NULL, distrib = "asympt", digits = 2)
   \item{x}{a data frame with continuous and/or categorical variables}
   \item{weights}{numeric vector of weights. If NULL (default), uniform weights (i.e. all equal to 1) are used.}
   \item{na.rm.cat}{logical, indicating whether NA values in the categorical variables should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the categorical variables (see na.value.cat argument).}
-  \item{na.value.cat}{character. Name of the level for NA category. Default is "NA". Only used if na.rm.cat = FALSE.}
+  \item{na.value.cat}{character. Name of the level for NA category. Default is "NAs". Only used if na.rm.cat = FALSE.}
   \item{na.rm.cont}{logical, indicating whether NA values in the continuous variables should be silently removed before the computation proceeds. Default is FALSE.}
   \item{limit}{for the relationship between y and a category of a categorical variable, only associations (point-biserial correlations) higher or equal to \code{limit} will be displayed. If NULL (default), they are all displayed.}
   \item{correlation}{character. The type of correlation measure to use between two continuous variables : "pearson", "spearman" or "kendall" (default).}

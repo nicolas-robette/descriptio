@@ -1,11 +1,4 @@
-# or.table(x0, y0, weights = w0, na.rm = FALSE)
-# or.table(x0, y0, weights = w0, na.rm = TRUE)
-# or.table(x0, y0, weights = w1, na.rm = FALSE)
-# or.table(x0, y0, weights = w1, na.rm = TRUE)
-# or.table(x1, y0, weights = w0, na.rm = FALSE)
-# or.table(x1, y0, weights = w0, na.rm = TRUE)
-
-or.table <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", digits = 3) {
+or.table <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NAs", digits = 3) {
   t0 <- weighted.table(x, y, weights, stat = "freq", mar = FALSE, na.rm = na.rm, na.value = na.value)
   OR <- t0
   for(i in 1:nrow(t0)) {

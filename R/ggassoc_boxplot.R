@@ -1,5 +1,5 @@
 ggassoc_boxplot <- function(data, mapping,
-                            na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+                            na.rm.cat = FALSE, na.value.cat = "NAs", na.rm.cont = FALSE,
                             axes.labs = TRUE, ticks.labs = TRUE, text.size = 3,
                             sort = FALSE, box = TRUE, notch = FALSE, violin = TRUE) {
 

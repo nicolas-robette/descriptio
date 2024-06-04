@@ -1,14 +1,14 @@
 lag1 <- function(x, default = 0) {
   return(c(default, x[1:(length(x)-1)]))
   }
-  
+
 
 dichot <- function(data, out='numeric') {
   data <- as.data.frame(data)
   res <- matrix(nrow=nrow(data),ncol=length(levels(data[,1])))
   for(i in 1:ncol(data)) {
     if(is.factor(data[,i])==FALSE) data[,i] <- factor(data[,i])
-    nlevels <- length(levels(data[,i]))
+    nlevels <- nlevels(data[,i])
     temp <- matrix(nrow=nrow(data),ncol=nlevels)
     for(j in 1:nlevels) {
       temp[,j] <- 0

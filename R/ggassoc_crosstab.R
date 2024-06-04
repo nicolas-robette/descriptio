@@ -1,7 +1,7 @@
 ggassoc_crosstab <- function(data, mapping,
                              size = "freq", max.size = 20, 
                              measure = "phi", limits = NULL, sort = "none",
-                             na.rm = FALSE, na.value = "NA",
+                             na.rm = FALSE, na.value = "NAs",
                              colors = NULL, direction = 1, legend = "right") {
   
   xVal <- rlang::eval_tidy(mapping$x, data)

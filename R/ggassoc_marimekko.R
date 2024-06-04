@@ -1,6 +1,6 @@
 ggassoc_marimekko <- function(data, mapping, type = "classic",
                               measure = "phi", limits = NULL, 
-                              na.rm = FALSE, na.value = "NA",
+                              na.rm = FALSE, na.value = "NAs",
                               palette = NULL, colors = NULL, direction = 1,
                               linecolor = "gray60", linewidth = 0.1,
                               sort = "none", legend = "right") {

@@ -1,6 +1,6 @@
 ggassoc_bertin <- function(data, mapping, prop.width = FALSE, sort = "none", 
                            add.gray = FALSE, add.rprop = FALSE,
-                           na.rm = FALSE, na.value = "NA") {
+                           na.rm = FALSE, na.value = "NAs") {
   
   xVal <- rlang::eval_tidy(mapping$x, data)
   yVal <- rlang::eval_tidy(mapping$y, data)

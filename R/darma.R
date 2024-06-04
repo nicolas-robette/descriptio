@@ -1,5 +1,5 @@
 darma <- function(y, x, weights = NULL, target = 1,
-                  na.rm.cat = FALSE, na.value.cat = "NA", na.rm.cont = FALSE,
+                  na.rm.cat = FALSE, na.value.cat = "NAs", na.rm.cont = FALSE,
                   correlation = "kendall",
                   nperm = NULL, distrib = "asympt", dec = c(1,3,3)) {
   

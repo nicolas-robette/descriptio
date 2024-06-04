@@ -11,7 +11,7 @@ For a cross-tabulation, plots bars for the conditional percentages of variable y
 \usage{
 ggassoc_bertin(data, mapping, prop.width = FALSE, 
 sort = "none", add.gray = FALSE, add.rprop = FALSE,
-na.rm = FALSE, na.value ="NA")
+na.rm = FALSE, na.value ="NAs")
 }
 
 \arguments{
@@ -22,7 +22,7 @@ na.rm = FALSE, na.value ="NA")
   \item{add.gray}{logical. If FALSE (default), only white and black are used to fill the bars. If TRUE, gray is used additionally to fill the part of the bars corresponding to margin percentages of variable y.}
   \item{add.rprop}{logical. If TRUE, row percentages are displayed on top of the bars. Default is FALSE.}
   \item{na.rm}{logical, indicating whether NA values should be silently removed before the computation proceeds. If FALSE (default), an additional level is added to the variables (see na.value argument).}
-  \item{na.value}{character. Name of the level for NA category. Default is "NA". Only used if na.rm = FALSE.} 
+  \item{na.value}{character. Name of the level for NA category. Default is "NAs". Only used if na.rm = FALSE.} 
 
 }
 

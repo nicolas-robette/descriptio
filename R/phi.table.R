@@ -1,22 +1,19 @@
-# phi.table(x0, y0, weights = w0, na.rm = FALSE)
-# phi.table(x0, y0, weights = w0, na.rm = TRUE)
-# phi.table(x0, y0, weights = w1, na.rm = FALSE)
-# phi.table(x0, y0, weights = w1, na.rm = TRUE)
-# phi.table(x1, y0, weights = w0, na.rm = FALSE)
-# phi.table(x1, y0, weights = w0, na.rm = TRUE)
-
-phi.table <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", digits = 3) {
+phi.table <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NAs", digits = 3) {
   
   if(is.null(weights)) weights <- rep(1, length(x))
   if(any(is.na(weights))) stop("There are empty values in weights.")
   
   if(na.rm==FALSE) {
-    x <- factor(x, levels=c(levels(x), na.value))
-    x[is.na(x)] <- na.value
-    x <- factor(x)
-    y <- factor(y, levels=c(levels(y), na.value))
-    y[is.na(y)] <- na.value
-    y <- factor(y)
+    if(any(is.na(x))) {
+      x <- factor(x, levels=c(levels(x), na.value))
+      x[is.na(x)] <- na.value
+      # x <- factor(x)
+    }
+    if(any(is.na(y))) {
+      y <- factor(y, levels=c(levels(y), na.value))
+      y[is.na(y)] <- na.value
+      # y <- factor(y)      
+    }
   } else {
     complete <- !(is.na(x) | is.na(y))
     x <- x[complete]
@@ -24,17 +21,20 @@ phi.table <- function(x, y, weights = NULL, na.rm = FALSE, na.value = "NA", digi
     weights <- weights[complete]
   }
   
-  xdic <- dichot(factor(x),out='numeric')
-  ydic <- dichot(factor(y),out='numeric')
+  if(!is.factor(x)) x <- factor(x)
+  xdic <- dichot(x, out='numeric')
+  if(!is.factor(y)) y <- factor(y)
+  ydic <- dichot(y, out='numeric')
   tab <- matrix(nrow = ncol(xdic), ncol = ncol(ydic))
   for(i in 1:nrow(tab)) {
     for(j in 1:ncol(tab)) {
       tab[i,j] <- weighted.cor(xdic[,i], ydic[,j], weights = weights, method = "pearson")      
     }
   }
+  tab[is.nan(tab)] <- 0
   tab <- as.table(tab)
-  rownames(tab) <- levels(factor(x))
-  colnames(tab) <- levels(factor(y))
+  rownames(tab) <- levels(x)
+  colnames(tab) <- levels(y)
   if(!is.null(digits)) tab <- round(tab,digits)
   return(tab)
 }
