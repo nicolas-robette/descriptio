@@ -17,7 +17,10 @@ reference:
   - weighted.cov
   - weighted.cov2
   - weighted.table
+  - weighted.cramer
+  - crosstab
   - phi.table
+  - stdres.table
   - or.table
   - pem.table
   - assoc.twocat
