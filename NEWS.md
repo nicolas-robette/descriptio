@@ -1,3 +1,19 @@
+# descriptio 1.4
+
+## new functions
+
+* `crosstab()` : Displays pretty 2, 3 or 4-way cross-tabulations, from possibly weighted data, and with the opportunity to color the cells of the table according to a local measure of association (phi coefficients, standardized residuals or PEM). 
+* `weighted.cramer()` : Cramer's V measure of association between two (possibly weighted) categorical variables
+* `stdres.table()` : Standardized and adjusted residuals of a (possibly weighted) contingency table
+
+## minor changes
+
+* all functions concerned : changed default NA level from "NA" to "NAs"
+* all functions concerned : when na.rm = FALSE, a level for NAs is added only if there are NAs
+* all functions concerned : empty levels are not automatically removed
+
+
+
 # descriptio 1.3 [CRAN]
 
 ## new functions
