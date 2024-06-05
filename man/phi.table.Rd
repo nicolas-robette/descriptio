@@ -1,14 +1,16 @@
 \name{phi.table}
 \alias{phi.table}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{Computes the phi coefficient for every cells of a contingency table}
+
 \description{
 Computes the phi coefficient for every cells of the cross-tabulation between two categorical variables
 }
+
 \usage{
 phi.table(x, y, weights = NULL, na.rm = FALSE, na.value = "NAs", digits = 3)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{the first categorical variable}
   \item{y}{the second categorical variable}
@@ -29,10 +31,12 @@ Rakotomalala R., 'Comprendre la taille d'effet (effect size)', http://eric.univ-
 \seealso{
 \code{\link{assoc.twocat}},\code{\link{assoc.catcont}}, \code{\link{condesc}}, \code{\link{catdesc}}
 }
+
 \examples{
 data(Movies)
 phi.table(Movies$Country, Movies$ArtHouse)
 }
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ multivariate }

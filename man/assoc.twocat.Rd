@@ -37,7 +37,7 @@ A list of lists with the following elements :
 \item{GK.tau.xy}{Goodman and Kruskal tau (forward association, i.e. x is the predictor and y is the response)}
 \item{GK.tau.yx}{Goodman and Kruskal tau (backward association, i.e. y is the predictor and x is the respons)}
 \code{local} list :
-\item{std.residuals}{the table of standardized (i.e.Pearson) residuals.}
+\item{std.residuals}{the table of standardized (i.e. Pearson) residuals.}
 \item{adj.residuals}{the table of adjusted standardized residuals.}
 \item{adj.res.pval}{the table of p-values of adjusted standardized residuals.}
 \item{odds.ratios}{the table of odds ratios.}
@@ -58,6 +58,7 @@ Rakotomalala R., \emph{Comprendre la taille d'effet (effect size)}, http://eric.
 
 Lebart L., Morineau A. and Warwick K., 1984, *Multivariate Descriptive Statistical Analysis*, John Wiley and sons, New-York.
 }
+
 \author{Nicolas Robette}
 
 \seealso{
