@@ -40,7 +40,7 @@ install_github("nicolas-robette/descriptio")
 
 To cite `descriptio` in publications, use :
 
-Robette N. (2023), *`descriptio` : Descriptive Analysis of Associations between two Variables in `R`*, version 1.1, https://nicolas-robette.github.io/descriptio/
+Robette N. (2024), *`descriptio` : Descriptive Analysis of Associations between Variables in `R`*, version 1.4, https://nicolas-robette.github.io/descriptio/
 
 
 ## References
