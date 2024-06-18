@@ -27,7 +27,7 @@ import(ggplot2)
 
 export(assoc.twocat,assoc.catcont,assoc.twocont,assoc.yx,assoc.xx,assoc.twocat.by,assoc.catcont.by,assoc.twocont.by,
        catdesc,condesc,darma,or.table,pem.table,phi.table,stdres.table,
-       profiles,crosstab,
+       profiles,crosstab,cattab,regtab,
        weighted.table,weighted.quantile,weighted.mad,weighted.sd,weighted.cor,weighted.cor2,weighted.cov,weighted.cov2,weighted.cramer,
        ggassoc_assocplot,ggassoc_bertin,ggassoc_chiasmogram,ggassoc_crosstab,ggassoc_phiplot,ggassoc_marimekko,
        ggassoc_boxplot,ggassoc_scatter)
