@@ -257,7 +257,6 @@ regtab <- function(x, y, weights = NULL, continuous = "slopes", show.ci = TRUE, 
   
 }
 
-# gtsummary::theme_gtsummary_language(language = "en", decimal.mark = ".", big.mark = " ", ci.sep =" , ")
 # data(Movies)
 # (res11 <- regtab(y = Movies$BoxOffice,
 #                  x = Movies[, c("Country", "Budget", "ArtHouse", "Critics")],

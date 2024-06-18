@@ -25,6 +25,8 @@ regtab(x, y, weights = NULL, continuous = "slopes",
 
 \details{
 This function is basically a wrapper for regression functions in the \code{gtsummary} function. It computes a series of univariate regressions (one for each explanatory variable), then a multivariate regression (with all explanatory variables) and displays the results side by side. These results are presented in the form of average marginal effects : average marginal predictions for categorical variables and average marginal slopes (or predictions) for continuous variables.
+
+Besides, the function is compatible with the attribute labels assigned with \code{labelled} package : these labels are displayed automatically.
 }
 
 \value{
