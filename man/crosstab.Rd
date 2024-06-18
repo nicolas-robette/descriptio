@@ -57,9 +57,13 @@ The function uses \code{gtsummary} package to build the cross-tabulation, and th
 Besides, the function is compatible with the attribute labels assigned with \code{labelled} package : these labels are displayed automatically.
 
 The \code{palette} argument can be any of the following :
+
 1. A character vector of RGB or named colours. Examples: palette(), c("#000000", "#0000FF", "#FFFFFF"), topo.colors(10)
+
 2. The name of an \code{RColorBrewer} palette, e.g. "BuPu" or "Greens".
+
 3. The full name of a \code{viridis} palette: "viridis", "magma", "inferno", or "plasma".
+
 4. A function that receives a single value between 0 and 1 and returns a colour. Examples: colorRamp(c("#000000", "#FFFFFF"), interpolate="spline").
 
 }
@@ -76,8 +80,25 @@ An object of class \code{gt_tbl}.
 
 \examples{
 data(Movies)
+# example 1
 crosstab(Movies$Genre, Movies$Country)
+# example 2
 with(Movies, crosstab(Genre, Country, ystrata = ArtHouse, show.n = TRUE, color.cells = TRUE))
+}
+
+\section{Example Output}{
+
+\if{html}{Example 1}
+
+\if{html}{\out{
+<img src="https://github.com/nicolas-robette/descriptio/blob/75a4e5d46b034b5dbe27a04123364a2d7628aeb3/man-images/crosstab-ex1.png" alt="image of rendered example table" style="width:31\%;">
+}}
+
+\if{html}{Example 2}
+
+\if{html}{\out{
+<img src="https://github.com/nicolas-robette/descriptio/blob/75a4e5d46b034b5dbe27a04123364a2d7628aeb3/man-images/crosstab-ex2.png" alt="image of rendered example table" style="width:45\%;">
+}}
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
