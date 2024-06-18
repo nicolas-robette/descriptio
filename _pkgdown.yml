@@ -9,13 +9,11 @@ authors:
 
 reference:
   
-- title: Descriptive analysis
+- title: Basic descriptive analysis
 - desc: Tools to describe statistical associations between two variables
 - contents:
   - weighted.cor
-  - weighted.cor2
   - weighted.cov
-  - weighted.cov2
   - weighted.table
   - weighted.cramer
   - crosstab
@@ -29,13 +27,21 @@ reference:
   - assoc.twocat.by
   - assoc.catcont.by
   - assoc.twocont.by
+  
+- title: Advanced descriptive analysis
+- desc: Tools to describe statistical multiple bivariate associations between variables
+- contents:  
+  - weighted.cor2
+  - weighted.cov2
   - catdesc
   - condesc
   - assoc.yx
   - assoc.xx
+  - cattab
+  - regtab
   - darma
   - profiles
-  
+
 - title: Plots
 - desc: Plots to describe statistical associations between two variables
 - contents:

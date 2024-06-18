@@ -147,11 +147,11 @@
     <h2>Details</h2>
     <p>The function uses <code>gtsummary</code> package to build the cross-tabulation, and then <code>gt</code> package to finalize the layout and color the cells. Weights are handled silently with <code>survey</code> package.</p>
 <p>Besides, the function is compatible with the attribute labels assigned with <code>labelled</code> package : these labels are displayed automatically.</p>
-<p>The <code>palette</code> argument can be any of the following :
-1. A character vector of RGB or named colours. Examples: palette(), c("#000000", "#0000FF", "#FFFFFF"), topo.colors(10)
-2. The name of an <code>RColorBrewer</code> palette, e.g. "BuPu" or "Greens".
-3. The full name of a <code>viridis</code> palette: "viridis", "magma", "inferno", or "plasma".
-4. A function that receives a single value between 0 and 1 and returns a colour. Examples: colorRamp(c("#000000", "#FFFFFF"), interpolate="spline").</p>
+<p>The <code>palette</code> argument can be any of the following :</p>
+<p>1. A character vector of RGB or named colours. Examples: palette(), c("#000000", "#0000FF", "#FFFFFF"), topo.colors(10)</p>
+<p>2. The name of an <code>RColorBrewer</code> palette, e.g. "BuPu" or "Greens".</p>
+<p>3. The full name of a <code>viridis</code> palette: "viridis", "magma", "inferno", or "plasma".</p>
+<p>4. A function that receives a single value between 0 and 1 and returns a colour. Examples: colorRamp(c("#000000", "#FFFFFF"), interpolate="spline").</p>
     </div>
     <div id="value">
     <h2>Value</h2>
@@ -167,11 +167,22 @@
     <h2>See also</h2>
     <div class="dont-index"><p><code><a href="assoc.twocat.html">assoc.twocat</a></code>,<code><a href="weighted.table.html">weighted.table</a></code>, <code><a href="phi.table.html">phi.table</a></code></p></div>
     </div>
+    <div id="example-output">
+    <h2>Example Output</h2>
+    
+
+<p>Example 1</p>
+<p><img src="https://github.com/nicolas-robette/descriptio/blob/75a4e5d46b034b5dbe27a04123364a2d7628aeb3/man-images/crosstab-ex1.png" alt="image of rendered example table" style="width:31%;"></p>
+<p>Example 2</p>
+<p><img src="https://github.com/nicolas-robette/descriptio/blob/75a4e5d46b034b5dbe27a04123364a2d7628aeb3/man-images/crosstab-ex2.png" alt="image of rendered example table" style="width:45%;"></p>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Movies</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># example 1</span></span></span>
 <span class="r-in"><span><span class="fu">crosstab</span><span class="op">(</span><span class="va">Movies</span><span class="op">$</span><span class="va">Genre</span>, <span class="va">Movies</span><span class="op">$</span><span class="va">Country</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># example 2</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Movies</span>, <span class="fu">crosstab</span><span class="op">(</span><span class="va">Genre</span>, <span class="va">Country</span>, ystrata <span class="op">=</span> <span class="va">ArtHouse</span>, show.n <span class="op">=</span> <span class="cn">TRUE</span>, color.cells <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>

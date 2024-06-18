@@ -3,6 +3,8 @@
 ## new functions
 
 * `crosstab()` : Displays pretty 2, 3 or 4-way cross-tabulations, from possibly weighted data, and with the opportunity to color the cells of the table according to a local measure of association (phi coefficients, standardized residuals or PEM). 
+* `cattab()` : Bivariate statistics between a categorical variable and a set of variables
+* `regtab()` : Univariate and multivariate regressions and their average marginal effects side-by-side
 * `weighted.cramer()` : Cramer's V measure of association between two (possibly weighted) categorical variables
 * `stdres.table()` : Standardized and adjusted residuals of a (possibly weighted) contingency table
 
