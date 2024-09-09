@@ -22,8 +22,9 @@ profiles <- function(X, y, weights = NULL, stat = "cprop", mar = TRUE, digits = 
     res <- round(100*t(apply(freq, 1, function(x) x/sum(x))), digits)
     if(isTRUE(mar)) res[,"total"] <- rep(100, nrow(res))
   } else if(stat == "cprop") {
-    res <- round(100*apply(freq, 2, function(x) x*ncol(X)/sum(x)), digits)
+    res <- freq
     if(isTRUE(mar)) res <- res[-nrow(res),]
+    res <- round(100*apply(res, 2, function(x) x*ncol(X)/sum(x)), digits)
   } else if(stat == "prop") {
     res <- round(100*freq/sum(weights), digits)
   }

@@ -15,6 +15,10 @@
 * all functions concerned : when na.rm = FALSE, a level for NAs is added only if there are NAs
 * all functions concerned : empty levels are not automatically removed
 
+## bug fix
+
+* `profiles()` : bug fix when stat = "cprop" and mar = TRUE 
+
 
 
 # descriptio 1.3 [CRAN]
